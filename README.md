@@ -1,5 +1,4 @@
-# LS
-L# - LeagueSharp
+# L# - LeagueSharp
 
 All Support for L# - Auto Update my favourite Assembilies
 - Evade https://github.com/Esk0r/LeagueSharp
