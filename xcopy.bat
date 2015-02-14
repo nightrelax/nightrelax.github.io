@@ -1,2 +1,13 @@
-xcopy /s %appdata%\LeagueSharp\Repositories\*.* D:\DESKTOPsync\LOL tool\GitHub\nightrelax.github.io\
+xcopy /s /e "%appdata%\LeagueSharp\Repositories\1BA0420E\trunk\Evade\*" "L#\Evade\*"
+xcopy /s /e "%appdata%\LeagueSharp\Repositories\AE72DDF8\trunk\Tracker\*" "L#\Tracker\*"
+xcopy /s /e "%appdata%\LeagueSharp\Repositories\B029831F\trunk\Oracle (Activator)\*" "L#\Oracle (Activator)\*"
+xcopy /s /e "%appdata%\LeagueSharp\Repositories\9AB94A3D\trunk\LeaguesharpStreamingMode\*" "L#\LeaguesharpStreamingMode\*"
+xcopy /s /e "%appdata%\LeagueSharp\Repositories\783119BA\trunk\daYMANs Sidebar\*" "L#\daYMANs Sidebar\*"
+xcopy /s /e "%appdata%\LeagueSharp\Repositories\E0D6961C\trunk\Anti_Camper\*" "L#\Anti_Camper\*"
+xcopy /s /e "%appdata%\LeagueSharp\Repositories\F2E4A9AF\trunk\UniversalMinimapHack\*" "L#\UniversalMinimapHack\*"
+xcopy /s /e "%appdata%\LeagueSharp\Repositories\683DA673\trunk\LeBlanc\*" "L#\LeBlanc\*"
+xcopy /s /e "%appdata%\LeagueSharp\Repositories\1BA0420E\trunk\Syndra\*" "L#\Syndra\*"
+xcopy /s /e "%appdata%\LeagueSharp\Repositories\1BA0420E\trunk\Ziggs\*" "L#\Ziggs\*"
+xcopy /s /e "%appdata%\LeagueSharp\Repositories\5129B1DE\trunk\Support\*" "L#\Support\*"
+xcopy /s /e "%appdata%\LeagueSharp\Repositories\92E8AF66\trunk\Jinx\*" "L#\Jinx\*"
 pause
