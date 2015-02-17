@@ -31,6 +31,11 @@ namespace Evade
 {
     public static class Utils
     {
+        public static int TickCount
+        {
+            get { return Environment.TickCount & int.MaxValue; }
+        }
+
         public static List<Vector2> To2DList(this Vector3[] v)
         {
             var result = new List<Vector2>();
@@ -81,7 +86,7 @@ namespace Evade
                 }
             }
 
-            return (result == 0f) ? -1 : (int) (Environment.TickCount + (result - Game.Time) * 1000);
+            return (result == 0f) ? -1 : (int) (Utils.TickCount + (result - Game.Time) * 1000);
         }
 
 

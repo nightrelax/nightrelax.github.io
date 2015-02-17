@@ -8,26 +8,75 @@ All Support for L# - Auto Update my favourite Assembilies
 - daYMANs Sidebar https://github.com/daYMAN007/Leaguesharp/
 - Anti_Camper https://github.com/DrakeSharp/LeagueSharp
 - UniversalMinimapHack https://github.com/TheSaltyWaffle/LeagueSharp/
-- LeBlanc https://github.com/trees-software/LeagueSharp/
-- Syndra https://github.com/Esk0r/LeagueSharp
-- Ziggs https://github.com/Esk0r/LeagueSharp
+- Meta Smite http://www.joduska.me/forum/topic/1331-meta-smite-working-53-totally-rewritten/
+- Skin changer https://github.com/metaphorce/leaguesharp
 - Support https://github.com/h3h3/LeagueSharp
-- Jinx_OneKeyToWin https://github.com/OneKeyToWin/LeagueRepo
+- Shared Experience https://github.com/AlphaGodLoL/LeagueSharp http://www.joduska.me/forum/topic/15892-51-shared-experience-reveal-hidden-enemies/
+- SAwareness https://github.com/Screeder/SAwarenessBeta http://www.joduska.me/forum/topic/58-updated-for-52sawareness/
+- xSaliceReligionAIO https://github.com/xSalice/LSharp http://www.joduska.me/forum/topic/7584-guide-xsalicereligionaio-added-azir-and-yasuo-01222015/
+- LexxersAIOCarry UltimateCarry https://github.com/bolsudo/LeagueSharp
+- Marksman https://github.com/legacy3/Marksman http://www.joduska.me/forum/topic/977-marksman/
+- Stack Overflow https://github.com/mrarticuno/Mechanics-StackOverflow http://www.joduska.me/forum/topic/17359-mechanics-stackoverflow-51-fixed/
+
+Champ
+- Aatrox https://github.com/AureusXD/LeagueSharp
+- Ahri xSaliceReligionAIO https://github.com/xSalice/LSharp
+- Akali xSaliceReligionAIO https://github.com/xSalice/LSharp
+- Alistar Support https://github.com/h3h3/LeagueSharp
+- Amumu LexxersAIOCarry UltimateCarry https://github.com/bolsudo/LeagueSharp
+- Anivia xSaliceReligionAIO https://github.com/xSalice/LSharp 
+- DevAnnie https://github.com/InjectionDev/LeagueSharp/
+- Ashe Marksman https://github.com/legacy3/Marksman
+- Azir xSaliceReligionAIO https://github.com/xSalice/LSharp
+- KurisuBlitzcrank https://github.com/xKurisu/KurisuSolutions
+- Brand DatBrand https://github.com/GoldenGatesPB/league-sharp
+- Braum Support https://github.com/h3h3/LeagueSharp
 - Caitlyn https://github.com/OneKeyToWin/LeagueRepo
-- JungleAIO https://github.com/eXtravoz/LeagueSharp/
-- Xerath https://github.com/Esk0r/LeagueSharp
-- Annie https://github.com/TC-Crew/L-Assemblies
-- Darius https://github.com/TC-Crew/L-Assemblies
-- Evelynn https://github.com/TC-Crew/L-Assemblies
-- KurisuNidalee https://github.com/xKurisu/KurisuSolutions
-- ChewyMoonsIrelia https://github.com/ChewyMoon/ChewyMoonScripts
-- Shared Experience https://github.com/AlphaGodLoL/LeagueSharp
+- DevCassiopeia https://github.com/InjectionDev/LeagueSharp/
+- Cho'Gath UnderratedAIO https://github.com/Soresu/LeagueSharp
+- Corki Marksman https://github.com/legacy3/Marksman
+- Darius SigmaSeries https://github.com/fueledbyflux/LeagueSharp-Public
+- D-Diana https://github.com/xQxCPMxQx/LeagueSharp2
+- FedDrMundo https://github.com/livetorise/LeagueSharp
+- DZDravenReloaded https://github.com/DZ191/LeagueSharp
+- SephElise https://github.com/SephLeague/LeagueSharp
+- Evelynn UnderratedAIO https://github.com/Soresu/LeagueSharp
+- PerplexedEzreal https://github.com/Perplexity/LeagueSharp
+- Fiddlesticks SigmaSeries https://github.com/fueledbyflux/LeagueSharp-Public
+- Fiora xSaliceReligionAIO https://github.com/xSalice/LSharp
+- Fizz xSaliceReligionAIO https://github.com/xSalice/LSharp
+- Galio Stack Overflow https://github.com/mrarticuno/Mechanics-StackOverflow
+- Gangplank SwagPlank https://github.com/DanThePman/SwagPlank/
+- GarenOP Garenteed freelo https://github.com/Nouser/LeagueSharp
+- Gnar https://github.com/Hellsing/LeagueSharp
+- Gragas https://github.com/murtaza61/LeagueSharpAssembly
+- Graves MAC https://github.com/TehBlaxxor/LeagueSharp/tree/master/MAC
+- Hecarim SigmaSeries https://github.com/fueledbyflux/LeagueSharp-Public
+- SSJ4 Heimerdinger https://github.com/SSJ4/Leaguesharp
+- Irelia Reloaded https://github.com/ChewyMoon/ChewyMoonScripts
+- Janna Support https://github.com/h3h3/LeagueSharp
+- StonedJarvan https://github.com/TheKushStyle/LeagueSharp
+- JaxQx https://github.com/xQxCPMxQx/LeagueSharp2
+- Jayce xSaliceReligionAIO https://github.com/xSalice/LSharp
+- Jinx https://github.com/OneKeyToWin/LeagueRepo/tree/master/Jinx
+- Kalista https://github.com/Hellsing/LeagueSharp
 - Karma https://github.com/Esk0r/LeagueSharp
-- Orianna https://github.com/Esk0r/LeagueSharp
-- Ryze https://github.com/Esk0r/LeagueSharp
-- MalphiteTheRock https://github.com/xSalice/LSharp
-- MalzaharSpaceAids https://github.com/xSalice/LSharp
-- ChewyMoonsLux https://github.com/ChewyMoon/ChewyMoonScripts
-- Katarina https://github.com/JouzaLoL/LeagueSharp
-- Graves_OnKeyToWin https://github.com/OneKeyToWin/LeagueRepo
-- Sivir https://github.com/OneKeyToWin/LeagueRepo
+- Kathus xSaliceReligionAIO https://github.com/xSalice/LSharp
+- BlackKassadin https://github.com/blackyy/LeagueSharp
+- Katarina xSaliceReligionAIO https://github.com/xSalice/LSharp
+- Kayle https://github.com/RoachxD/LeagueSharp
+- Daimao Kennen https://github.com/Taerarenai/LeagueSharp
+- SephKhazix https://github.com/SephLeague/LeagueSharp
+- DevKogMaw https://github.com/InjectionDev/LeagueSharp
+- Princess LeBlanc 2 https://github.com/Apollo16/LeagueSharp
+- FuckingAwesomeLeeSin https://github.com/fueledbyflux/FARepo
+- Leona Support https://github.com/h3h3/LeagueSharp
+- LissandraLetitGoLetItGOOOOO https://github.com/xSalice/LSharp
+- Lucian xSaliceReligionAIO https://github.com/xSalice/LSharp
+- Lulu Stack Overflow https://github.com/mrarticuno/Mechanics-StackOverflow
+- Lux Mid or Feed https://github.com/ChewyMoon/ChewyMoonScripts
+- Malphile (No assembly)
+- Malzaha Mid or Feed https://github.com/ChewyMoon/ChewyMoonScripts
+- Maokai FedMaokai https://github.com/livetorise/LeagueSharp
+- MasterYi https://github.com/xQxCPMxQx/LeagueSharp2
+- 
