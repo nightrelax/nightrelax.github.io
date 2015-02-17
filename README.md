@@ -17,6 +17,8 @@ All Support for L# - Auto Update my favourite Assembilies
 - LexxersAIOCarry UltimateCarry https://github.com/bolsudo/LeagueSharp
 - Marksman https://github.com/legacy3/Marksman http://www.joduska.me/forum/topic/977-marksman/
 - Stack Overflow https://github.com/mrarticuno/Mechanics-StackOverflow http://www.joduska.me/forum/topic/17359-mechanics-stackoverflow-51-fixed/
+- BrianSharp https://github.com/brian0305/BrianSharp http://www.joduska.me/forum/topic/18755-brian-sharp-beta-0018/
+- xSLx Orbwalker "lib" https://github.com/E2Slayer/LeagueSharp http://www.joduska.me/forum/topic/4649-51-xslx-orbwalker-standalone/
 
 Champ
 - Aatrox https://github.com/AureusXD/LeagueSharp
@@ -75,8 +77,72 @@ Champ
 - Lucian xSaliceReligionAIO https://github.com/xSalice/LSharp
 - Lulu Stack Overflow https://github.com/mrarticuno/Mechanics-StackOverflow
 - Lux Mid or Feed https://github.com/ChewyMoon/ChewyMoonScripts
-- Malphile (No assembly)
+- Malphile the rock https://github.com/xSalice/LSharp
 - Malzaha Mid or Feed https://github.com/ChewyMoon/ChewyMoonScripts
 - Maokai FedMaokai https://github.com/livetorise/LeagueSharp
 - MasterYi https://github.com/xQxCPMxQx/LeagueSharp2
-- 
+- Missfortune Marksman https://github.com/legacy3/Marksman
+- Mordekaiser Stack Overflow https://github.com/mrarticuno/Mechanics-StackOverflow
+- Morgana Support https://github.com/h3h3/LeagueSharp
+- Nami Support https://github.com/h3h3/LeagueSharp
+- NasusFeelTheCane https://github.com/fueledbyflux/LeagueSharp-Public
+- Nautilus https://github.com/H3stia/LeagueSharp
+- KurisuNidalee https://github.com/xKurisu/KurisuSolutions
+- FedNocturne https://github.com/livetorise/LeagueSharp
+- Nunu Support https://github.com/h3h3/LeagueSharp
+- Olafisback https://github.com/xQxCPMxQx/leaguesharp2
+- Orianna xSaliceReligionAIO https://github.com/xSalice/LSharp
+- Pantheon https://github.com/RoachxD/LeagueSharp
+- Poppy UnderratedAIO https://github.com/Soresu/LeagueSharp
+- Quinn Marksman https://github.com/legacy3/Marksman
+- Rammus BrianSharp https://github.com/brian0305/BrianSharp
+- Rek'Sai https://github.com/Hellsing/LeagueSharp/
+- DatRenekton https://github.com/GoldenGatesPB/league-sharp
+- Rengar https://github.com/madk/LeagueSharp
+- KurisuRiven https://github.com/xKurisu/KurisuSolutions/tree/master/KurisuRiven
+- Rumble xSaliceReligionAIO https://github.com/xSalice/LSharp
+- Lightning Ryze https://github.com/zUsername/LeagueSharp
+- Sejuani UnderratedAIO https://github.com/Soresu/LeagueSharp
+- ChewyMoonsShaco https://github.com/ChewyMoon/ChewyMoonScripts/
+- Shen UnderratedAIO https://github.com/Soresu/LeagueSharp
+- Shyvana https://github.com/DZ191/sharperino
+- Singed SigmaSeries https://github.com/fueledbyflux/LeagueSharp-Public
+- Sion https://github.com/TC-Crew/L-Assemblies
+- Sivir https://github.com/OneKeyToWin/LeagueRepo
+- Skarner https://github.com/Onfinite/LeagueSharp
+- Sona Support https://github.com/h3h3/LeagueSharp
+- Sophie's Soraka https://github.com/ChewyMoon/ChewyMoonScripts
+- The Mocking Swain https://github.com/ryuzakihacks/LeagueSharp
+- Syndra https://github.com/Esk0r/LeagueSharp
+- Talon Stack Overflow https://github.com/mrarticuno/Mechanics-StackOverflow
+- Taric Support https://github.com/h3h3/LeagueSharp
+- Teemo xSaliceReligionAIO https://github.com/xSalice/LSharp
+- Thresh Support https://github.com/h3h3/LeagueSharp
+- Tristana Marksman https://github.com/legacy3/Marksman
+- Trundle https://github.com/dotCr0/sharpie
+- Tryndamere SigmaSeries https://github.com/fueledbyflux/LeagueSharp-Public
+- Twisted Fate https://github.com/xcsoft/LeagueSharp
+- Twitch Marksman https://github.com/legacy3/Marksman
+- Udyr Godyr https://github.com/madk/LeagueSharp
+- TUrgot https://github.com/trees-software/leaguesharp
+- Varus Marksman https://github.com/legacy3/Marksman
+- VayneHunterRework https://github.com/DZ191/LeagueSharp
+- Veigar, The Tiny Master Of Evil https://github.com/DedToto/L- ( note: install Orbwalker lib) http://www.joduska.me/forum/topic/16072-veigar-the-tiny-master-of-evilupdated-for-52290115-v-1013-dfgq-update/
+- Vel'Koz xSaliceReligionAIO https://github.com/xSalice/LSharp
+- Vi https://github.com/xQxCPMxQx/LeagueSharp2
+- Viktor https://github.com/Hellsing/LeagueSharp/
+- Vladimir xSaliceReligionAIO https://github.com/xSalice/LSharp
+- Volibear https://github.com/TheKushStyle/LeagueSharp
+- D-Warwick https://github.com/xQxCPMxQx/LeagueSharp2/
+- Wukong https://github.com/xQxCPMxQx/LeagueSharp2
+- Xerath https://github.com/Esk0r/LeagueSharp
+- XinZhao https://github.com/xQxCPMxQx/LeagueSharp2
+- Yasuo xSaliceReligionAIO https://github.com/xSalice/LSharp
+- Yorick UnderratedAIO https://github.com/Soresu/LeagueSharp
+- Zac (miss - it is because he is bad)
+- ZeD is Back https://github.com/xQxCPMxQx/leaguesharp2
+- Ziggs https://github.com/Esk0r/LeagueSharp
+- Zilean support https://github.com/h3h3/LeagueSharp
+- Zyra xSaliceReligionAIO https://github.com/xSalice/LSharp
+
+Have a nice day.
