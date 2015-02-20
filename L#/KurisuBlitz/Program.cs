@@ -89,7 +89,7 @@ namespace KurisuBlitz
             }
 
             if (_target.IsValidTarget(q.Range * 2))
-                Render.Circle.DrawCircle(_target.Position, _target.BoundingRadius, Color.Red, 10);
+                Render.Circle.DrawCircle(_target.Position, _target.BoundingRadius - 30, Color.Yellow, 3);
         }
 
 
@@ -234,7 +234,7 @@ namespace KurisuBlitz
             menuD.AddItem(new MenuItem("drawR", "Draw R")).SetValue(new Circle(true, Color.FromArgb(150, Color.White)));
             _menu.AddSubMenu(menuD);
 
-            var menuG = new Menu("Blitz: GodHand", "autograb");
+            var menuG = new Menu("Blitz: Combo", "autograb");
             menuG.AddItem(new MenuItem("hitchance", "Hitchance"))
                 .SetValue(new StringList(new[] { "Low", "Medium", "High" }, 2));
             menuG.AddItem(new MenuItem("dneeded", "Mininum distance to Q")).SetValue(new Slider(255, 0, (int)q.Range));
@@ -267,6 +267,8 @@ namespace KurisuBlitz
             _menu.AddItem(new MenuItem("useE", "Powerfist after grab")).SetValue(true);
             _menu.AddItem(new MenuItem("combokey", "Combo Key")).SetValue(new KeyBind(32, KeyBindType.Press));
             _menu.AddToMainMenu();
+
+            Game.PrintChat("<font color=\"#FF9900\"><b>KurisuBlitz</b></font>: Loaded");
         }
     }
 }

@@ -51,7 +51,6 @@ namespace KurisuRiven
             return Settings.Item(item).GetValue<bool>();
         }
 
-
         internal static int GetSlider(string item)
         {
             return Settings.Item(item).GetValue<Slider>().Value;

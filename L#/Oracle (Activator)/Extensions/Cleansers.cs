@@ -58,7 +58,7 @@ namespace Oracle.Extensions
             var target = range > 5000 ? Me : OC.Friendly();
             if (_mainMenu.Item("cccon" + target.SkinName).GetValue<bool>())
             {
-                if (target.Distance(Me.ServerPosition, true) <= range * range)
+                if (target.Distance(Me.ServerPosition, true) <= range * range && target.IsValidState())
                 {
                     var tHealthPercent = target.Health/target.MaxHealth*100;
                     var delay = _mainMenu.Item("cleansedelay").GetValue<Slider>().Value * 10;

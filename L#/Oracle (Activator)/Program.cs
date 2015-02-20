@@ -40,21 +40,20 @@ namespace Oracle
             CustomEvents.Game.OnGameLoad += OnGameLoad;
         }
 
+        public static int LastTick;
         public static bool Spell;
         public static bool Stealth;
         public static bool Danger;
         public static bool Dangercc;
         public static bool DangerUlt;
         public static string FileName;
-        public static int LastTick;
         public static bool CanManamune;
         public static string ChampionName;
-        public const string Revision = "220";
+        public const string Revision = "222";
 
         private static void OnGameLoad(EventArgs args)
         {
-            FileName = "Oracle - " + DateTime.Now.ToString("yy.MM.dd") +
-                       " " + DateTime.Now.ToString("h.mm.ss") + ".txt";
+            FileName = "Oracle - " + DateTime.Now.ToString("yy.MM.dd") + " " + DateTime.Now.ToString("h.mm.ss") + ".txt";
       
             ChampionName = Me.ChampionName;
             Game.OnGameUpdate += Game_OnGameUpdate;
@@ -71,7 +70,7 @@ namespace Oracle
 
             else
             {
-                Game.PrintChat("<font color=\"#FFFFCC\">Feel free to donate to</font>: xrobinsong@gmail.com");
+                Game.PrintChat("<font color=\"#FFFFCC\">Do appreciate donations via Paypal </font>: xrobinsong@gmail.com");
             }
 
             try
@@ -89,8 +88,7 @@ namespace Oracle
 
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                Game.PrintChat("Something went wrong with update checker!");
+                Logger(LogType.Error, "Something went wrong with update checker!");
             }
 
             Origin = new Menu("Oracle", "oracle", true);
@@ -114,7 +112,7 @@ namespace Oracle
                     var danger = spell.Spellslot.ToString() == "R" ||
                                     spell.CcType != CcType.No && (spell.Type == SpellType.Skillshot || spell.Type == SpellType.Targeted);
 
-                    menu.AddItem(new MenuItem(spell.Name + "ccc", spell.Name + " | " + spell.Spellslot)).SetValue(danger);
+                    menu.AddItem(new MenuItem(spell.Name + "ccc", spell.Name + " - " + spell.Spellslot)).SetValue(danger);
                 }
 
                 dangerMenu.AddSubMenu(menu);
@@ -127,9 +125,12 @@ namespace Oracle
             config.AddSubMenu(dangerMenu);
 
             var cskills = new Menu("Cleanse Special", "cskills");
-            foreach (var debuff in GameBuff.CleanseBuffs)
-                cskills.AddItem(new MenuItem("cure" + debuff.BuffName, debuff.ChampionName + " | " + debuff.Slot))
-                    .SetValue(true);
+            foreach (var i in ObjectManager.Get<Obj_AI_Hero>().Where(hero => hero.Team != Me.Team))
+            {
+                foreach (var debuff in GameBuff.CleanseBuffs.Where(t => t.ChampionName == i.ChampionName))
+                    cskills.AddItem(new MenuItem("cure" + debuff.BuffName, debuff.ChampionName + " - " + debuff.Slot))
+                        .SetValue(true);
+            }
             config.AddSubMenu(cskills);
 
             var cleanseMenu = new Menu("Cleanse Debuffs", "cdebufs");
@@ -331,7 +332,7 @@ namespace Oracle
                 CurrentTarget = targ;
             }
 
-            // Get dangerous buff update for zhonya (vladimir R) etc)
+            // Get dangerous buff update for zhonya (vladimir R) etc
             foreach (var buff in GameBuff.EvadeBuffs)
             {
                 foreach (var aura in Friendly().Buffs)
@@ -693,11 +694,17 @@ namespace Oracle
             return target;
         }
 
-        private static Obj_AI_Hero GetEnemy(string championnmame)
+        public static Obj_AI_Hero GetEnemy(string championnmame)
         {
             return
                 ObjectManager.Get<Obj_AI_Hero>()
                     .First(enemy => enemy.Team != Me.Team && enemy.ChampionName == championnmame);
+        }
+
+        public static bool IsValidState(this Obj_AI_Hero target)
+        {
+            return !target.HasBuffOfType(BuffType.SpellShield) && !target.HasBuffOfType(BuffType.SpellImmunity) &&
+                   !target.HasBuffOfType(BuffType.Invulnerability);
         }
 
         public static int CountHerosInRange(this Obj_AI_Hero target, bool checkteam, float range = 1200f)
@@ -846,7 +853,7 @@ namespace Oracle
                                 Spell = true;
                                 Danger = Origin.Item(o.Name.ToLower() + "ccc").GetValue<bool>();
                                 DangerUlt = Origin.Item(o.Name.ToLower() + "ccc").GetValue<bool>() && o.Spellslot.ToString() == "R";
-                                Dangercc = o.CcType != CcType.No && o.Type != SpellType.AutoAttack;
+                                Dangercc = o.CcType != CcType.No && o.Type != SpellType.AutoAttack && Origin.Item(o.Name.ToLower() + "ccc").GetValue<bool>();
 
                                 Logger(LogType.Damage, "Danger (Self: " + o.Spellslot + "): " + Danger);
                                 Logger(LogType.Damage,
@@ -859,6 +866,7 @@ namespace Oracle
                     {
                         Utility.DelayAction.Add((int)(o.Delay), delegate
                         {
+
                             AggroTarget =
                                 ObjectManager.GetUnitByNetworkId<Obj_AI_Hero>(args.Target.NetworkId);
 

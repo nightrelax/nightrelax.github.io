@@ -33,7 +33,7 @@ namespace Oracle.Core.Targeted
             Spells = new List<TargetSpellData>
             {
                 #region Aatrox
-                new TargetSpellData("aatrox", "aatroxq", SpellSlot.Q, SpellType.Skillshot, CcType.Knockup, 650, 500, 20, true),
+                new TargetSpellData("aatrox", "aatroxq", SpellSlot.Q, SpellType.Skillshot, CcType.Knockup, 650, 250, 20, true),
                 new TargetSpellData("aatrox", "aatroxw", SpellSlot.W, SpellType.Self, CcType.No, 0, 0, 0),
                 new TargetSpellData("aatrox", "aatroxw2", SpellSlot.W, SpellType.Self, CcType.No, 0, 0, 0),
                 new TargetSpellData("aatrox", "aatroxe", SpellSlot.E, SpellType.Skillshot, CcType.Stun, 1000, 500, 1200),
@@ -44,7 +44,7 @@ namespace Oracle.Core.Targeted
                 #region Ahri
                 new TargetSpellData("ahri", "ahriorbofdeception", SpellSlot.Q, SpellType.Skillshot, CcType.No, 880, 500, 1100),
                 new TargetSpellData("ahri", "ahrifoxfire", SpellSlot.W, SpellType.Self, CcType.No, 800, 0, 1800),
-                new TargetSpellData("ahri", "ahriseduce", SpellSlot.E, SpellType.Skillshot, CcType.Charm, 975, 500, 1200, true),
+                new TargetSpellData("ahri", "ahriseduce", SpellSlot.E, SpellType.Skillshot, CcType.Charm, 975, 450, 1200, true),
                 new TargetSpellData("ahri", "ahritumble", SpellSlot.R, SpellType.Skillshot, CcType.No, 450, 500, 2200, false, false, true),
 
                 #endregion Ahri
@@ -77,7 +77,7 @@ namespace Oracle.Core.Targeted
                 new TargetSpellData("anivia", "flashfrost", SpellSlot.Q, SpellType.Skillshot, CcType.Stun, 1200, 500, 850),
                 new TargetSpellData("anivia", "crystalize", SpellSlot.W, SpellType.Skillshot, CcType.No, 1000, 500, 1600),
                 new TargetSpellData("anivia", "frostbite", SpellSlot.E, SpellType.Targeted, CcType.No, 650, 500, 1200),
-                new TargetSpellData("anivia", "glacialstorm", SpellSlot.R, SpellType.Skillshot, CcType.Slow, 675, 300, float.MaxValue),
+                new TargetSpellData("anivia", "glacialstorm", SpellSlot.R, SpellType.Skillshot, CcType.Slow, 675, 300, 0, false, false, true),
 
                 #endregion Anivia
 
@@ -151,7 +151,7 @@ namespace Oracle.Core.Targeted
                 new TargetSpellData("corki", "phosphorusbomb", SpellSlot.Q, SpellType.Skillshot, CcType.No, 875, 500, float.MaxValue, true),
                 new TargetSpellData("corki", "carpetbomb", SpellSlot.W, SpellType.Skillshot, CcType.No, 875, 0, 700),
                 new TargetSpellData("corki", "ggun", SpellSlot.E, SpellType.Skillshot, CcType.No, 750, 0, 902),
-                new TargetSpellData("corki", "missilebarrage", SpellSlot.R, SpellType.Skillshot, CcType.No, 1225, 250, 828),
+                new TargetSpellData("corki", "missilebarrage", SpellSlot.R, SpellType.Skillshot, CcType.No, 1225, 250, 828, false, false, true),
 
                 #endregion Corki
 
@@ -451,7 +451,7 @@ namespace Oracle.Core.Targeted
                 new TargetSpellData("leona", "leonasolarbarrier", SpellSlot.W, SpellType.Self, CcType.No, 500, 3000, 0),
                 new TargetSpellData("leona", "leonazenithblade", SpellSlot.E, SpellType.Skillshot, CcType.Stun, 900, 0, 2000),
                 new TargetSpellData("leona", "leonazenithblademissle", SpellSlot.E, SpellType.Skillshot, CcType.Stun, 900, 0, 2000),
-                new TargetSpellData("leona", "leonasolarflare", SpellSlot.R, SpellType.Skillshot, CcType.Stun, 1200, 700, float.MaxValue, true),
+                new TargetSpellData("leona", "leonasolarflare", SpellSlot.R, SpellType.Skillshot, CcType.Stun, 1200, 450, float.MaxValue, true),
 
                 #endregion Leona
 
@@ -467,7 +467,7 @@ namespace Oracle.Core.Targeted
                 new TargetSpellData("lucian", "lucianq", SpellSlot.Q, SpellType.Targeted, CcType.No, 550, 500, 500),
                 new TargetSpellData("lucian", "lucianw", SpellSlot.W, SpellType.Skillshot, CcType.No, 1000, 500, 500),
                 new TargetSpellData("lucian", "luciane", SpellSlot.E, SpellType.Skillshot, CcType.No, 650, 500, float.MaxValue),
-                new TargetSpellData("lucian", "lucianr", SpellSlot.R, SpellType.Targeted, CcType.No, 1400, 500, float.MaxValue, true),
+                new TargetSpellData("lucian", "lucianr", SpellSlot.R, SpellType.Skillshot, CcType.No, 1400, 500, 0, false, false, true),
 
                 #endregion Lucian
 
@@ -476,7 +476,7 @@ namespace Oracle.Core.Targeted
                 new TargetSpellData("lulu", "luluqmissle", SpellSlot.Q, SpellType.Skillshot, CcType.Slow, 925, 500, 1400),
                 new TargetSpellData("lulu", "luluw", SpellSlot.W, SpellType.Targeted, CcType.Polymorph, 650, 640, 2000),
                 new TargetSpellData("lulu", "lulue", SpellSlot.E, SpellType.Targeted, CcType.No, 650, 640, float.MaxValue),
-                new TargetSpellData("lulu", "lulur", SpellSlot.R, SpellType.Self, CcType.Knockup, 900, 500, float.MaxValue, true),
+                new TargetSpellData("lulu", "lulur", SpellSlot.R, SpellType.Skillshot, CcType.Knockup, 900, 500, float.MaxValue, true),
 
                 #endregion Lulu
 
@@ -780,8 +780,8 @@ namespace Oracle.Core.Targeted
                 #region Skarner
                 new TargetSpellData("skarner", "skarnervirulentslash", SpellSlot.Q, SpellType.Self, CcType.No, 350, 0, float.MaxValue),
                 new TargetSpellData("skarner", "skarnerexoskeleton", SpellSlot.W, SpellType.Self, CcType.No, 0, 0, float.MaxValue),
-                new TargetSpellData("skarner", "skarnerfracture", SpellSlot.E, SpellType.Skillshot, CcType.Slow, 1000, 500, 1200),
-                new TargetSpellData("skarner", "skarnerfracturemissilespell", SpellSlot.E, SpellType.Skillshot, CcType.Slow, 1000, 500, 1200),
+                new TargetSpellData("skarner", "skarnerfracture", SpellSlot.E, SpellType.Skillshot, CcType.Slow, 1100, 500, 1200),
+                new TargetSpellData("skarner", "skarnerfracturemissilespell", SpellSlot.E, SpellType.Skillshot, CcType.Slow, 1100, 500, 1200),
                 new TargetSpellData("skarner", "skarnerimpale", SpellSlot.R, SpellType.Targeted, CcType.Suppression, 350, 0, float.MaxValue, true),
 
                 #endregion Skarner
@@ -924,7 +924,7 @@ namespace Oracle.Core.Targeted
                 #region Vayne
                 new TargetSpellData("vayne", "vaynetumble", SpellSlot.Q, SpellType.Skillshot, CcType.No, 250, 500, float.MaxValue),
                 new TargetSpellData("vayne", "vaynesilverbolts", SpellSlot.W, SpellType.Self, CcType.No, 0, 0, float.MaxValue),
-                new TargetSpellData("vayne", "vaynecondemm", SpellSlot.E, SpellType.Targeted, CcType.Stun, 450, 500, 1200),
+                new TargetSpellData("vayne", "vaynecondemnmissile", SpellSlot.E, SpellType.Targeted, CcType.Stun, 450, 100, 1200),
                 new TargetSpellData("vayne", "vayneinquisition", SpellSlot.R, SpellType.Self, CcType.No, 0, 500, float.MaxValue, false, false, true),
 
                 #endregion Vayne
@@ -932,7 +932,7 @@ namespace Oracle.Core.Targeted
                 #region Veigar
                 new TargetSpellData("veigar", "veigarbalefulstrike", SpellSlot.Q, SpellType.Targeted, CcType.No, 650, 500, 1500),
                 new TargetSpellData("veigar", "veigardarkmatter", SpellSlot.W, SpellType.Skillshot, CcType.No, 900, 1200, 1500),
-                new TargetSpellData("veigar", "veigareventhorizon", SpellSlot.E, SpellType.Skillshot, CcType.Stun, 650, float.MaxValue, 1500),
+                new TargetSpellData("veigar", "veigareventhorizon", SpellSlot.E, SpellType.Skillshot, CcType.Stun, 650, 0, 1500),
                 new TargetSpellData("veigar", "veigarprimordialburst", SpellSlot.R, SpellType.Targeted, CcType.No, 650, 500, 1400, true),
 
                 #endregion Veigar

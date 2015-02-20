@@ -42,7 +42,7 @@ namespace KurisuRiven
             // valor
             // engage if target is out of aa range
             if (Base.E.IsReady() && Base.CanE && Base.GetBool("usecomboe") &&
-                Target.Distance(Base.Me.ServerPosition, true) > Base.TrueRange + 100)
+                Target.Distance(Base.Me.ServerPosition, true) > Math.Pow(Base.TrueRange + 100, 2))
             {
                 // is target in combo range or low health
                 if (Target.Distance(Base.Me.ServerPosition, true) <= Math.Pow(Base.R.Range + 100, 2) ||

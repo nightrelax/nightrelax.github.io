@@ -109,7 +109,7 @@ namespace Oracle.Core.Targeted
 
                 if (data == null)
                 {
-                    Console.WriteLine("Target Spell not Found: " + args.SData.Name);
+                    Program.Logger(Program.LogType.Error, "Target Spell not Found: " + args.SData.Name);
                     return;
                 }
 

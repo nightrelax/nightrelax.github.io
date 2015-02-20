@@ -170,7 +170,7 @@ namespace Oracle.Extensions
                 return;
 
             if (_mainMenu.Item("useSmite").GetValue<KeyBind>().Active && !Me.IsDead)
-                Render.Circle.DrawCircle(Me.Position, 760, Color.White, 2);
+                Render.Circle.DrawCircle(Me.Position, 760, Color.SpringGreen, 2);
 
             // Credits: Crisdmc
             foreach (var m in MinionManager.GetMinions(Me.Position, 760f, MinionTypes.All, MinionTeam.Neutral))

@@ -97,6 +97,7 @@ namespace UnderratedAIO.Champions
         private static void Game_OnGameUpdate(EventArgs args)
         {
             GetPassive();
+            Ulti();
             currEnergy = me.Mana;
             bool minionBlock = false;
             foreach (Obj_AI_Minion minion in MinionManager.GetMinions(me.Position, me.AttackRange, MinionTypes.All, MinionTeam.Enemy, MinionOrderTypes.None))
@@ -117,23 +118,17 @@ namespace UnderratedAIO.Champions
                 case Orbwalking.OrbwalkingMode.Mixed:
                     LasthitQ();
                     if (!minionBlock) Harass();
-                    Ulti();
                     break;
                 case Orbwalking.OrbwalkingMode.LaneClear:
                     LasthitQ();
                     Clear();
-                    Ulti();
                     break;
                 case Orbwalking.OrbwalkingMode.LastHit:
                     LasthitQ();
-                    Ulti();
                     break;
                 default:
                     if (!minionBlock)
                     {
-                        Ulti();
-                        //AutoQ();
-                        //AutoW();
                     }
                     break;
 
@@ -201,12 +196,11 @@ namespace UnderratedAIO.Champions
         }
         private static void Ulti()
         {
-
             if (!R.IsReady() || PingCasted || me.IsDead) return;
 
             foreach (var allyObj in ObjectManager.Get<Obj_AI_Hero>().Where(i => i.IsAlly && !i.IsMe && !i.IsDead && ((Checkinrange(i) && ((i.Health * 100 / i.MaxHealth) <= config.Item("atpercent").GetValue<Slider>().Value)) || (CombatHelper.CheckCriticalBuffs(i) && i.CountEnemiesInRange(600) < 1))))
                 {
-                    if (config.Item("user").GetValue<bool>() && R.IsReady() && me.CountEnemiesInRange((int)E.Range) < 1 && !config.Item("ult" + allyObj.SkinName).GetValue<bool>())
+                    if (config.Item("user").GetValue<bool>() && orbwalker.ActiveMode!=Orbwalking.OrbwalkingMode.Combo && R.IsReady() && me.CountEnemiesInRange((int)E.Range) < 1 && !config.Item("ult" + allyObj.SkinName).GetValue<bool>())
                     {
                         
                         R.Cast(allyObj);
@@ -215,7 +209,6 @@ namespace UnderratedAIO.Champions
                     else
                     {
                         Game.PrintChat("<font color='#ff0000'> Use Ultimate (R) to help: {0}</font>", allyObj.ChampionName);
-                           Packet.S2C.Ping.Encoded(new Packet.S2C.Ping.Struct(allyObj.Position.X, allyObj.Position.Y, allyObj.NetworkId, 0, Packet.PingType.Fallback)).Process();
                     }
                     PingCasted = true;
                     Utility.DelayAction.Add(5000, () => PingCasted = false);
@@ -279,6 +272,7 @@ namespace UnderratedAIO.Champions
             
             var minHit = config.Item("useemin").GetValue<Slider>().Value;
             Obj_AI_Hero target = TargetSelector.GetTarget(E.Range+400, TargetSelector.DamageType.Magical);
+            Obj_AI_Hero targetQ = TargetSelector.GetTarget(Q.Range, TargetSelector.DamageType.Magical);
             if (config.Item("useItems").GetValue<bool>()) ItemHandler.UseItems(target);
             if (target == null) return;
             if (config.Item("usee").GetValue<bool>() && E.IsReady() && me.Distance(target.Position)<E.Range)
@@ -293,9 +287,9 @@ namespace UnderratedAIO.Champions
                     
                 }
             }
-            if (Q.IsReady() && config.Item("useq").GetValue<bool>() && me.Distance(target)<Q.Range && currEnergy - me.Spellbook.GetSpell(SpellSlot.Q).ManaCost >= eEnergy)
+            if (Q.IsReady() && config.Item("useq").GetValue<bool>() && Q.CanCast(targetQ) && currEnergy - me.Spellbook.GetSpell(SpellSlot.Q).ManaCost >= eEnergy)
             {
-                Q.CastOnUnit(target, config.Item("packets").GetValue<bool>());
+                Q.CastOnUnit(targetQ, config.Item("packets").GetValue<bool>());
                 currEnergy -= me.Spellbook.GetSpell(SpellSlot.Q).ManaCost;
             }
             bool hasIgnite = me.Spellbook.CanUseSpell(me.GetSpellSlot("SummonerDot")) == SpellState.Ready;

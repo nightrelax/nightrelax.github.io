@@ -23,6 +23,7 @@ namespace UnderratedAIO.Helpers
         public static Items.Item gaunlet = new Items.Item(3025, player.AttackRange);
         public static Items.Item trinity = new Items.Item(3078, player.AttackRange);
         public static Items.Item lich = new Items.Item(3100, player.AttackRange);
+        public static Items.Item youmuu = new Items.Item(3142, player.AttackRange);
 
         public static Items.Item Qss = new Items.Item(3140, 0);
         public static Items.Item Mercurial = new Items.Item(3139, 0);
@@ -76,6 +77,10 @@ namespace UnderratedAIO.Helpers
             if (Items.HasItem(Bft.Id) && Items.CanUseItem(Bft.Id))
             {
                 Bft.Cast(target);
+            }
+            if (Items.HasItem(youmuu.Id) && Items.CanUseItem(youmuu.Id) && player.Distance(target)<player.AttackRange+50)
+            {
+                youmuu.Cast();
             }
         }
 

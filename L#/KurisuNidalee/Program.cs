@@ -34,7 +34,7 @@ namespace KurisuNidalee
         private static readonly Spell Primalsurge = new Spell(SpellSlot.E, 650f);
         private static readonly Spell Takedown = new Spell(SpellSlot.Q, 200f);
         private static readonly Spell Pounce = new Spell(SpellSlot.W, 375f);
-        private static readonly Spell Swipe = new Spell(SpellSlot.E, 300f);
+        private static readonly Spell Swipe = new Spell(SpellSlot.E, 275f);
         private static readonly Spell Aspectofcougar = new Spell(SpellSlot.R);
 
         private static readonly List<Spell> HumanSpellList = new List<Spell>();
@@ -217,7 +217,7 @@ namespace KurisuNidalee
 
             _mainMenu.AddToMainMenu();
 
-            Game.PrintChat("<font color=\"#FF9900\"><b>KurisuNidalee</b></font> - Loaded");
+            Game.PrintChat("<font color=\"#FF9900\"><b>KurisuNidalee</b></font>: Loaded");
 
         }
 
@@ -538,7 +538,10 @@ namespace KurisuNidalee
                 if ((CE == 0 || Swipe.IsReady()) && _mainMenu.Item("usecougare").GetValue<bool>())
                 {
                     if (target.Distance(Me.ServerPosition, true) <= Swipe.RangeSqr)
-                        Swipe.Cast(target.ServerPosition);
+                    {
+                        if (!Pounce.IsReady())
+                            Swipe.Cast(target.ServerPosition);
+                    }
                 }
 
                 // force transform if q ready and no collision 
@@ -551,7 +554,7 @@ namespace KurisuNidalee
 
                     // or return -- stay cougar if we can kill with available spells
                     if (target.Health <= CougarDamage(target) &&
-                        target.Distance(Me.ServerPosition, true) <= Swipe.RangeSqr + Pounce.RangeSqr)
+                        target.Distance(Me.ServerPosition, true) <= Pounce.RangeSqr)
                     {
                         return;
                     }
@@ -561,14 +564,18 @@ namespace KurisuNidalee
                         Aspectofcougar.Cast();
                 }
 
-                // Switch to human form if can kill in 5 aa and cougar skill not available      
-                if ((CW != 0 || !Pounce.IsReady()) && CE != 0 && CQ != 0 &&
-                    target.Distance(Me.ServerPosition, true) > Takedown.RangeSqr && CanKillAA(target)
-                    && _mainMenu.Item("usecougarr").GetValue<bool>() &&
-                    target.Distance(Me.ServerPosition, true) <= Me.AttackRange*Me.AttackRange + 5*5)
+                // Switch to human form if can kill in aa and cougar skill not available      
+                if ((CW != 0 || !Pounce.IsReady()) && (CE != 0  || !Swipe.IsReady()) && (CQ != 0 || !Takedown.IsReady()))
                 {
-                    if (Aspectofcougar.IsReady())
-                        Aspectofcougar.Cast();
+                    if (target.Distance(Me.ServerPosition, true) > Takedown.RangeSqr && CanKillAA(target))
+                    {
+                        if (_mainMenu.Item("usecougarr").GetValue<bool>() &&
+                            target.Distance(Me.ServerPosition, true) <= Math.Pow(Me.AttackRange + 50, 2))
+                        {
+                            if (Aspectofcougar.IsReady())
+                                Aspectofcougar.Cast();
+                        }
+                    }
                 }
 
             }
@@ -695,8 +702,8 @@ namespace KurisuNidalee
                 {
                     if (m.Distance(Me.ServerPosition, true) <= Swipe.RangeSqr && CE == 0)
                     {
-                        if (_mainMenu.Item("lccougare").GetValue<bool>())
-                            Swipe.Cast(m.ServerPosition);
+                        if (_mainMenu.Item("lccougare").GetValue<bool>() && !Pounce.IsReady())
+                                Swipe.Cast(m.ServerPosition);
                     }
 
                     if (m.Distance(Me.ServerPosition, true) <= Pounce.RangeSqr && (CW == 0 || Pounce.IsReady()))
@@ -767,7 +774,7 @@ namespace KurisuNidalee
             {
                 if (m.Distance(Me.ServerPosition, true) <= Swipe.RangeSqr && CE == 0)
                 {
-                    if (_mainMenu.Item("jgcougare").GetValue<bool>())
+                    if (_mainMenu.Item("jgcougare").GetValue<bool>() && !Pounce.IsReady())
                         Swipe.Cast(m.ServerPosition);
                 }
 
@@ -789,14 +796,16 @@ namespace KurisuNidalee
                         Takedown.CastOnUnit(Me);
                 }
 
-                if ((HQ == 0 && (CW != 0 || !Pounce.IsReady()) && _mainMenu.Item("jghumanq").GetValue<bool>() ||
-                          (CW != 0 || !Pounce.IsReady()) && CQ != 0 && CE != 0) &&
-                         _mainMenu.Item("jgcougarr").GetValue<bool>())
+                if (CW != 0 && CQ != 0 && CE != 0)
                 {
-                    if (Aspectofcougar.IsReady())
+                    if (HQ != 0)
+                        return;
+
+                    if (Aspectofcougar.IsReady() && _mainMenu.Item("jgcougarr").GetValue<bool>())
                         Aspectofcougar.Cast();
                 }
             }
+
             else
             {
                 if (actualHeroManaPercent > minPercent && HQ == 0 || _hasBlue && HQ == 0)
@@ -809,20 +818,26 @@ namespace KurisuNidalee
                     }
                 }
 
-                if (m.Distance(Me.ServerPosition, true) <= Bushwack.RangeSqr && actualHeroManaPercent > minPercent &&
-                    HW == 0 || _hasBlue && HQ == 0)
+                if (m.Distance(Me.ServerPosition, true) <= Bushwack.RangeSqr)
                 {
-                    if (_mainMenu.Item("jghumanw").GetValue<bool>())
-                        Bushwack.Cast(m.ServerPosition);
+                    if ( actualHeroManaPercent > minPercent &&
+                         HW == 0 || _hasBlue && HQ == 0)
+                    {
+                        if (_mainMenu.Item("jghumanw").GetValue<bool>())
+                            Bushwack.Cast(m.ServerPosition);
+                    }
                 }
 
-                if (_mainMenu.Item("jgcougarr").GetValue<bool>() &&
-                    actualHeroManaPercent > minPercent && Aspectofcougar.IsReady() && HQ != 0 || _hasBlue && HQ == 0)
+                if (_mainMenu.Item("jgcougarr").GetValue<bool>() && Aspectofcougar.IsReady())
                 {
-                    if (TargetHunted(m) & m.Distance(Me.ServerPosition, true) <= 750 * 750)
-                        Aspectofcougar.Cast();
-                    else if (m.Distance(Me.ServerPosition, true) <= 450 * 450)
-                        Aspectofcougar.Cast();
+                    var poutput = Javelin.GetPrediction(m);
+                    if ((HQ != 0 || poutput.Hitchance == HitChance.Collision) || _hasBlue && HQ == 0)
+                    {
+                        if (TargetHunted(m) & m.Distance(Me.ServerPosition, true) <= 750*750)
+                            Aspectofcougar.Cast();
+                        else if (m.Distance(Me.ServerPosition, true) <= 450*450)
+                            Aspectofcougar.Cast();
+                    }
                 }
             }
             

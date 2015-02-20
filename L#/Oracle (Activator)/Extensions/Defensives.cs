@@ -171,7 +171,8 @@ namespace Oracle.Extensions
                 return;
 
             var target = itemRange > 5000 ? Me : OC.Friendly();
-            if (target.Distance(Me.ServerPosition, true) > itemRange*itemRange)
+            if (target.Distance(Me.ServerPosition, true) > itemRange*itemRange ||
+               !target.IsValidState())
             {
                 return;
             }

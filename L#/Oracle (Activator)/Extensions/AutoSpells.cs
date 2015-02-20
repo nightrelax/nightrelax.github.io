@@ -259,7 +259,8 @@ namespace Oracle.Extensions
             }
 
             var aHealthPercent = target.Health/target.MaxHealth*100;
-            if (!spell.IsReady() || !_menuConfig.Item("ason" + target.SkinName).GetValue<bool>() || Me.IsRecalling())
+            if (!spell.IsReady() || !_menuConfig.Item("ason" + target.SkinName).GetValue<bool>() || Me.IsRecalling() ||
+                !target.IsValidState())
             {
                 return;
             }
@@ -334,8 +335,11 @@ namespace Oracle.Extensions
                 return;
 
             var aHealthPercent = target.Health / target.MaxHealth * 100;
-            if (!spell.IsReady() || !_menuConfig.Item("ason" + target.SkinName).GetValue<bool>() || Me.IsRecalling())
+            if (!spell.IsReady() || !_menuConfig.Item("ason" + target.SkinName).GetValue<bool>() || Me.IsRecalling() ||
+                !target.IsValidState())
+            {
                 return;
+            }
 
             if (_mainMenu.Item("use" + menuvar + "Norm").GetValue<bool>())
             {
@@ -429,7 +433,7 @@ namespace Oracle.Extensions
                 return;
 
             if (!spell.IsReady() || !_menuConfig.Item("ason" + target.SkinName).GetValue<bool>() ||
-                Me.IsRecalling() ||  Me.InFountain())
+                Me.IsRecalling() ||  Me.InFountain() || !target.IsValidState())
             {
                 return;
             }
