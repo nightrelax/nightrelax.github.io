@@ -98,7 +98,7 @@ namespace UnderratedAIO.Champions
            {
                E.Cast(target.Position, config.Item("packets").GetValue<bool>());
            }
-           if (config.Item("user").GetValue<bool>() && !MordeGhost && (!config.Item("ultDef").GetValue<bool>() || (config.Item("ultDef").GetValue<bool>() && CombatHelper.HasDef(target))) && (player.Distance(target.Position) <= 400f || (R.CanCast(target) && target.Health < 250f && Environment.Hero.countChampsAtrangeA(player.Position, 600f) >= 1)) && !config.Item("ult" + target.SkinName).GetValue<bool>() && combodmg > target.Health)
+           if (config.Item("user").GetValue<bool>() && !MordeGhost && (!config.Item("ultDef").GetValue<bool>() || (config.Item("ultDef").GetValue<bool>() && !CombatHelper.HasDef(target))) && (player.Distance(target.Position) <= 400f || (R.CanCast(target) && target.Health < 250f && Environment.Hero.countChampsAtrangeA(target.Position, 600f) >= 1)) && !config.Item("ult" + target.SkinName).GetValue<bool>() && combodmg-50 > target.Health)
            {
                R.CastOnUnit(target, config.Item("packets").GetValue<bool>());
            }

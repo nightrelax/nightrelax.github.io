@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Drawing;
 using LeagueSharp;
 using LeagueSharp.Common;
+using Color = System.Drawing.Color;
 
 namespace KurisuRiven
 {

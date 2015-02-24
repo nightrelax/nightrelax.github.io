@@ -31,16 +31,9 @@ namespace UnderratedAIO.Helpers
 
         public static void UseItems(Obj_AI_Hero target)
         {
-            if (player.Distance(target) < hydra.Range)
+            if (player.BaseSkinName != "Renekton")
             {
-                if (Items.HasItem(tiamat.Id) && Items.CanUseItem(tiamat.Id))
-                {
-                    Items.UseItem(tiamat.Id);
-                }
-                if (Items.HasItem(hydra.Id) && Items.CanUseItem(hydra.Id))
-                {
-                    Items.UseItem(hydra.Id);
-                }
+                castHydra(target);
             }
             if (Items.HasItem(randuins.Id) && Items.CanUseItem(randuins.Id))
             {
@@ -81,6 +74,21 @@ namespace UnderratedAIO.Helpers
             if (Items.HasItem(youmuu.Id) && Items.CanUseItem(youmuu.Id) && player.Distance(target)<player.AttackRange+50)
             {
                 youmuu.Cast();
+            }
+        }
+
+        public static void castHydra(Obj_AI_Hero target)
+        {
+            if (player.Distance(target) < hydra.Range)
+            {
+                if (Items.HasItem(tiamat.Id) && Items.CanUseItem(tiamat.Id))
+                {
+                    Items.UseItem(tiamat.Id);
+                }
+                if (Items.HasItem(hydra.Id) && Items.CanUseItem(hydra.Id))
+                {
+                    Items.UseItem(hydra.Id);
+                }
             }
         }
 

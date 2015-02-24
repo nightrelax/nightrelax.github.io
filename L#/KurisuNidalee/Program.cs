@@ -217,7 +217,7 @@ namespace KurisuNidalee
 
             _mainMenu.AddToMainMenu();
 
-            Game.PrintChat("<font color=\"#FF9900\"><b>KurisuNidalee</b></font>: Loaded");
+            Game.PrintChat("<font color=\"#FF9900\"><b>KurisuNidalee:</b></font> Loaded");
 
         }
 
@@ -525,7 +525,7 @@ namespace KurisuNidalee
 
                 // Check is pounce is ready 
                 if ((CW == 0 || Pounce.IsReady()) && _mainMenu.Item("usecougarw").GetValue<bool>()
-                    && target.Distance(Me.ServerPosition, true) > 250*250)
+                    && (target.Distance(Me.ServerPosition, true) > 250*250 || CougarDamage(target) >= target.Health))
                 {
                     if (TargetHunted(target) & target.Distance(Me.ServerPosition, true) <= 750*750)
                         Pounce.Cast(target.ServerPosition);
@@ -673,7 +673,7 @@ namespace KurisuNidalee
                 var needed = _mainMenu.Item("healpct" + target.SkinName).GetValue<Slider>().Value;
                 var hp = (int)((target.Health / target.MaxHealth) * 100);
 
-                if (actualHeroManaPercent > selfManaPercent && hp <= needed || _hasBlue && hp <= 95)
+                if (actualHeroManaPercent > selfManaPercent && hp <= needed || _hasBlue && hp <= needed)
                     Primalsurge.CastOnUnit(target);
             }
         }
@@ -755,18 +755,14 @@ namespace KurisuNidalee
             var actualHeroManaPercent = (int)((Me.Mana / Me.MaxMana) * 100);
             var minPercent = _mainMenu.Item("jgpct").GetValue<Slider>().Value;
 
-            var smallMinion =
-                ObjectManager.Get<Obj_AI_Minion>()
-                    .FirstOrDefault(x => x.Name.Contains("Mini") && !x.Name.StartsWith("Minion") && x.IsValidTarget(700));
+            var small = ObjectManager.Get<Obj_AI_Minion>()
+                .FirstOrDefault(x => x.Name.Contains("Mini") && !x.Name.StartsWith("Minion") && x.IsValidTarget(700));
 
-            var bigMinion =
-                ObjectManager.Get<Obj_AI_Minion>()
-                    .FirstOrDefault(
-                        x =>
-                            !x.Name.Contains("Mini") && !x.Name.StartsWith("Minion") &&
-                            Jungleminions.Any(name => x.Name.StartsWith(name)) && x.IsValidTarget(900));
+            var big = ObjectManager.Get<Obj_AI_Minion>()
+                .FirstOrDefault(x => !x.Name.Contains("Mini") && !x.Name.StartsWith("Minion") &&
+                        Jungleminions.Any(name => x.Name.StartsWith(name)) && x.IsValidTarget(900));
 
-            var m = bigMinion ?? smallMinion;
+            var m = big ?? small;
             if (m == null)
                 return;
 

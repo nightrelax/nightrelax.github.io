@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using LeagueSharp;
 using LeagueSharp.Common;
 using Color = System.Drawing.Color;
 
 using UnderratedAIO.Helpers;
+using Environment = UnderratedAIO.Helpers.Environment;
 using Orbwalking =UnderratedAIO.Helpers.Orbwalking;
 
 namespace UnderratedAIO.Champions
@@ -128,15 +130,27 @@ namespace UnderratedAIO.Champions
                     R.CastOnUnit(target, config.Item("packets").GetValue<bool>());
                 }
             }
-            if (config.Item("userindanger").GetValue<Slider>().Value < player.CountEnemiesInRange(R.Range))
-            {
-                R.CastOnUnit(target, config.Item("packets").GetValue<bool>());
-            }
             bool hasIgnite = player.Spellbook.CanUseSpell(player.GetSpellSlot("SummonerDot")) == SpellState.Ready;
             var ignitedmg = (float)player.GetSummonerSpellDamage(target, Damage.SummonerSpell.Ignite);
             if (config.Item("useIgnite").GetValue<bool>() && ignitedmg > target.Health && hasIgnite && !E.CanCast(target) && !Q.CanCast(target))
             {
                 player.Spellbook.CastSpell(player.GetSpellSlot("SummonerDot"), target);
+            }
+            if (config.Item("userindanger").GetValue<Slider>().Value < player.CountEnemiesInRange(R.Range))
+            {
+                if (config.Item("userOnweakest").GetValue<bool>())
+                {
+                    var tmpTarg =
+                        ObjectManager.Get<Obj_AI_Hero>()
+                            .Where(i => i.IsEnemy && i.IsDead && player.Distance(i)<R.Range && i.Health > i.MaxHealth / 2)
+                            .OrderBy(i => CombatHelper.GetChampDmgToMe(i))
+                            .FirstOrDefault();
+                    if (tmpTarg!=null)
+                    {
+                        target = tmpTarg;
+                    }
+                }
+                R.CastOnUnit(target, config.Item("packets").GetValue<bool>());
             }
         }
 
@@ -229,6 +243,7 @@ namespace UnderratedAIO.Champions
             menuC.AddItem(new MenuItem("useeflashforced", "Forced flash+E if possible")).SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Press));
             menuC.AddItem(new MenuItem("user", "Use R to maximize dmg")).SetValue(true);
             menuC.AddItem(new MenuItem("userindanger", "Auto activate if more than")).SetValue(new Slider(3, 1, 6));
+            menuC.AddItem(new MenuItem("userOnweakest", "Use on the weakest enemy")).SetValue(true);
             menuC.AddItem(new MenuItem("useItems", "Use items")).SetValue(true);
             menuC.AddItem(new MenuItem("useIgnite", "Use Ignite")).SetValue(true);
             config.AddSubMenu(menuC);

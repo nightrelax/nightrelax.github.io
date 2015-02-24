@@ -175,7 +175,7 @@ namespace UnderratedAIO.Champions
 
             if (config.Item("useItems").GetValue<bool>()) ItemHandler.UseItems(target);
 
-            if (W.IsReady() && config.Item("usew").GetValue<bool>()&& me.CountEnemysInRange((int)me.AttackRange)>0 && me.Spellbook.GetSpell(SpellSlot.W).ManaCost<=me.Mana)
+            if (W.IsReady() && config.Item("usew").GetValue<bool>() && me.CountEnemiesInRange((int)me.AttackRange) > 0 && me.Spellbook.GetSpell(SpellSlot.W).ManaCost <= me.Mana)
             {
                 W.Cast();
             }

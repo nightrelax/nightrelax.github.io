@@ -208,7 +208,7 @@ namespace UnderratedAIO.Champions
                     }
                     else
                     {
-                        Game.PrintChat("<font color='#ff0000'> Use Ultimate (R) to help: {0}</font>", allyObj.ChampionName);
+                        DrawHelper.popUp("Use R to help " + allyObj.ChampionName, 3000, Color.Red, Color.White, Color.Red);
                     }
                     PingCasted = true;
                     Utility.DelayAction.Add(5000, () => PingCasted = false);
@@ -269,7 +269,6 @@ namespace UnderratedAIO.Champions
         }
         private static void Combo()
         {
-            
             var minHit = config.Item("useemin").GetValue<Slider>().Value;
             Obj_AI_Hero target = TargetSelector.GetTarget(E.Range+400, TargetSelector.DamageType.Magical);
             Obj_AI_Hero targetQ = TargetSelector.GetTarget(Q.Range, TargetSelector.DamageType.Magical);
@@ -513,6 +512,7 @@ namespace UnderratedAIO.Champions
             }
             config.AddSubMenu(sulti);
             config.AddItem(new MenuItem("packets", "Use Packets")).SetValue(false);
+            config.AddItem(new MenuItem("UnderratedAIO", "by Soresu v" + Program.version.ToString().Replace(",",".")));
             config.AddToMainMenu();
         }
     }

@@ -169,7 +169,7 @@ namespace BlackKassadin
 
         private static void OnHarass(Obj_AI_Hero target)
         {
-            if (!target.IsValidTarget(_nullSphere.Range) || !target.IsValidTarget(_forcePulse.Range) || !_manaManager.CanHarass())
+            if (!target.IsValidTarget(_nullSphere.Range) || !_manaManager.CanHarass())
             {
                 return;
             }
@@ -183,7 +183,7 @@ namespace BlackKassadin
             }
 
             if (_menu.Item("useNullSphereHarass").GetValue<bool>() && _nullSphere.IsReady() &&
-                target.IsValidTarget(_nullSphere.Range) && _player.Distance(target.Position) <= _nullSphere.Range)
+                _player.Distance(target.Position) <= _nullSphere.Range)
             {
                 _nullSphere.Cast(target);
             }

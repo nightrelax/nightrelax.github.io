@@ -148,7 +148,7 @@ namespace UnderratedAIO.Helpers
             return (float) result;
         }
 
-        public float GetChampDmgToMe(Obj_AI_Hero enemy)
+        public static float GetChampDmgToMe(Obj_AI_Hero enemy)
         {
             double result = 0;
             double basicDmg = 0;

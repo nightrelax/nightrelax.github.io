@@ -36,56 +36,53 @@ namespace KurisuRiven
             }
 
             Base.OrbTo(Target);
-            if (!Target.IsValidTarget(Base.R.Range + 100)) 
+            if (!Target.IsValidTarget(Base.R.Range*2)) 
                 return;
 
             // valor
             // engage if target is out of aa range
             if (Base.E.IsReady() && Base.CanE && Base.GetBool("usecomboe") &&
-                Target.Distance(Base.Me.ServerPosition, true) > Math.Pow(Base.TrueRange + 100, 2))
+               (Target.Distance(Base.Me.ServerPosition, true) > Math.Pow(Base.TrueRange + 100, 2) ||
+                Base.Me.Health/Base.Me.MaxHealth*100 <= Base.GetSlider("vhealth")))
             {
-                // is target in combo range or low health
-                if (Target.Distance(Base.Me.ServerPosition, true) <= Math.Pow(Base.R.Range + 100, 2) ||
-                    Base.Me.Health/Base.Me.MaxHealth*100 <= Base.GetSlider("vhealth"))
+                // item handler
+                if (Base.GetBool("useitems"))
                 {
-                    // item handler
-                    if (Base.GetBool("useitems"))
+                    if (Items.HasItem(3142) && Items.CanUseItem(3142))
+                        Items.UseItem(3142);
+                    if (Items.HasItem(3144) && Items.CanUseItem(3144))
+                        Items.UseItem(3144, Target);
+                    if (Items.HasItem(3153) && Items.CanUseItem(3153))
+                        Items.UseItem(3153, Target);
+                }
+
+                if (Base.GetBool("usecomboe"))
+                    Base.E.Cast(Target.ServerPosition);
+
+                // after dash event
+                if (Base.GetList("engage") == 1)
+                {
+                    if (Base.CanHD && Base.HasHD)
                     {
-                        if (Items.HasItem(3142) && Items.CanUseItem(3142))
-                            Items.UseItem(3142);
-                        if (Items.HasItem(3144) && Items.CanUseItem(3144))
-                            Items.UseItem(3144, Target);
-                        if (Items.HasItem(3153) && Items.CanUseItem(3153))
-                            Items.UseItem(3153, Target);
-                    }
-
-                    if (Base.GetBool("usecomboe"))
-                        Base.E.Cast(Target.ServerPosition);
-
-
-                    // after dash event
-                    if (Base.GetList("engage") == 1)
-                    {
-                        if (Base.CanHD && Base.HasHD)
+                        if (Base.W.IsReady() && !Base.CanBurst)
                         {
-                            if (Base.W.IsReady() && !Base.CanBurst)
-                            {
-                                Items.UseItem(3077);
-                                Items.UseItem(3074);
-                            }
-
-                            // used hydra or dont own
-                            else
-                            {
-                                Helpers.CheckR(Target);
-                            }
+                            Items.UseItem(3077);
+                            Items.UseItem(3074);
+                            Utility.DelayAction.Add(
+                                100, () => Helpers.CheckR(Target));
                         }
 
+                        // used hydra or dont own
                         else
                         {
                             Helpers.CheckR(Target);
                         }
                     }
+                }
+
+                else
+                {
+                    Helpers.CheckR(Target);
                 }
             }
 
@@ -108,7 +105,6 @@ namespace KurisuRiven
                             Items.UseItem(3153, Target);
                     }
                 }
-
 
                 if (Base.GetList("engage") == 0)
                 {
@@ -181,12 +177,15 @@ namespace KurisuRiven
             }
 
             // gapclose
-            else if (Target.Distance(Base.Me.ServerPosition) > Base.TrueRange + 100 && Base.GetBool("qgap"))
+            else if (Target.Distance(Base.Me.ServerPosition, true) > 
+                     Math.Pow(Base.TrueRange + 100, 2) && Base.GetBool("qgap"))
             {
-                if (Environment.TickCount - Base.LastQ >= 1100 && !Base.DidAA)
+                if (!Base.E.IsReady() && Environment.TickCount - Base.LastQ >= 1100 && !Base.DidAA)
                 {
-                    if (Base.GetBool("usecomboq") && Base.Q.IsReady())
+                    if (Base.Q.IsReady() && Environment.TickCount - Base.LastE >= 700)
+                    {
                         Base.Q.Cast(Target.ServerPosition);
+                    }
                 }
             }
 
@@ -207,11 +206,46 @@ namespace KurisuRiven
                     Base.Q.Cast(Game.CursorPos);
                 }
 
+                if (!Base.W.IsReady() && Base.Me.CountEnemiesInRange(Base.W.Range) >= 1)
+                {
+                    Base.W.Cast();
+                }
+
                 if (Base.CanMV)
                 {
                     Base.Me.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos);
                 }
             }          
+        }
+
+        internal static void SemiHarass()
+        {
+            var minionList = new[]
+            {
+                "SRU_Razorbeak", "SRU_Krug", "Sru_Crab", "SRU_Baron", "SRU_Dragon",
+                "SRU_Blue", "SRU_Red", "SRU_Murkwolf", "SRU_Gromp"
+            };
+
+            if (Base.CanQ && Environment.TickCount - Base.LastAA >= 150 && Base.GetBool("semiq"))
+            {
+                if (Base.Q.IsReady() && Environment.TickCount - Base.LastAA < 1200)
+                {
+
+                    if (Base.LastTarget.IsValidTarget(Base.Q.Range + 100) && Base.LastTarget.IsValid<Obj_AI_Hero>())
+                        Base.Q.Cast(Base.LastTarget.ServerPosition);
+
+                    if (Base.LastTarget.IsValidTarget(Base.Q.Range + 100) && !Base.LastTarget.Name.Contains("Mini") &&
+                        !Base.LastTarget.Name.StartsWith("Minion") && minionList.Any(name => Base.LastTarget.Name.StartsWith(name)))
+                    {
+                        Base.Q.Cast(Base.LastTarget.ServerPosition);
+                    }
+
+                    if (Base.LastTarget.IsValid<Obj_AI_Turret>() && Base.LastTarget.IsValidTarget(Base.Q.Range + 100))
+                    {
+                        Base.Q.Cast(Base.LastTarget.ServerPosition);
+                    }
+                }
+            }
         }
 
         internal static void LaneFarm()
@@ -226,18 +260,18 @@ namespace KurisuRiven
                         "SRU_Blue", "SRU_Red", "SRU_Murkwolf", "SRU_Gromp"
                     };
 
-                    var smallMinion =
+                    var small =
                         ObjectManager.Get<Obj_AI_Minion>()
                             .FirstOrDefault(x => x.Name.Contains("Mini") && !x.Name.StartsWith("Minion") && x.IsValidTarget(700));
 
-                    var bigMinion =
+                    var big =
                         ObjectManager.Get<Obj_AI_Minion>()
                             .FirstOrDefault(
                                 x =>
                                     !x.Name.Contains("Mini") && !x.Name.StartsWith("Minion") &&
                                     minionList.Any(name => x.Name.StartsWith(name)) && x.IsValidTarget(900));
 
-                    var minion = bigMinion ?? smallMinion;
+                    var minion = big ?? small;
                     if (minion != null)
                     {
                         Base.OrbTo(minion);
@@ -254,7 +288,6 @@ namespace KurisuRiven
                             {
                                 if (minion.Distance(Base.Me.ServerPosition, true) <= Base.W.RangeSqr)
                                     Base.W.Cast();
-
                             }
                              
                             if (Base.GetBool("usejunglee"))
@@ -284,6 +317,23 @@ namespace KurisuRiven
                                 if (newminion.Distance(Base.Me.ServerPosition, true) <= Math.Pow(Base.Q.Range + 200, 2))
                                     Base.Q.Cast(newminion.ServerPosition);
                             }
+
+                            var minions = ObjectManager.Get<Obj_AI_Minion>().Where(x => x.IsValidTarget(600));
+                            if (minions.Count(
+                                    m => m.IsEnemy && m.Distance(Base.Me.ServerPosition, true) <= Base.W.RangeSqr) >= 3)
+                            {
+                                if (Items.HasItem(3077) && Items.CanUseItem(3077))
+                                    Items.UseItem(3077);
+                                if (Items.HasItem(3074) && Items.CanUseItem(3074))
+                                    Items.UseItem(3074);
+
+                                if (Base.GetBool("uselanew") && Base.W.IsReady() && Base.CanW)
+                                        Base.W.Cast();
+                            }
+
+                            if (Base.CanAA && Base.GetBool("forceaa"))
+                                Base.Me.IssueOrder(GameObjectOrder.AttackUnit, newminion);
+
                         }
 
                         if (Base.GetBool("uselanee"))

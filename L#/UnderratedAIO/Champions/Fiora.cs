@@ -105,7 +105,7 @@ namespace UnderratedAIO.Champions
                     lastQ = 0;
                 }
             }
-            if (config.Item("user").GetValue<bool>() && R.CanCast(target) && GetRDamage(target) > target.Health * 1.3 && NeedToUlt(target))
+            if (config.Item("user").GetValue<bool>() && R.CanCast(target) && ComboDamage(target) > target.Health * 1.3 && NeedToUlt(target))
             {
                 R.CastOnUnit(target, config.Item("packets").GetValue<bool>());
             }

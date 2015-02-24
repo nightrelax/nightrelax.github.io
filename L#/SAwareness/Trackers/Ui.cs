@@ -49,47 +49,6 @@ namespace SAwareness.Trackers
 
         public Ui()
         {
-            if (
-                UiTracker.GetMenuSettings("SAwarenessUITrackerEnemyTracker")
-                    .GetMenuItem("SAwarenessUITrackerEnemyTrackerXPos")
-                    .GetValue<Slider>()
-                    .Value == 0)
-            {
-                UiTracker.GetMenuSettings("SAwarenessUITrackerEnemyTracker")
-                    .GetMenuItem("SAwarenessUITrackerEnemyTrackerXPos")
-                    .SetValue(new Slider((int)_screen.X, Drawing.Width, 0));
-            }
-            if (
-                UiTracker.GetMenuSettings("SAwarenessUITrackerEnemyTracker")
-                    .GetMenuItem("SAwarenessUITrackerEnemyTrackerYPos")
-                    .GetValue<Slider>()
-                    .Value == 0)
-            {
-                UiTracker.GetMenuSettings("SAwarenessUITrackerEnemyTracker")
-                    .GetMenuItem("SAwarenessUITrackerEnemyTrackerYPos")
-                    .SetValue(new Slider((int)_screen.Y, Drawing.Height, 0));
-            }
-            if (
-                UiTracker.GetMenuSettings("SAwarenessUITrackerAllyTracker")
-                    .GetMenuItem("SAwarenessUITrackerAllyTrackerXPos")
-                    .GetValue<Slider>()
-                    .Value == 0)
-            {
-                UiTracker.GetMenuSettings("SAwarenessUITrackerAllyTracker")
-                    .GetMenuItem("SAwarenessUITrackerAllyTrackerXPos")
-                    .SetValue(new Slider((int)110, Drawing.Width, 0));
-            }
-            if (
-                UiTracker.GetMenuSettings("SAwarenessUITrackerAllyTracker")
-                    .GetMenuItem("SAwarenessUITrackerAllyTrackerYPos")
-                    .GetValue<Slider>()
-                    .Value == 0)
-            {
-                UiTracker.GetMenuSettings("SAwarenessUITrackerAllyTracker")
-                    .GetMenuItem("SAwarenessUITrackerAllyTrackerYPos")
-                    .SetValue(new Slider((int)_screen.Y, Drawing.Height, 0));
-            }
-
             float percentScale =
                     (float)UiTracker.GetMenuItem("SAwarenessUITrackerScale").GetValue<Slider>().Value / 100;
 
@@ -153,9 +112,9 @@ namespace SAwareness.Trackers
                  UiTracker.Menu.AddItem(new MenuItem("SAwarenessUITrackerScale", Language.GetString("TRACKERS_UI_SCALE")).SetValue(new Slider(100, 100, 0))));
              tempSettings = UiTracker.AddMenuItemSettings(Language.GetString("TRACKERS_UI_ENEMY"), "SAwarenessUITrackerEnemyTracker");
              tempSettings.MenuItems.Add(
-                 tempSettings.Menu.AddItem(new MenuItem("SAwarenessUITrackerEnemyTrackerXPos", Language.GetString("TRACKERS_UI_GLOBAL_POSITION_X")).SetValue(new Slider(0, 10000, 0))));
+                 tempSettings.Menu.AddItem(new MenuItem("SAwarenessUITrackerEnemyTrackerXPos", Language.GetString("TRACKERS_UI_GLOBAL_POSITION_X")).SetValue(new Slider((int)_screen.X, Drawing.Width, 0))));
              tempSettings.MenuItems.Add(
-                 tempSettings.Menu.AddItem(new MenuItem("SAwarenessUITrackerEnemyTrackerYPos", Language.GetString("TRACKERS_UI_GLOBAL_POSITION_Y")).SetValue(new Slider(0, 10000, 0))));
+                 tempSettings.Menu.AddItem(new MenuItem("SAwarenessUITrackerEnemyTrackerYPos", Language.GetString("TRACKERS_UI_GLOBAL_POSITION_Y")).SetValue(new Slider((int)_screen.Y, Drawing.Height, 0))));
              tempSettings.MenuItems.Add(
                  tempSettings.Menu.AddItem(new MenuItem("SAwarenessUITrackerEnemyTrackerMode", Language.GetString("GLOBAL_MODE")).SetValue(new StringList(new[]
                  {
@@ -186,9 +145,9 @@ namespace SAwareness.Trackers
                  tempSettings.Menu.AddItem(new MenuItem("SAwarenessUITrackerEnemyTrackerActive", Language.GetString("GLOBAL_ACTIVE")).SetValue(false)));
              tempSettings = UiTracker.AddMenuItemSettings(Language.GetString("TRACKERS_UI_ALLY"), "SAwarenessUITrackerAllyTracker");
              tempSettings.MenuItems.Add(
-                 tempSettings.Menu.AddItem(new MenuItem("SAwarenessUITrackerAllyTrackerXPos", Language.GetString("TRACKERS_UI_GLOBAL_POSITION_X")).SetValue(new Slider(0, 10000, 0))));
+                 tempSettings.Menu.AddItem(new MenuItem("SAwarenessUITrackerAllyTrackerXPos", Language.GetString("TRACKERS_UI_GLOBAL_POSITION_X")).SetValue(new Slider(110, Drawing.Width, 0))));
              tempSettings.MenuItems.Add(
-                 tempSettings.Menu.AddItem(new MenuItem("SAwarenessUITrackerAllyTrackerYPos", Language.GetString("TRACKERS_UI_GLOBAL_POSITION_Y")).SetValue(new Slider(0, 10000, 0))));
+                 tempSettings.Menu.AddItem(new MenuItem("SAwarenessUITrackerAllyTrackerYPos", Language.GetString("TRACKERS_UI_GLOBAL_POSITION_Y")).SetValue(new Slider((int)_screen.Y, Drawing.Height, 0))));
              tempSettings.MenuItems.Add(
                  tempSettings.Menu.AddItem(new MenuItem("SAwarenessUITrackerAllyTrackerMode", Language.GetString("GLOBAL_MODE")).SetValue(new StringList(new[]
                      {

@@ -36,6 +36,7 @@ namespace KurisuRiven
         public static Menu Settings;
         public static Spell Q, W, E, R;
         public static Orbwalking.Orbwalker Orbwalker;
+        public static Obj_AI_Base LastTarget;
         public static readonly Obj_AI_Hero Me = ObjectManager.Player;
 
         public static bool UltOn;
@@ -68,7 +69,7 @@ namespace KurisuRiven
 
             // build 
             OnMenuUpdate();
-            OnSpellUpdate();
+            RivenEvents();
 
             Game.OnGameUpdate += OnGameUpdate;
             Drawing.OnDraw += Drawings.OnDraw;
@@ -83,7 +84,7 @@ namespace KurisuRiven
             Q.SetSkillshot(0.25f, 100f, 1400f, false, SkillshotType.SkillshotCircle);
             R.SetSkillshot(0.25f, 300, 2200f, false, SkillshotType.SkillshotCone);
 
-            Game.PrintChat("<b><font color=\"#FF9900\">KurisuRiven</font></b> - Have fun! :^)");
+            Game.PrintChat("<b><font color=\"#FF9900\">KurisuRiven:</font></b> Loaded!");
         }
 
         // riven spell queue
@@ -117,6 +118,7 @@ namespace KurisuRiven
             Combo.OnGameUpdate();
             Combo.LaneFarm();
             Combo.Flee();
+            Combo.SemiHarass();
 
             Helpers.OnBuffUpdate();
             Helpers.Windslash();
@@ -183,8 +185,34 @@ namespace KurisuRiven
             }
         }
 
-        internal static void OnSpellUpdate()
+        internal static void RivenEvents()
         {
+            // anti gapclose
+            AntiGapcloser.OnEnemyGapcloser += gapcloser =>
+            {
+                if (GetBool("antigap") && W.IsReady())
+                {
+                    if (gapcloser.Sender.IsValidTarget(W.Range))
+                        W.Cast();
+                }
+            };
+
+            // interrupter 2
+            Interrupter2.OnInterruptableTarget += (sender, args) =>
+            {
+                if (GetBool("wint") && W.IsReady())
+                {
+                    if (sender.IsValidTarget(W.Range))
+                        W.Cast();
+                }
+
+                if (GetBool("qint") && Q.IsReady() && CleaveCount >= 2)
+                {
+                    if (sender.IsValidTarget(Q.Range))
+                        Q.Cast(sender.ServerPosition);
+                }
+            };
+
             // on animation
             Obj_AI_Base.OnPlayAnimation += (sender, args) =>
             {
@@ -194,7 +222,6 @@ namespace KurisuRiven
                     Orbwalking.LastAATick = Environment.TickCount + Game.Ping/2;
                     CanAA = true;
                 }
-
             };
 
             // on cast
@@ -235,12 +262,9 @@ namespace KurisuRiven
                             if (Me.Spellbook.CanUseSpell(flashslot) == SpellState.Ready &&
                                 Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
                             {
-                                if (Combo.Target.Distance(Me.ServerPosition) < 400 + E.Range + Me.AttackRange + W.Range &&
-                                    Combo.Target.Distance(Me.ServerPosition) > E.Range + Me.AttackRange + 75)
+                                if (Combo.Target.Distance(Me.ServerPosition) > E.Range + TrueRange + 50 &&
+                                    Combo.Target.Distance(Me.ServerPosition) <= E.Range + TrueRange + 500)
                                 {
-                                    if (!UltOn)
-                                        R.Cast();
-
                                     Me.Spellbook.CastSpell(flashslot, Combo.Target.ServerPosition);
                                 }
                             }
@@ -316,6 +340,7 @@ namespace KurisuRiven
                     CanE = false;
                     CanWS = false;
                     LastAA = Environment.TickCount;
+                    LastTarget = (Obj_AI_Base) args.Target;
                 }
             };
         }
@@ -359,7 +384,7 @@ namespace KurisuRiven
             mMenu.AddItem(new MenuItem("ultwhen", "Use R When Killable")).SetValue(new StringList(new[] { "Hard", "Extreme" }));
             mMenu.AddItem(new MenuItem("wsmode", "Smart R Mode"))
                 .SetValue(new StringList(new[] { "Only Kill", "Kill or Max Damage" }, 1));
-            mMenu.AddItem(new MenuItem("multir3", "Flash + Burst if Kill? ")).SetValue(false);
+            mMenu.AddItem(new MenuItem("multir3", "Flash + Burst if Kill?")).SetValue(false);
             mMenu.AddItem(new MenuItem("engage", "Engage Mode"))
                 .SetValue(new StringList(new[] { "Normal", "Tiamat First" }));
             Settings.AddSubMenu(mMenu);
@@ -397,14 +422,17 @@ namespace KurisuRiven
             Settings.AddSubMenu(sMenu);
 
             var oMenu = new Menu("Other", "otherstuff");
-            oMenu.AddItem(new MenuItem("autow", "Use AutoW")).SetValue(true);
-            oMenu.AddItem(new MenuItem("wmin", "AutoW Min Count")).SetValue(new Slider(2, 1, 5));
+            oMenu.AddItem(new MenuItem("semiq", "Use Semi-Q Harass/Clear")).SetValue(true);
+            oMenu.AddItem(new MenuItem("forceaa", "Laneclear Force AA")).SetValue(false);
             oMenu.AddItem(new MenuItem("useitems", "Use Botrk/Youmus")).SetValue(true);
             oMenu.AddItem(new MenuItem("keepq", "Keep Q Alive")).SetValue(true);
             oMenu.AddItem(new MenuItem("delay", "AA -> Q Delay")).SetValue(new Slider(0, 0, 200));
+            oMenu.AddItem(new MenuItem("autow", "Use AutoW")).SetValue(true);
+            oMenu.AddItem(new MenuItem("wmin", "AutoW Min Count")).SetValue(new Slider(2, 1, 5));
             oMenu.AddItem(new MenuItem("debugtrue", "Debug True Range")).SetValue(false);
             oMenu.AddItem(new MenuItem("debugdmg", "Debug Combo Damage")).SetValue(false);
             Settings.AddSubMenu(oMenu);
+
 
             Settings.AddToMainMenu();
         }
