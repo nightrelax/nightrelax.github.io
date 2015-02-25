@@ -87,7 +87,7 @@ namespace Jinx
                 Config.SubMenu("R Config").AddItem(new MenuItem("useR", "Semi-manual cast R key").SetValue(new KeyBind('t', KeyBindType.Press))); //32 == space
 
             #endregion
-            Config.AddItem(new MenuItem("Qtype", "new Q method").SetValue(true));
+            Config.AddItem(new MenuItem("Qtype", "new Q method").SetValue(false));
             Config.AddItem(new MenuItem("noti", "Show notification").SetValue(true));
             Config.AddItem(new MenuItem("pots", "Use pots").SetValue(true));
             Config.AddItem(new MenuItem("Hit", "Hit Chance W").SetValue(new Slider(2, 2, 0)));
@@ -262,7 +262,17 @@ namespace Jinx
                     }
                 }
             }
+
             
+            if ( R.IsReady())
+            {
+                var t = TargetSelector.GetTarget(R.Range, TargetSelector.DamageType.Physical);
+                if (t.IsValidTarget() && Config.Item("useR").GetValue<KeyBind>().Active)
+                {
+                    R1.Cast(t, true, true);
+                }
+            }
+
             if (R.IsReady() && Config.Item("autoR").GetValue<bool>())
             {
                 bool cast = false;
@@ -611,10 +621,6 @@ namespace Jinx
                     {
                         Drawing.DrawText(Drawing.Width * 0.1f, Drawing.Height * 0.5f, System.Drawing.Color.Red, "Ult can kill: " + t.ChampionName + " have: " + t.Health + "hp");
                         Render.Circle.DrawCircle(t.ServerPosition, 200, System.Drawing.Color.Red);
-                    }
-                    if (Config.Item("useR").GetValue<KeyBind>().Active)
-                    {
-                        R1.Cast(t, true, true);
                     }
                 }
                 var tw = TargetSelector.GetTarget(W.Range, TargetSelector.DamageType.Physical);

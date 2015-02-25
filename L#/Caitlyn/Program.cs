@@ -57,8 +57,8 @@ namespace Caitlyn
             R = new Spell(SpellSlot.R, 3000);
             R1 = new Spell(SpellSlot.R, 3000f);
 
-            Q.SetSkillshot(0.625f, 90f, 2200f, false, SkillshotType.SkillshotLine);
-            Qc.SetSkillshot(0.625f, 90f, 2200f, true, SkillshotType.SkillshotLine);
+            Q.SetSkillshot(0.65f, 90f, 2200f, false, SkillshotType.SkillshotLine);
+            Qc.SetSkillshot(0.65f, 90f, 2200f, true, SkillshotType.SkillshotLine);
             W.SetSkillshot(1.5f, 1f, 1750f, false, SkillshotType.SkillshotCircle);
             E.SetSkillshot(0.25f, 80f, 1600f, true, SkillshotType.SkillshotLine);
             R1.SetSkillshot(0.7f, 200f, 1500f, false, SkillshotType.SkillshotCircle);
@@ -84,6 +84,7 @@ namespace Caitlyn
             Config.AddItem(new MenuItem("noti", "Show notification").SetValue(true));
             Config.AddItem(new MenuItem("pots", "Use pots").SetValue(true));
             Config.AddItem(new MenuItem("autoR", "Auto R").SetValue(true));
+            Config.AddItem(new MenuItem("autoQ", "Reduce Q use").SetValue(true));
             Config.AddItem(new MenuItem("Hit", "Hit Chance Q").SetValue(new Slider(2, 2, 0)));
             Config.AddItem(new MenuItem("useR", "Semi-manual cast R key").SetValue(new KeyBind('t', KeyBindType.Press))); //32 == space
             #region E
@@ -99,7 +100,7 @@ namespace Caitlyn
             Orbwalking.AfterAttack += afterAttack;
             AntiGapcloser.OnEnemyGapcloser += AntiGapcloser_OnEnemyGapcloser;
             Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
-            Game.PrintChat("<font color=\"#7e62cc\">C</font>aitlyn full automatic SI ver 1.5 <font color=\"#000000\">by sebastiank1</font> - <font color=\"#00BFFF\">Loaded</font>");
+            Game.PrintChat("<font color=\"#7e62cc\">C</font>aitlyn full automatic SI ver 1.6 <font color=\"#000000\">by sebastiank1</font> - <font color=\"#00BFFF\">Loaded</font>");
         }
 
         private static void Game_OnGameUpdate(EventArgs args)
@@ -177,22 +178,12 @@ namespace Caitlyn
                     double Qdmg = Q.GetDamage(t);
                     if (Qdmg > predictedHealth)
                         Qdmg = getQdmg(t);
-                    if (GetRealDistance(t) > bonusRange() + 60 && Qdmg > predictedHealth)
-                        Q.Cast(t, true);
-                    else if (Orbwalker.ActiveMode.ToString() == "Combo" && ObjectManager.Player.Mana > RMANA + QMANA + EMANA + 10 && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 60) == 0)
+                    if (GetRealDistance(t) > bonusRange() + 150 && Qdmg > predictedHealth && ObjectManager.Player.CountEnemiesInRange(400) == 0)
                         castQ(t);
-                    else if ((Farm && ObjectManager.Player.Mana > RMANA + EMANA + QMANA + QMANA) && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 60) == 0 )
-                    {
-                        if (ObjectManager.Player.Mana > ObjectManager.Player.MaxMana * 0.9)
-                            Q.CastIfHitchanceEquals(t, HitChance.VeryHigh, true);
-                        else if (t.Path.Count() > 1)
-                            Qc.CastIfHitchanceEquals(t, HitChance.VeryHigh, true);
-                        else
-                            Q.CastIfWillHit(t, 2, true);
-                    }
-                    else if (Orbwalker.ActiveMode.ToString() == "Combo" && ObjectManager.Player.Mana > RMANA + QMANA + EMANA && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 60) == 0)
-                        Q.CastIfWillHit(t, 2, true);
-                    if (Q.IsReady() && (Orbwalker.ActiveMode.ToString() == "Combo" || Farm) && ObjectManager.Player.Mana > RMANA + QMANA && Orbwalker.GetTarget() == null && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 60) == 0)
+                    else if (Orbwalker.ActiveMode.ToString() == "Combo" && ObjectManager.Player.Mana > RMANA + QMANA + EMANA + 10 && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 250) == 0 && Config.Item("autoQ").GetValue<bool>())
+                        castQ(t);
+
+                    if (Q.IsReady() && (Orbwalker.ActiveMode.ToString() == "Combo" || Farm) && ObjectManager.Player.Mana > RMANA + QMANA && ObjectManager.Player.CountEnemiesInRange(bonusRange()) == 0 && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 60) == 0)
                     {
                         foreach (var enemy in ObjectManager.Get<Obj_AI_Hero>().Where(enemy => enemy.IsValidTarget(Q.Range)))
                         {
@@ -200,6 +191,18 @@ namespace Caitlyn
                              enemy.HasBuffOfType(BuffType.Charm) || enemy.HasBuffOfType(BuffType.Fear) ||
                              enemy.HasBuffOfType(BuffType.Taunt) || enemy.HasBuffOfType(BuffType.Slow) || enemy.HasBuff("Recall"))
                                 Q.CastIfHitchanceEquals(enemy, HitChance.High, true);
+                        }
+                    }
+                    if (Q.IsReady() && Orbwalker.ActiveMode.ToString() == "Combo" && ObjectManager.Player.Mana > RMANA + QMANA + EMANA && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 100) == 0)
+                        Q.CastIfWillHit(t, 2, true);
+                    if (Q.IsReady() && (Farm && ObjectManager.Player.Mana > RMANA + EMANA + WMANA + QMANA + QMANA) && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 100) == 0)
+                    {
+                        if (t.Path.Count() > 1)
+                        {
+                            Q.CastIfWillHit(t, 2, true);
+                            if (Q.IsReady() && ObjectManager.Player.Mana > RMANA + EMANA + WMANA + QMANA + QMANA + 20)
+                                Qc.CastIfHitchanceEquals(t, HitChance.VeryHigh, true);
+                                
                         }
                     }
                 }

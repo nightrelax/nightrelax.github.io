@@ -239,11 +239,6 @@ namespace KurisuRiven
                     {
                         Base.Q.Cast(Base.LastTarget.ServerPosition);
                     }
-
-                    if (Base.LastTarget.IsValid<Obj_AI_Turret>() && Base.LastTarget.IsValidTarget(Base.Q.Range + 100))
-                    {
-                        Base.Q.Cast(Base.LastTarget.ServerPosition);
-                    }
                 }
             }
         }

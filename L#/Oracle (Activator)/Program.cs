@@ -104,7 +104,8 @@ namespace Oracle
 
             foreach (var i in ObjectManager.Get<Obj_AI_Hero>().Where(hero => hero.Team != Me.Team))
             {
-                var menu = new Menu(i.SkinName, i.SkinName + "cccmenu");
+                var menu = new Menu(i.ChampionName, i.ChampionName + "cccmenu");
+
                 foreach (
                     var spell in
                         TargetSpellDatabase.Spells.Where(spell => spell.ChampionName == i.ChampionName.ToLower()))

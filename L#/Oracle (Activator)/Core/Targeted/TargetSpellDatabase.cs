@@ -510,7 +510,7 @@ namespace Oracle.Core.Targeted
                 new TargetSpellData("malzahar", "alzaharcallofthevoid", SpellSlot.Q, SpellType.Skillshot, CcType.Silence, 900, 500, float.MaxValue),
                 new TargetSpellData("malzahar", "alzaharnullzone", SpellSlot.W, SpellType.Skillshot, CcType.No, 800, 500, float.MaxValue),
                 new TargetSpellData("malzahar", "alzaharmaleficvisions", SpellSlot.E, SpellType.Targeted, CcType.No, 650, 500, float.MaxValue),
-                new TargetSpellData("malzahar", "alzaharnethergrasp", SpellSlot.R, SpellType.Targeted, CcType.Suppression, 700, 500, float.MaxValue, true),
+                new TargetSpellData("malzahar", "alzaharnethergrasp", SpellSlot.R, SpellType.Targeted, CcType.Suppression, 700, 0, float.MaxValue, true),
 
                 #endregion Malzahar
 

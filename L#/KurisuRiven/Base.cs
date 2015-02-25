@@ -238,6 +238,7 @@ namespace KurisuRiven
                         LastQ = Environment.TickCount;
                         Utility.DelayAction.Add(100,
                             () => Me.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos));
+
                         if (GetList("engage") == 1 && HasHD)
                             Helpers.CheckR(Combo.Target);
                         CanQ = false;
