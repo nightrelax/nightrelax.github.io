@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LeagueSharp">
-      <HintPath>D:\DESKTOPsync\LOL tool\LeagueSharp\\System\LeagueSharp.dll</HintPath>
+      <HintPath>D:\DESKTOPsync\LOL tool\nightrelax.github.io\LeagueSharp\\System\LeagueSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

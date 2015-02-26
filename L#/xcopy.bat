@@ -8,7 +8,6 @@ xcopy /s /e "%appdata%\LeagueSharp\Repositories\F2E4A9AF\trunk\UniversalMinimapH
 xcopy /s /e "%appdata%\LeagueSharp\Repositories\5129B1DE\trunk\Support\*" "Support\*"
 xcopy /s /e "%appdata%\LeagueSharp\Repositories\EF954DC8\trunk\Shared Experience\*" "Shared Experience\*"
 xcopy /s /e "%appdata%\LeagueSharp\Repositories\E9FE08CC\trunk\MetaSmite\*" "MetaSmite\*"
-xcopy /s /e "%appdata%\LeagueSharp\Repositories\E9FE08CC\trunk\Skin Changer\Skin Changer\*" "Skin Changer\*"
 xcopy /s /e "%appdata%\LeagueSharp\Repositories\BF40B76C\trunk\*" "SAwareness\*"
 xcopy /s /e "%appdata%\LeagueSharp\Repositories\CFB1B437\trunk\xSaliceReligionAIO\xSaliceReligionAIO\*" "xSaliceReligionAIO\*"
 xcopy /s /e "%appdata%\LeagueSharp\Repositories\348C8682\trunk\LexxersAIOCarry\*" "LexxersAIOCarry\*"
