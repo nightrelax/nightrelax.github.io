@@ -251,7 +251,7 @@
       </LeagueSharpAssembly>
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
-        <InjectChecked>false</InjectChecked>
+        <InjectChecked>true</InjectChecked>
         <Status>Ready</Status>
         <DisplayName>SigmaSeries</DisplayName>
         <Name>SigmaSeries</Name>
@@ -351,7 +351,7 @@
       </LeagueSharpAssembly>
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
-        <InjectChecked>true</InjectChecked>
+        <InjectChecked>false</InjectChecked>
         <Status>Ready</Status>
         <DisplayName>DevCassio</DisplayName>
         <Name>DevCassio</Name>
@@ -1147,7 +1147,7 @@
         </LeagueSharpAssembly>
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
-          <InjectChecked>false</InjectChecked>
+          <InjectChecked>true</InjectChecked>
           <Status>Ready</Status>
           <DisplayName>SigmaSeries</DisplayName>
           <Name>SigmaSeries</Name>
@@ -1247,7 +1247,7 @@
         </LeagueSharpAssembly>
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
-          <InjectChecked>true</InjectChecked>
+          <InjectChecked>false</InjectChecked>
           <Status>Ready</Status>
           <DisplayName>DevCassio</DisplayName>
           <Name>DevCassio</Name>

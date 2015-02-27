@@ -89,8 +89,15 @@ namespace LeBlanc_2
             }
 
             var vecW = Player.ServerPosition.Extend(t.ServerPosition, W.Range);
-            W.Cast(vecW, PacketCast);
-            Combo(t);
+            if (W.Instance.Name == "LeblancSlide")
+            {
+                W.Cast(vecW, PacketCast);
+                Combo(t);
+            }
+            else
+            {
+                Combo(t);
+            }
         }
         private static void Combo(Obj_AI_Base t)
         {
@@ -281,7 +288,7 @@ namespace LeBlanc_2
                         enemy.Team != ObjectManager.Player.Team && !enemy.IsDead && enemy.IsVisible &&
                         LeBlancConfig.Item("Assassin" + enemy.ChampionName) != null &&
                         LeBlancConfig.Item("Assassin" + enemy.ChampionName).GetValue<bool>() &&
-                        ObjectManager.Player.Distance(enemy) < assassinRange);
+                        ObjectManager.Player.Distance((Obj_AI_Base)enemy) < assassinRange);
 
             if (LeBlancConfig.Item("AssassinSelectOption").GetValue<StringList>().SelectedIndex == 1)
             {

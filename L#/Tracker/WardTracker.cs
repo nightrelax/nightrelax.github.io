@@ -367,7 +367,7 @@ namespace Tracker
                 });
 
             #endregion
-            if(Game.Version == "5.4.0.241") return;
+
             //Used for removing the wards that expire:
             Game.OnGameUpdate += GameOnOnGameUpdate;
 
