@@ -251,7 +251,7 @@
       </LeagueSharpAssembly>
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
-        <InjectChecked>true</InjectChecked>
+        <InjectChecked>false</InjectChecked>
         <Status>Ready</Status>
         <DisplayName>SigmaSeries</DisplayName>
         <Name>SigmaSeries</Name>
@@ -561,8 +561,8 @@
       </LeagueSharpAssembly>
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
-        <InjectChecked>false</InjectChecked>
-        <Status>CompilingError</Status>
+        <InjectChecked>true</InjectChecked>
+        <Status>Ready</Status>
         <DisplayName>DevKogMaw</DisplayName>
         <Name>DevKogMaw</Name>
         <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\FF5A0427\trunk\DevKogMaw\DevKogMaw.csproj</PathToProjectFile>
@@ -1147,7 +1147,7 @@
         </LeagueSharpAssembly>
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
-          <InjectChecked>true</InjectChecked>
+          <InjectChecked>false</InjectChecked>
           <Status>Ready</Status>
           <DisplayName>SigmaSeries</DisplayName>
           <Name>SigmaSeries</Name>
@@ -1457,8 +1457,8 @@
         </LeagueSharpAssembly>
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
-          <InjectChecked>false</InjectChecked>
-          <Status>CompilingError</Status>
+          <InjectChecked>true</InjectChecked>
+          <Status>Ready</Status>
           <DisplayName>DevKogMaw</DisplayName>
           <Name>DevKogMaw</Name>
           <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\FF5A0427\trunk\DevKogMaw\DevKogMaw.csproj</PathToProjectFile>

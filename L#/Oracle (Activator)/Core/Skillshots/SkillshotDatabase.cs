@@ -422,7 +422,7 @@ namespace Oracle.Core.Skillshots
                     SpellName = "BraumRWrapper",
                     Slot = SpellSlot.R,
                     Type = SkillShotType.SkillshotMissileLine,
-                    Delay = 500,
+                    Delay = 400,
                     Range = 1200,
                     Radius = 115,
                     MissileSpeed = 1400,
@@ -430,7 +430,7 @@ namespace Oracle.Core.Skillshots
                     AddHitbox = true,
                     DangerValue = 4,
                     IsDangerous = true,
-                    MissileSpellName = "braumrmissile",
+                    MissileSpellName = "BraumRWrapper",
                     CollisionObjects = new[] {CollisionObjectTypes.YasuoWall}
                 });
 
@@ -1359,10 +1359,10 @@ namespace Oracle.Core.Skillshots
                 new SkillshotData
                 {
                     ChampionName = "Jinx",
-                    SpellName = "JinxRWrapper",
+                    SpellName = "JinxR",
                     Slot = SpellSlot.R,
                     Type = SkillShotType.SkillshotMissileLine,
-                    Delay = 600,
+                    Delay = 450,
                     Range = 20000,
                     Radius = 140,
                     MissileSpeed = 1700,
@@ -1370,7 +1370,7 @@ namespace Oracle.Core.Skillshots
                     AddHitbox = true,
                     DangerValue = 5,
                     IsDangerous = true,
-                    MissileSpellName = "JinxR",
+                    MissileSpellName = "JinxRWrapper",
                     CanBeRemoved = true,
                     CollisionObjects = new[] {CollisionObjectTypes.Champions, CollisionObjectTypes.YasuoWall},
                 });

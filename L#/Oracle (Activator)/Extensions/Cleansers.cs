@@ -1,6 +1,6 @@
 ﻿﻿using System;
 ﻿using System.Linq;
-using LeagueSharp;
+﻿using LeagueSharp;
 using LeagueSharp.Common;
 using OC = Oracle.Program;
 
@@ -22,17 +22,43 @@ namespace Oracle.Extensions
                 _menuConfig.AddItem(new MenuItem("cccon" + a.SkinName, "Use for " + a.SkinName)).SetValue(true);
             _mainMenu.AddSubMenu(_menuConfig);
 
-            CreateMenuItem("Dervish Blade", "Dervish", 1);
-            CreateMenuItem("Quicksilver Sash", "Quicksilver", 1);
-            CreateMenuItem("Mercurial Scimitar", "Mercurial", 1);
-            CreateMenuItem("Mikael's Crucible", "Mikaels", 1);
-            _mainMenu.AddItem(new MenuItem("cleansedelay", "Cleanse delay ")).SetValue(new Slider(0));
+            CreateMenuItem("Dervish Blade", "Dervish", 2);
+            CreateMenuItem("Quicksilver Sash", "Quicksilver", 2);
+            CreateMenuItem("Mercurial Scimitar", "Mercurial", 2);
+            CreateMenuItem("Mikael's Crucible", "Mikaels", 2);
+
+            // delay the cleanse value * 100
+            _mainMenu.AddItem(new MenuItem("cleansedelay", "Cleanse delay ")).SetValue(new Slider(20, 0, 35));
 
             _mainMenu.AddItem(
                 new MenuItem("cmode", "Mode: "))
-                .SetValue(new StringList(new[] {"Always", "Combo"}));
+                .SetValue(new StringList(new[] {"Always", "Combo"}, 1));
+
 
             root.AddSubMenu(_mainMenu);
+        }
+
+        private static int GetBuffCount(Obj_AI_Base target)
+        {
+            int count = 0;
+
+            foreach (var x in target.Buffs)
+            {
+                if (x.IsActive && x.Caster.IsEnemy && x.IsPositive) count++;
+            }
+
+            return count;
+        }
+
+        private static int GetBuffTime(Obj_AI_Base target)
+        {
+            foreach (var b in target.Buffs)
+            {
+                if (b.IsActive && b.IsPositive && b.Caster.IsEnemy)
+                    return (int) (b.EndTime - b.StartTime);
+            }
+
+            return 0;
         }
 
         public static void Game_OnGameUpdate(EventArgs args)
@@ -58,10 +84,13 @@ namespace Oracle.Extensions
             var target = range > 5000 ? Me : OC.Friendly();
             if (_mainMenu.Item("cccon" + target.SkinName).GetValue<bool>())
             {
-                if (target.Distance(Me.ServerPosition, true) <= range * range && target.IsValidState())
+                if (target.Distance(Me.ServerPosition, true) <= range * range && target.IsValidState() &&
+                    GetBuffCount(target) >= _mainMenu.Item(name + "Count").GetValue<Slider>().Value &&
+                    GetBuffTime(target) >= _mainMenu.Item(name + "Duration").GetValue<Slider>().Value)
                 {
                     var tHealthPercent = target.Health/target.MaxHealth*100;
                     var delay = _mainMenu.Item("cleansedelay").GetValue<Slider>().Value * 10;
+
                     foreach (var buff in GameBuff.CleanseBuffs)
                     {
                         var buffinst = target.Buffs;
@@ -166,8 +195,8 @@ namespace Oracle.Extensions
         {
             var menuName = new Menu(name, name);
             menuName.AddItem(new MenuItem("use" + name, "Use " + displayname)).SetValue(true);
-            menuName.AddItem(new MenuItem(name + "Count", "Min spells to use"));//.SetValue(new Slider(ccvalue, 1, 5));
-            menuName.AddItem(new MenuItem(name + "Duration", "Buff duration to use"));//.SetValue(new Slider(2, 1, 5));
+            menuName.AddItem(new MenuItem(name + "Count", "Min spells to use")).SetValue(new Slider(ccvalue, 1, 5));
+            menuName.AddItem(new MenuItem(name + "Duration", "Buff duration to use")).SetValue(new Slider(2, 1, 5));
             _mainMenu.AddSubMenu(menuName);
         }
     }

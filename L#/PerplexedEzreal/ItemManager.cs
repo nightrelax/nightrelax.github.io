@@ -19,7 +19,6 @@ namespace PerplexedEzreal
             Items.Add(new Item("BORK", "BORK", 3153, ItemType.Offensive, 450));
             Items.Add(new Item("Ghostblade", "Youmuu's Ghostblade", 3142, ItemType.Offensive, Player.AttackRange));
             Items.Add(new Item("Gunblade", "Hextech Gunblade", 3146, ItemType.Offensive, 700));
-            Items.Add(new Item("DFG", "Deathfire Grasp", 3128, ItemType.Offensive, 750));
             //Defensive
             Items.Add(new Item("Seraphs", "Seraph's Embrace", 3040, ItemType.Defensive));
             Items.Add(new Item("Zhonyas", "Zhonya's Hourglass", 3157, ItemType.Defensive));

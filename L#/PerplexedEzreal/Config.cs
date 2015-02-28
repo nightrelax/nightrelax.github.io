@@ -34,19 +34,22 @@ namespace PerplexedEzreal
             Settings.AddSubMenu(new Menu("Harass", "menuHarass"));
             Settings.SubMenu("menuHarass").AddItem(new MenuItem( "harassQ", "Q").SetValue(true));
             Settings.SubMenu("menuHarass").AddItem(new MenuItem("harassW", "W").SetValue(true));
-            //Last Hit
-            Settings.AddSubMenu(new Menu("Last Hitting", "menuLastHit"));
-            Settings.SubMenu("menuLastHit").AddItem(new MenuItem("lastHitQ", "Q").SetValue(true));
-            //Auto
-            Settings.AddSubMenu(new Menu("Auto", "menuAuto"));
+            //Auto Harass
+            Settings.AddSubMenu(new Menu("Auto Harass", "menuAuto"));
             Settings.SubMenu("menuAuto").AddItem(new MenuItem("toggleAuto", "Toggle Auto").SetValue(new KeyBind("H".ToCharArray()[0], KeyBindType.Toggle, true)));
             Settings.SubMenu("menuAuto").AddSubMenu(new Menu("Champions", "autoChamps"));
-            foreach(Obj_AI_Hero hero in ObjectManager.Get<Obj_AI_Hero>().Where(hero => hero.IsValid && hero.IsEnemy))
+            foreach (Obj_AI_Hero hero in ObjectManager.Get<Obj_AI_Hero>().Where(hero => hero.IsValid && hero.IsEnemy))
                 Settings.SubMenu("menuAuto").SubMenu("autoChamps").AddItem(new MenuItem("auto" + hero.ChampionName, hero.ChampionName).SetValue(Marksmen.Contains(hero.ChampionName)));
             Settings.SubMenu("menuAuto").AddItem(new MenuItem("autoQ", "Q").SetValue(true));
             Settings.SubMenu("menuAuto").AddItem(new MenuItem("autoW", "W").SetValue<bool>(false));
             Settings.SubMenu("menuAuto").AddItem(new MenuItem("manaER", "Save Mana For E/R").SetValue(true));
-            Settings.SubMenu("menuAuto").AddItem(new MenuItem("autoTurret", "Auto Enemy Under Turret").SetValue<bool>(false));
+            Settings.SubMenu("menuAuto").AddItem(new MenuItem("autoTurret", "Harass Enemy Under Turret").SetValue<bool>(false));
+            //Last Hit
+            Settings.AddSubMenu(new Menu("Last Hitting", "menuLastHit"));
+            Settings.SubMenu("menuLastHit").AddItem(new MenuItem("lastHitQ", "Q").SetValue(true));
+            //Anti-Gapcloser
+            Settings.AddSubMenu(new Menu("Anti-Gapcloser", "menuGapCloser"));
+            Settings.SubMenu("menuGapCloser").AddItem(new MenuItem("gapcloseE", "Dodge With E").SetValue(true));
             //Ultimate
             Settings.AddSubMenu(new Menu("Ult Settings", "menuUlt"));
             Settings.SubMenu("menuUlt").AddItem(new MenuItem("ultLowest", "Ult Lowest Target").SetValue(new KeyBind("T".ToCharArray()[0], KeyBindType.Press)));
@@ -101,6 +104,8 @@ namespace PerplexedEzreal
         public static bool HarassW { get { return Settings.Item("harassW").GetValue<bool>(); } }
 
         public static bool LastHitQ { get { return Settings.Item("lastHitQ").GetValue<bool>(); } }
+
+        public static bool GapcloseE { get { return Settings.Item("gapcloseE").GetValue<bool>();  } }
 
         public static KeyBind UltLowest { get { return Settings.Item("ultLowest").GetValue<KeyBind>(); } }
         public static bool KillSteal { get { return Settings.Item("ks").GetValue<bool>(); } }

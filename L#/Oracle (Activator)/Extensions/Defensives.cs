@@ -23,10 +23,10 @@ namespace Oracle.Extensions
             _mainMenu.AddSubMenu(_menuConfig);
 
             CreateMenuItem("Randuin's Omen", "Randuins", "selfcount", 40, 40);
-            CreateMenuItem("Seraph's Embrace", "Seraphs",  "selfhealth", 55, 40);
-            CreateMenuItem("Zhonya's Hourglass", "Zhonyas", "selfzhonya", 35, 40);
-            CreateMenuItem("Face of the Mountain", "Mountain", "allyhealth", 20, 40);
-            CreateMenuItem("Locket of Iron Solari", "Locket", "allyhealth", 45, 40);
+            CreateMenuItem("Seraph's Embrace", "Seraphs",  "selfhealth", 40, 45);
+            CreateMenuItem("Zhonya's Hourglass", "Zhonyas", "selfzhonya", 20, 50);
+            CreateMenuItem("Face of the Mountain", "Mountain", "allyhealth", 20, 45);
+            CreateMenuItem("Locket of Iron Solari", "Locket", "allyhealth", 40, 45);
 
             var tMenu = new Menu("Talisman", "tboost");
             tMenu.AddItem(new MenuItem("useTalisman", "Use Talisman of Ascension")).SetValue(true);
@@ -39,7 +39,7 @@ namespace Oracle.Extensions
             bMenu.AddItem(new MenuItem("useBanner", "Use Banner of Command")).SetValue(true);
             _mainMenu.AddSubMenu(bMenu);
 
-            CreateMenuItem("Wooglet's Witchcap", "Wooglets", "selfzhonya", 35, 40);
+            CreateMenuItem("Wooglet's Witchcap", "Wooglets", "selfzhonya", 20, 40);
             CreateMenuItem("Odyn's Veil", "Odyns", "selfcount", 40, 40);
 
             var oMenu = new Menu("Oracle's Lens", "olens");
@@ -186,7 +186,7 @@ namespace Oracle.Extensions
             }
 
             if (target.CountHerosInRange(false) + 1 >= target.CountHerosInRange(true)) // +1 to allow potential counterplay
-            {
+            {     
                 if (_mainMenu.Item("use" + name + "Ults").GetValue<bool>())
                 {
                     if (OC.DangerUlt || OC.IncomeDamage >= target.Health || target.Health/target.MaxHealth*100 <= 15)
@@ -224,6 +224,7 @@ namespace Oracle.Extensions
                         return;
                     }
                 }
+
                 if (aHealthPercent <= _mainMenu.Item("use" + name + "Pct").GetValue<Slider>().Value)
                 {
                     if ((iDamagePercent >= 1 || OC.IncomeDamage >= target.Health))

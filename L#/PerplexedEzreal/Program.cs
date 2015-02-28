@@ -45,8 +45,17 @@ namespace PerplexedEzreal
             Game.OnGameUpdate += Game_OnGameUpdate;
             Drawing.OnDraw += Drawing_OnDraw;
             Orbwalking.AfterAttack += Orbwalking_AfterAttack;
+            AntiGapcloser.OnEnemyGapcloser += AntiGapcloser_OnEnemyGapcloser;
 
             Game.PrintChat("<font color=\"#ff3300\">Perplexed Ezreal ({0})</font> - <font color=\"#ffffff\">Loaded!</font>", Version);
+        }
+
+        static void AntiGapcloser_OnEnemyGapcloser(ActiveGapcloser gapcloser)
+        {
+            if (!Config.GapcloseE)
+                return;
+            var awayPosition = gapcloser.End.Extend(ObjectManager.Player.ServerPosition, ObjectManager.Player.Distance(gapcloser.End) + SpellManager.E.Range);
+                SpellManager.CastSpell(SpellManager.E, awayPosition, false);
         }
 
         static void Orbwalking_AfterAttack(AttackableUnit unit, AttackableUnit target)
@@ -76,7 +85,7 @@ namespace PerplexedEzreal
                     Harass();
                     break;
                 case Orbwalking.OrbwalkingMode.LastHit:
-                    //LastHit(); - Disabled for now.
+                    LastHit();
                     if (Config.ToggleAuto.Active)
                         Auto();
                     break;
@@ -186,7 +195,7 @@ namespace PerplexedEzreal
                 var target = TargetSelector.GetTarget(Config.UltRange, DamageType);
                 var ultDamage = DamageCalc.GetUltDamage(target);
                 var targetHealth = target.Health;
-                if (ultDamage >= targetHealth)
+                if (ultDamage >= targetHealth && !target.IsValidTarget(Player.AttackRange))
                     SpellManager.CastSpell(SpellManager.R, target, HitChance.VeryHigh, Config.UsePackets);
             }
         }

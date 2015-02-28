@@ -119,7 +119,7 @@ namespace Oracle.Core.Targeted
                 new TargetSpellData("braum", "braumqmissle", SpellSlot.Q, SpellType.Skillshot, CcType.Slow, 1100, 500, 1200),
                 new TargetSpellData("braum", "braumw", SpellSlot.W, SpellType.Targeted, CcType.No, 650, 500, 1500),
                 new TargetSpellData("braum", "braume", SpellSlot.E, SpellType.Skillshot, CcType.No, 250, 0, float.MaxValue),
-                new TargetSpellData("braum", "braumr", SpellSlot.R, SpellType.Skillshot, CcType.Knockup, 1250, 0, 1200, true),
+                new TargetSpellData("braum", "braumrwrapper", SpellSlot.R, SpellType.Skillshot, CcType.Knockup, 1250, 0, 1200, true),
 
                 #endregion Braum
 

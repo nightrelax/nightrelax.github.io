@@ -49,7 +49,7 @@ namespace Oracle
         public static string FileName;
         public static bool CanManamune;
         public static string ChampionName;
-        public const string Revision = "222";
+        public const string Revision = "223";
 
         private static void OnGameLoad(EventArgs args)
         {
@@ -132,6 +132,7 @@ namespace Oracle
                     cskills.AddItem(new MenuItem("cure" + debuff.BuffName, debuff.ChampionName + " - " + debuff.Slot))
                         .SetValue(true);
             }
+
             config.AddSubMenu(cskills);
 
             var cleanseMenu = new Menu("Cleanse Debuffs", "cdebufs");
@@ -816,11 +817,26 @@ namespace Oracle
                 var heroSender = ObjectManager.Get<Obj_AI_Hero>().First(x => x.NetworkId == sender.NetworkId);
                 if (heroSender.GetSpellSlot(args.SData.Name) == SpellSlot.Unknown && args.Target.Type == Me.Type)
                 {
-                    Danger = false; Dangercc = false; DangerUlt = false;
+                    Danger = false;
+                    Dangercc = false;
+                    DangerUlt = false;
+                    AggroTarget = ObjectManager.GetUnitByNetworkId<Obj_AI_Hero>(args.Target.NetworkId);
+
+                    IncomeDamage = (float) heroSender.GetAutoAttackDamage(AggroTarget);
+                    Logger(LogType.Damage,
+                        heroSender.SkinName + " hit (AA) " + AggroTarget.SkinName + " for: " + IncomeDamage);
+                }
+
+                if (heroSender.ChampionName == "Jinx" && args.SData.Name.Contains("JinxQAttack") && args.Target.Type == Me.Type)
+                {
+                    Danger = false;
+                    Dangercc = false;
+                    DangerUlt = false;
                     AggroTarget = ObjectManager.GetUnitByNetworkId<Obj_AI_Hero>(args.Target.NetworkId);
 
                     IncomeDamage = (float)heroSender.GetAutoAttackDamage(AggroTarget);
-                    Logger(LogType.Damage, heroSender.SkinName + " hit (AA) " + AggroTarget.SkinName + " for: " + IncomeDamage);
+                    Logger(LogType.Damage,
+                        heroSender.SkinName + " hit (JinxQ) " + AggroTarget.SkinName + " for: " + IncomeDamage);
                 }
 
                 Attacker = heroSender;

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LeagueSharp;
 using LeagueSharp.Common;
+using SharpDX;
 
 namespace PerplexedEzreal
 {
@@ -38,6 +39,11 @@ namespace PerplexedEzreal
             Obj_AI_Hero Player = ObjectManager.Player;
             if (target.IsValidTarget(spell.Range) && spell.GetPrediction(target).Hitchance >= hitChance)
                 spell.Cast(target, packetCast);
+        }
+
+        internal static void CastSpell(Spell spell, Vector3 position, bool packetCast)
+        {
+            spell.Cast(position, packetCast);
         }
 
         public static void UseHealIfInDanger(double incomingDmg)
