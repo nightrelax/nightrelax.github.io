@@ -1,0 +1,30 @@
+Build started 3/2/2015 8:53:05 PM.
+__________________________________________________
+Project "C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\1BA0420E\trunk\Evade\Evade.csproj" (default targets):
+
+Target GenerateTargetFrameworkMonikerAttribute:
+  Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+Target CoreCompile:
+    C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe /noconfig /nowarn:1701,1702 /nostdlib+ /platform:x86 /errorreport:prompt /warn:4 /define:TRACE /highentropyva+ /reference:"E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\clipper_library.dll" /reference:"E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\LeagueSharp.Common.dll" /reference:"E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\LeagueSharp.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\Microsoft.CSharp.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\mscorlib.dll" /reference:"E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\SharpDX.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\System.Data.DataSetExtensions.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\System.Drawing.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\System.Xml.Linq.dll" /debug:pdbonly /filealign:512 /optimize+ /out:obj\Release\Evade.exe /subsystemversion:6.00 /target:exe /utf8output Collision.cs Config.cs EvadeSpellData.cs EvadeSpellDatabase.cs Geometry.cs Program.cs AssemblyInfo.cs Skillshot.cs SkillshotDetector.cs SpellData.cs SpellDatabase.cs Utils.cs Evader.cs "C:\Users\OLIVERLEO\AppData\Local\Temp\.NETFramework,Version=v4.5.1.AssemblyAttributes.cs"
+    Collision.cs(154,65): warning CS0429: Unreachable expression code detected
+    Program.cs(163,41): error CS1061: 'LeagueSharp.SpellData' does not contain a definition for 'CastRangeArray' and no extension method 'CastRangeArray' accepting a first argument of type 'LeagueSharp.SpellData' could be found (are you missing a using directive or an assembly reference?)
+    Program.cs(727,21): warning CS0162: Unreachable code detected
+    Program.cs(1311,17): warning CS0162: Unreachable code detected
+    SkillshotDetector.cs(47,49): warning CS0429: Unreachable expression code detected
+    SpellDatabase.cs(40,17): warning CS0162: Unreachable code detected
+Done building target "CoreCompile" in project "Evade.csproj" -- FAILED.
+
+Done building project "Evade.csproj" -- FAILED.
+
+Build FAILED.
+
+Collision.cs(154,65): warning CS0429: Unreachable expression code detected
+Program.cs(727,21): warning CS0162: Unreachable code detected
+Program.cs(1311,17): warning CS0162: Unreachable code detected
+SkillshotDetector.cs(47,49): warning CS0429: Unreachable expression code detected
+SpellDatabase.cs(40,17): warning CS0162: Unreachable code detected
+Program.cs(163,41): error CS1061: 'LeagueSharp.SpellData' does not contain a definition for 'CastRangeArray' and no extension method 'CastRangeArray' accepting a first argument of type 'LeagueSharp.SpellData' could be found (are you missing a using directive or an assembly reference?)
+    5 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.54

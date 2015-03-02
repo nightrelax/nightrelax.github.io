@@ -19,6 +19,7 @@ All Support for L# - Auto Update my favourite Assembilies
 - Stack Overflow https://github.com/mrarticuno/Mechanics-StackOverflow http://www.joduska.me/forum/topic/17359-mechanics-stackoverflow-51-fixed/
 - BrianSharp https://github.com/brian0305/BrianSharp http://www.joduska.me/forum/topic/18755-brian-sharp-beta-0018/
 - xSLx Orbwalker "lib" https://github.com/E2Slayer/LeagueSharp http://www.joduska.me/forum/topic/4649-51-xslx-orbwalker-standalone/
+- ezEvade https://github.com/soulcaliber/LeagueSharp
 
 Champ
 - Aatrox https://github.com/AureusXD/LeagueSharp

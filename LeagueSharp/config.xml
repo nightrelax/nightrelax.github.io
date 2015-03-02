@@ -101,7 +101,7 @@
       </LeagueSharpAssembly>
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
-        <InjectChecked>true</InjectChecked>
+        <InjectChecked>false</InjectChecked>
         <Status>CompilingError</Status>
         <DisplayName>Evade</DisplayName>
         <Name>Evade</Name>
@@ -969,6 +969,16 @@
         <Description />
         <SvnUrl>https://github.com/HunteraSharp/LeagueSharp</SvnUrl>
       </LeagueSharpAssembly>
+      <LeagueSharpAssembly>
+        <InstallChecked>true</InstallChecked>
+        <InjectChecked>true</InjectChecked>
+        <Status>Ready</Status>
+        <DisplayName>ezEvade</DisplayName>
+        <Name>ezEvade</Name>
+        <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\4D6C9343\trunk\ezEvade\ezEvade.csproj</PathToProjectFile>
+        <Description />
+        <SvnUrl>https://github.com/soulcaliber/LeagueSharp</SvnUrl>
+      </LeagueSharpAssembly>
     </InstalledAssemblies>
   </SelectedProfile>
   <Profiles>
@@ -997,7 +1007,7 @@
         </LeagueSharpAssembly>
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
-          <InjectChecked>true</InjectChecked>
+          <InjectChecked>false</InjectChecked>
           <Status>CompilingError</Status>
           <DisplayName>Evade</DisplayName>
           <Name>Evade</Name>
@@ -1864,6 +1874,16 @@
           <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\42DC7FFB\trunk\Cassiopeia\Cassiopeia.csproj</PathToProjectFile>
           <Description />
           <SvnUrl>https://github.com/HunteraSharp/LeagueSharp</SvnUrl>
+        </LeagueSharpAssembly>
+        <LeagueSharpAssembly>
+          <InstallChecked>true</InstallChecked>
+          <InjectChecked>true</InjectChecked>
+          <Status>Ready</Status>
+          <DisplayName>ezEvade</DisplayName>
+          <Name>ezEvade</Name>
+          <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\4D6C9343\trunk\ezEvade\ezEvade.csproj</PathToProjectFile>
+          <Description />
+          <SvnUrl>https://github.com/soulcaliber/LeagueSharp</SvnUrl>
         </LeagueSharpAssembly>
       </InstalledAssemblies>
     </Profiles>

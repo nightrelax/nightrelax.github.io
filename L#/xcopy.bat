@@ -17,6 +17,7 @@ xcopy /s /e "%appdata%\LeagueSharp\Repositories\6155DE2\trunk\SigmaSeries\*" "Si
 xcopy /s /e "%appdata%\LeagueSharp\Repositories\4F5C1D08\trunk\Stack Overflow\*" "Stack Overflow\*"
 xcopy /s /e "%appdata%\LeagueSharp\Repositories\5EBAAC53\trunk\MAC\*" "MAC\*"
 xcopy /s /e "%appdata%\LeagueSharp\Repositories\FDE57C9F\trunk\Mid or Feed\*" "Mid or Feed\*"
+xcopy /s /e "%appdata%\LeagueSharp\Repositories\4D6C9343\trunk\ezEvade\*" "ezEvade\*"
 
 xcopy /s /e "%appdata%\LeagueSharp\Repositories\A218EBE5\trunk\Aatrox\*" "Aatrox\*"
 xcopy /s /e "%appdata%\LeagueSharp\Repositories\92E8AF66\trunk\Annie\Annie\*" "Annie\*"
