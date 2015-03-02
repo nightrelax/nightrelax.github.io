@@ -28,7 +28,7 @@ namespace Oracle.Extensions
             CreateMenuItem("Mikael's Crucible", "Mikaels", 2);
 
             // delay the cleanse value * 100
-            _mainMenu.AddItem(new MenuItem("cleansedelay", "Cleanse delay ")).SetValue(new Slider(20, 0, 35));
+            _mainMenu.AddItem(new MenuItem("cleansedelay", "Cleanse delay ")).SetValue(new Slider(0, 0, 25));
 
             _mainMenu.AddItem(
                 new MenuItem("cmode", "Mode: "))
@@ -48,17 +48,6 @@ namespace Oracle.Extensions
             }
 
             return count;
-        }
-
-        private static int GetBuffTime(Obj_AI_Base target)
-        {
-            foreach (var b in target.Buffs)
-            {
-                if (b.IsActive && b.IsPositive && b.Caster.IsEnemy)
-                    return (int) (b.EndTime - b.StartTime);
-            }
-
-            return 0;
         }
 
         public static void Game_OnGameUpdate(EventArgs args)
@@ -85,8 +74,7 @@ namespace Oracle.Extensions
             if (_mainMenu.Item("cccon" + target.SkinName).GetValue<bool>())
             {
                 if (target.Distance(Me.ServerPosition, true) <= range * range && target.IsValidState() &&
-                    GetBuffCount(target) >= _mainMenu.Item(name + "Count").GetValue<Slider>().Value &&
-                    GetBuffTime(target) >= _mainMenu.Item(name + "Duration").GetValue<Slider>().Value)
+                    GetBuffCount(target) >= _mainMenu.Item(name + "Count").GetValue<Slider>().Value)
                 {
                     var tHealthPercent = target.Health/target.MaxHealth*100;
                     var delay = _mainMenu.Item("cleansedelay").GetValue<Slider>().Value * 10;
@@ -111,81 +99,96 @@ namespace Oracle.Extensions
                         }
                     }
 
-                    if (OC.Origin.Item("slow").GetValue<bool>() && target.HasBuffOfType(BuffType.Slow))
+                    foreach (var b in target.Buffs)
                     {
-                        Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
-                        OC.Logger(OC.LogType.Action,
-                            "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (slow)");
-                    }
+                        var duration = Math.Ceiling(b.EndTime - b.StartTime);
+                        if (OC.Origin.Item("slow").GetValue<bool>() && b.Type == BuffType.Slow &&
+                            duration >= _mainMenu.Item(name + "Duration").GetValue<Slider>().Value)
+                        {
+                            Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
+                            OC.Logger(OC.LogType.Action,
+                                "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (slow)");
+                        }
 
-                    if (OC.Origin.Item("stun").GetValue<bool>() && target.HasBuffOfType(BuffType.Stun))
-                    {
-                        Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
-                        OC.Logger(OC.LogType.Action,
-                            "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (stun)");
-                    }
+                        if (OC.Origin.Item("stun").GetValue<bool>() && b.Type == BuffType.Stun &&
+                            duration >= _mainMenu.Item(name + "Duration").GetValue<Slider>().Value)
+                        {
+                            Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
+                            OC.Logger(OC.LogType.Action,
+                                "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (stun)");
+                        }
 
-                    if (OC.Origin.Item("charm").GetValue<bool>() && target.HasBuffOfType(BuffType.Charm))
-                    {
-                        Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
-                        OC.Logger(OC.LogType.Action,
-                            "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (charm)");
-                    }
+                        if (OC.Origin.Item("charm").GetValue<bool>() && b.Type == BuffType.Charm &&
+                            duration >= _mainMenu.Item(name + "Duration").GetValue<Slider>().Value)
+                        {
+                            Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
+                            OC.Logger(OC.LogType.Action,
+                                "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (charm)");
+                        }
 
-                    if (OC.Origin.Item("taunt").GetValue<bool>() && target.HasBuffOfType(BuffType.Taunt))
-                    {
-                        Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
-                        OC.Logger(OC.LogType.Action,
-                            "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (taunt)");
-                    }
+                        if (OC.Origin.Item("taunt").GetValue<bool>() && b.Type == BuffType.Taunt &&
+                            duration >= _mainMenu.Item(name + "Duration").GetValue<Slider>().Value)
+                        {
+                            Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
+                            OC.Logger(OC.LogType.Action,
+                                "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (taunt)");
+                        }
 
-                    if (OC.Origin.Item("fear").GetValue<bool>() && target.HasBuffOfType(BuffType.Fear))
-                    {
-                        Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
-                        OC.Logger(OC.LogType.Action,
-                            "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (fear)");
-                    }
+                        if (OC.Origin.Item("fear").GetValue<bool>() && b.Type == BuffType.Fear &&
+                            duration >= _mainMenu.Item(name + "Duration").GetValue<Slider>().Value)
+                        {
+                            Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
+                            OC.Logger(OC.LogType.Action,
+                                "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (fear)");
+                        }
 
-                    if (OC.Origin.Item("snare").GetValue<bool>() && target.HasBuffOfType(BuffType.Snare))
-                    {
-                        Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
-                        OC.Logger(OC.LogType.Action,
-                            "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (snare)");
-                    }
+                        if (OC.Origin.Item("snare").GetValue<bool>() && b.Type == BuffType.Snare &&
+                            duration >= _mainMenu.Item(name + "Duration").GetValue<Slider>().Value)
+                        {
+                            Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
+                            OC.Logger(OC.LogType.Action,
+                                "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (snare)");
+                        }
 
-                    if (OC.Origin.Item("silence").GetValue<bool>() && target.HasBuffOfType(BuffType.Silence))
-                    {
-                        Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
-                        OC.Logger(OC.LogType.Action,
-                            "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (silence)");
-                    }
+                        if (OC.Origin.Item("silence").GetValue<bool>() && b.Type == BuffType.Silence &&
+                            duration >= _mainMenu.Item(name + "Duration").GetValue<Slider>().Value)
+                        {
+                            Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
+                            OC.Logger(OC.LogType.Action,
+                                "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (silence)");
+                        }
 
-                    if (OC.Origin.Item("suppression").GetValue<bool>() && target.HasBuffOfType(BuffType.Suppression))
-                    {
-                        Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
-                        OC.Logger(OC.LogType.Action,
-                            "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (suppression)");
-                    }
+                        if (OC.Origin.Item("suppression").GetValue<bool>() && b.Type == BuffType.Suppression &&
+                            duration >= _mainMenu.Item(name + "Duration").GetValue<Slider>().Value)
+                        {
+                            Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
+                            OC.Logger(OC.LogType.Action,
+                                "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (suppression)");
+                        }
 
-                    if (OC.Origin.Item("polymorph").GetValue<bool>() && target.HasBuffOfType(BuffType.Polymorph))
-                    {
-                        Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
-                        OC.Logger(OC.LogType.Action,
-                            "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (polymorph)");
-                    }
+                        if (OC.Origin.Item("polymorph").GetValue<bool>() && b.Type == BuffType.Polymorph &&
+                            duration >= _mainMenu.Item(name + "Duration").GetValue<Slider>().Value)
+                        {
+                            Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
+                            OC.Logger(OC.LogType.Action,
+                                "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (polymorph)");
+                        }
 
-                    if (OC.Origin.Item("blind").GetValue<bool>() && target.HasBuffOfType(BuffType.Blind))
-                    {
-                        Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
-                        OC.Logger(OC.LogType.Action,
-                            "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (blind)");
-                    }
+                        if (OC.Origin.Item("blind").GetValue<bool>() && b.Type == BuffType.Blind &&
+                            duration >= _mainMenu.Item(name + "Duration").GetValue<Slider>().Value)
+                        {
+                            Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
+                            OC.Logger(OC.LogType.Action,
+                                "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (blind)");
+                        }
 
-                    if (OC.Origin.Item("poison").GetValue<bool>() && target.HasBuffOfType(BuffType.Poison))
-                    {
-                        Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
-                        OC.Logger(OC.LogType.Action,
-                            "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (poison)");
+                        if (OC.Origin.Item("poison").GetValue<bool>() && b.Type == BuffType.Poison &&
+                            duration >= _mainMenu.Item(name + "Duration").GetValue<Slider>().Value)
+                        {
+                            Utility.DelayAction.Add(delay, () => Items.UseItem(itemId, target));
+                            OC.Logger(OC.LogType.Action,
+                                "Used  " + name + "  on " + target.SkinName + " (" + tHealthPercent + "%) (poison)");
+                        }
                     }
                 }
             }

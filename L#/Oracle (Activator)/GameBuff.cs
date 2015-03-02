@@ -21,7 +21,6 @@ namespace Oracle
 
         static GameBuff()
         {
-
             CleanseBuffs.Add(new GameBuff
             {
                 ChampionName = "Braum",
@@ -64,7 +63,7 @@ namespace Oracle
                 BuffName = "blindmonkqonechaos",
                 SpellName = "blindmonkqone",
                 Slot = SpellSlot.Q,
-                Delay = 100
+                Delay = 0
             });
 
             CleanseBuffs.Add(new GameBuff
@@ -136,7 +135,7 @@ namespace Oracle
                 BuffName = "soulshackles",
                 SpellName = "soulshackles",
                 Slot = SpellSlot.R,
-                Delay = 1000,
+                Delay = 1000
             });
 
             EvadeBuffs.Add(new GameBuff

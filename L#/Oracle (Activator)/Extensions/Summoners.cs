@@ -247,7 +247,6 @@ namespace Oracle.Extensions
 
             if (_mainMenu.Item("dotMode").GetValue<StringList>().SelectedIndex == 1)
             {
-
                 if (OC.CurrentTarget.IsValidTarget(600) && 
                     OC.CurrentTarget.Health <= OC.GetComboDamage(Me, OC.CurrentTarget))
                 {

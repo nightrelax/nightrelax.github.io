@@ -50,7 +50,7 @@ namespace Caitlyn
             if (Player.BaseSkinName != ChampionName) return;
 
             //Create the spells
-            Q = new Spell(SpellSlot.Q, 1180);
+            Q = new Spell(SpellSlot.Q, 1280);
             Qc = new Spell(SpellSlot.Q, 1100);
             W = new Spell(SpellSlot.W, 800);
             E = new Spell(SpellSlot.E, 980);
@@ -85,13 +85,14 @@ namespace Caitlyn
             Config.AddItem(new MenuItem("pots", "Use pots").SetValue(true));
             Config.AddItem(new MenuItem("autoR", "Auto R").SetValue(true));
             Config.AddItem(new MenuItem("autoQ", "Reduce Q use").SetValue(true));
-            Config.AddItem(new MenuItem("Hit", "Hit Chance Q").SetValue(new Slider(2, 2, 0)));
+            Config.AddItem(new MenuItem("Hit", "Hit Chance Q").SetValue(new Slider(2, 3, 0)));
             Config.AddItem(new MenuItem("useR", "Semi-manual cast R key").SetValue(new KeyBind('t', KeyBindType.Press))); //32 == space
             #region E
             Config.SubMenu("E Config").AddItem(new MenuItem("autoE", "Auto E").SetValue(true));
             Config.SubMenu("E Config").AddItem(new MenuItem("opsE", "OnProcessSpellCastW").SetValue(true));
             Config.SubMenu("E Config").AddItem(new MenuItem("AGC", "AntiGapcloserE").SetValue(true));
             Config.SubMenu("E Config").AddItem(new MenuItem("useE", "Dash E HotKeySmartcast").SetValue(new KeyBind('t', KeyBindType.Press)));
+            Config.AddItem(new MenuItem("debug", "Debug").SetValue(false));
             #endregion
             //Add the events we are going to use:
             Drawing.OnDraw += Drawing_OnDraw;
@@ -100,7 +101,7 @@ namespace Caitlyn
             Orbwalking.AfterAttack += afterAttack;
             AntiGapcloser.OnEnemyGapcloser += AntiGapcloser_OnEnemyGapcloser;
             Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
-            Game.PrintChat("<font color=\"#7e62cc\">C</font>aitlyn full automatic SI ver 1.7 <font color=\"#000000\">by sebastiank1</font> - <font color=\"#00BFFF\">Loaded</font>");
+            Game.PrintChat("<font color=\"#7e62cc\">C</font>aitlyn full automatic SI ver 1.8 <font color=\"#000000\">by sebastiank1</font> - <font color=\"#00BFFF\">Loaded</font>");
         }
 
         private static void Game_OnGameUpdate(EventArgs args)
@@ -116,6 +117,7 @@ namespace Caitlyn
                 foreach (var Object in ObjectManager.Get<Obj_AI_Base>().Where(Obj => Obj.Distance(Player.ServerPosition) < W.Range && Obj.Team != Player.Team && Obj.HasBuff("teleport_target", true)))
                 {
                     W.Cast(Object.Position, true);
+                    debug("W telport");
                 }
             }
 
@@ -132,33 +134,29 @@ namespace Caitlyn
                     double Qdmg = Q.GetDamage(t);
                     if (Qdmg > predictedHealth)
                         Qdmg = getQdmg(t);
-                    if (GetRealDistance(t) > bonusRange() + 40 && Qdmg + eDmg > t.Health && Qdmg < t.Health && ObjectManager.Player.Mana > EMANA + QMANA && Q.IsReady())
+                    if ( Qdmg + eDmg > t.Health 
+                        && Qdmg < t.Health && ObjectManager.Player.Mana > EMANA + QMANA && Q.IsReady()
+                        && t.Position.Distance(ObjectManager.Player.ServerPosition) > t.Position.Distance(ObjectManager.Player.Position)
+                        && ObjectManager.Player.Position.Distance(t.ServerPosition) < ObjectManager.Player.Position.Distance(t.Position))
+
+                    {
                         E.Cast(t, true);
+                        debug("E + Q combo");
+                    }
                     else if (
                          ObjectManager.Player.Mana > RMANA + EMANA
-                        && ObjectManager.Player.CountEnemiesInRange(250) > 0
+                        && ObjectManager.Player.CountEnemiesInRange(200) > 0
                         && ObjectManager.Player.Position.Extend(Game.CursorPos, 400).CountEnemiesInRange(500) < 3
                         && t2.Position.Distance(Game.CursorPos) > t2.Position.Distance(ObjectManager.Player.Position))
                     {
 
                         var position = ObjectManager.Player.ServerPosition - (Game.CursorPos - ObjectManager.Player.ServerPosition);
                         E.Cast(position, true);
+                        debug("E mele escape");
                     }
+                    
                     else if (ObjectManager.Player.Mana > RMANA + EMANA && GetRealDistance(t) < 500 && ObjectManager.Player.Health < ObjectManager.Player.MaxHealth * 0.3)
                         E.Cast(t, true);
-                    else if (Orbwalker.ActiveMode.ToString() == "Combo"
-                        && ObjectManager.Player.Health > ObjectManager.Player.MaxHealth * 0.3
-                        && ObjectManager.Player.Mana > RMANA + EMANA
-                        && t2.IsValidTarget()
-                        && ObjectManager.Player.GetAutoAttackDamage(t2) * 2 > t.Health
-                        && !Orbwalking.InAutoAttackRange(t2)
-                        && t2.Position.Distance(Game.CursorPos) + 300 < t2.Position.Distance(ObjectManager.Player.Position)
-                        && ObjectManager.Player.Position.Extend(Game.CursorPos, 400).CountEnemiesInRange(500) < 3
-                        && (Game.Time - WCastTime > 1))
-                    {
-                        var position = ObjectManager.Player.ServerPosition - (Game.CursorPos - ObjectManager.Player.ServerPosition);
-                        E.Cast(position, true);
-                    }
                 }
                 if (Config.Item("useE").GetValue<KeyBind>().Active)
                 {
@@ -173,16 +171,21 @@ namespace Caitlyn
                 var t = TargetSelector.GetTarget(Q.Range, TargetSelector.DamageType.Physical);
                 if (t.IsValidTarget())
                 {
-
+                    
                     float predictedHealth = HealthPrediction.GetHealthPrediction(t, (int)(R.Delay + (Player.Distance(t.ServerPosition) / Q.Speed) * 1000));
                     double Qdmg = Q.GetDamage(t);
                     if (Qdmg > predictedHealth)
                         Qdmg = getQdmg(t);
                     if (GetRealDistance(t) > bonusRange() + 150 && Qdmg > predictedHealth && ObjectManager.Player.CountEnemiesInRange(400) == 0)
+                    {
+                        Q.Cast(t, true);
+                        debug("Q KS");
+                    }
+                    else if (Orbwalker.ActiveMode.ToString() == "Combo" && ObjectManager.Player.Mana > RMANA + QMANA + EMANA + 10 && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 100 + t.BoundingRadius) == 0 && !Config.Item("autoQ").GetValue<bool>())
+                    {
                         castQ(t);
-                    else if (Orbwalker.ActiveMode.ToString() == "Combo" && ObjectManager.Player.Mana > RMANA + QMANA + EMANA + 10 && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 250) == 0 && !Config.Item("autoQ").GetValue<bool>())
-                        castQ(t);
-
+                        debug("Q combo");
+                    }
                     if (Q.IsReady() && (Orbwalker.ActiveMode.ToString() == "Combo" || Farm) && ObjectManager.Player.Mana > RMANA + QMANA && ObjectManager.Player.CountEnemiesInRange(bonusRange()) == 0 && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 60) == 0)
                     {
                         foreach (var enemy in ObjectManager.Get<Obj_AI_Hero>().Where(enemy => enemy.IsValidTarget(Q.Range)))
@@ -190,17 +193,23 @@ namespace Caitlyn
                             if (enemy.HasBuffOfType(BuffType.Stun) || enemy.HasBuffOfType(BuffType.Snare) ||
                              enemy.HasBuffOfType(BuffType.Charm) || enemy.HasBuffOfType(BuffType.Fear) ||
                              enemy.HasBuffOfType(BuffType.Taunt) || enemy.HasBuffOfType(BuffType.Slow) || enemy.HasBuff("Recall"))
+                            {
                                 Q.CastIfHitchanceEquals(enemy, HitChance.High, true);
+                                debug("Q cc");
+                            }
                         }
                     }
                     if (Q.IsReady() && Orbwalker.ActiveMode.ToString() == "Combo" && ObjectManager.Player.Mana > RMANA + QMANA + EMANA && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 100) == 0)
                         Q.CastIfWillHit(t, 2, true);
-                    if (Q.IsReady() && (Farm && ObjectManager.Player.Mana > RMANA + EMANA + WMANA + QMANA + QMANA) && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 100) == 0)
+                    if (Q.IsReady() && Farm && ObjectManager.Player.Mana > RMANA + EMANA + WMANA + QMANA  && ObjectManager.Player.CountEnemiesInRange(bonusRange() + 100) == 0)
                     {
-                        if (t.Path.Count() > 1)
+                        debug("Q farm");
+                        Q.CastIfWillHit(t, 2, true);
+                        if(ObjectManager.Player.Mana > ObjectManager.Player.MaxMana * 0.9)
+                            castQ(t);
+                        else if (t.Path.Count() == 1)
                         {
-                            Q.CastIfWillHit(t, 2, true);
-                            if (Q.IsReady() && ObjectManager.Player.Mana > RMANA + EMANA + WMANA + QMANA + QMANA + 20)
+                            if (Q.IsReady() && ObjectManager.Player.Mana > RMANA + EMANA + WMANA + QMANA + QMANA )
                                 Qc.CastIfHitchanceEquals(t, HitChance.VeryHigh, true);
 
                         }
@@ -260,6 +269,18 @@ namespace Caitlyn
             }
             return;
         }
+        public static Obj_AI_Base getMinion()
+        {
+            var mobs = MinionManager.GetMinions(Player.ServerPosition, 2000, MinionTypes.All, MinionTeam.Neutral, MinionOrderTypes.MaxHealth);
+            if (mobs.Count > 0 )
+            {
+                var mob = mobs[0];
+                return mob;
+            }
+            return null;
+        }
+
+
 
         private static void afterAttack(AttackableUnit unit, AttackableUnit target)
         {
@@ -368,14 +389,21 @@ namespace Caitlyn
 
         }
 
+        public static void debug(string msg)
+        {
+            if (Config.Item("debug").GetValue<bool>())
+                Game.PrintChat(msg);
+        }
         private static void castQ(Obj_AI_Hero target)
         {
             if (Config.Item("Hit").GetValue<Slider>().Value == 0)
                 Q.Cast(target, true);
             else if (Config.Item("Hit").GetValue<Slider>().Value == 1)
-                Q.CastIfHitchanceEquals(target, HitChance.High, true);
-            else if (Config.Item("Hit").GetValue<Slider>().Value == 2 && target.Path.Count() == 1)
-                Q.CastIfHitchanceEquals(target, HitChance.High, true);
+                Q.CastIfHitchanceEquals(target, HitChance.VeryHigh, true);
+            else if (Config.Item("Hit").GetValue<Slider>().Value == 2 && target.Path.Count() < 2)
+                Q.CastIfHitchanceEquals(target, HitChance.VeryHigh, true);
+            else if (Config.Item("Hit").GetValue<Slider>().Value == 3 && target.Path.Count() < 2 && Math.Abs(ObjectManager.Player.Distance(target.ServerPosition) - ObjectManager.Player.Distance(target.Position)) > 25)
+                Q.CastIfHitchanceEquals(target, HitChance.VeryHigh, true);
         }
 
         public static double ShouldUseE(string SpellName)
@@ -463,6 +491,14 @@ namespace Caitlyn
 
         private static void Drawing_OnDraw(EventArgs args)
         {
+            var minion = getMinion();
+            if (minion.IsValidTarget())
+            {
+                //Render.Circle.DrawCircle(minion.Position, 100, System.Drawing.Color.Red);
+                //Game.PrintChat("range: " + ObjectManager.Player.Distance(minion.Position));
+               // Game.PrintChat("bount: " + minion.BoundingRadius);
+                
+            }
             if (Config.Item("noti").GetValue<bool>())
             {
                 var t = TargetSelector.GetTarget(500 * R.Level + 1500, TargetSelector.DamageType.Physical);
@@ -477,6 +513,7 @@ namespace Caitlyn
                         R.Cast(t, true);
                     }
                 }
+                
                 var tw = TargetSelector.GetTarget(W.Range, TargetSelector.DamageType.Physical);
                 if (tw.IsValidTarget())
                 {

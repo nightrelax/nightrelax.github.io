@@ -53,6 +53,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,7 +71,6 @@
     </Compile>
     <Compile Include="Core\Targeted\TargetSpell.cs" />
     <Compile Include="Core\Targeted\TargetSpellDatabase.cs" />
-    <Compile Include="Core\Targeted\TargetSpellDetector.cs" />
     <Compile Include="Extensions\Cleansers.cs" />
     <Compile Include="Extensions\Defensives.cs" />
     <Compile Include="Extensions\Offensives.cs" />

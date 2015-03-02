@@ -404,7 +404,7 @@ namespace Oracle.Core.Skillshots
                     Environment.TickCount,
                     missile.SData.Name,
                     missile.StartPosition.Distance(missile.EndPosition),
-                    missile.SData.CastRadiusSecondary[0],
+                    missile.SData.CastRadiusSecondary,
                     missile.SData.MissileSpeed);
             }
         }

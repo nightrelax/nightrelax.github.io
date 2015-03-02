@@ -19,7 +19,7 @@ namespace xSaliceReligionAIO.Champions
         private void LoadSpell()
         {
             Q = new Spell(SpellSlot.Q, 625);
-            W = new Spell(SpellSlot.W, 600);
+            W = new Spell(SpellSlot.W, 550);
             E = new Spell(SpellSlot.E);
             R = new Spell(SpellSlot.R, 600);
             R2 = new Spell(SpellSlot.R, 1000);
@@ -507,7 +507,6 @@ namespace xSaliceReligionAIO.Champions
             if (sender == null || !sender.IsValid || !sender.Name.Equals("Tibbers"))
                 return;
 
-            Game.PrintChat("SALICE SUMMONS TIBBERSSSS");
             Tibbers = (Obj_AI_Base)sender;
         }
 

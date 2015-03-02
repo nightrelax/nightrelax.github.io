@@ -27,14 +27,14 @@ Champ
 - Alistar Support https://github.com/h3h3/LeagueSharp
 - Amumu LexxersAIOCarry UltimateCarry https://github.com/bolsudo/LeagueSharp
 - Anivia xSaliceReligionAIO https://github.com/xSalice/LSharp 
-- DevAnnie https://github.com/InjectionDev/LeagueSharp/
+- Annie https://github.com/OneKeyToWin/LeagueRepo
 - Ashe Marksman https://github.com/legacy3/Marksman
 - Azir xSaliceReligionAIO https://github.com/xSalice/LSharp
 - KurisuBlitzcrank https://github.com/xKurisu/KurisuSolutions
 - Brand DatBrand https://github.com/GoldenGatesPB/league-sharp
 - Braum Support https://github.com/h3h3/LeagueSharp
 - Caitlyn https://github.com/OneKeyToWin/LeagueRepo
-- DevCassiopeia https://github.com/InjectionDev/LeagueSharp/
+- Cassiopeia https://github.com/HunteraSharp/LeagueSharp
 - Cho'Gath UnderratedAIO https://github.com/Soresu/LeagueSharp
 - Corki Marksman https://github.com/legacy3/Marksman
 - Darius SigmaSeries https://github.com/fueledbyflux/LeagueSharp-Public

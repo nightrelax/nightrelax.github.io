@@ -107,10 +107,6 @@ namespace xSaliceReligionAIO
             menu.AddSubMenu(OrbwalkerMenu);
             ChooseOrbwalker(menu.Item("Orbwalker_Mode", true).GetValue<bool>());
 
-            //Packet Menu
-            menu.AddSubMenu(new Menu("Packet Setting", "Packets"));
-            menu.SubMenu("Packets").AddItem(new MenuItem("packet", "Use Packets", true).SetValue(false));
-
             //Item Menu
             var itemMenu = new Menu("Items and Summoners", "Items");
             ActiveItems.AddToMenu(itemMenu);
@@ -153,7 +149,7 @@ namespace xSaliceReligionAIO
         }
         protected bool packets()
         {
-            return menu.Item("packet", true).GetValue<bool>();
+            return false;
         }
 
         protected void Use_DFG(Obj_AI_Hero target)

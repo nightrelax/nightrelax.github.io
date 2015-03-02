@@ -1,0 +1,6 @@
+C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\BF40B76C\trunk\obj\Release\SAwareness.csprojResolveAssemblyReference.cache
+C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\BF40B76C\trunk\obj\Release\SAwareness.Properties.Resources.resources
+C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\BF40B76C\trunk\obj\Release\SAwareness.Resources.TRANSLATIONS.Translation-de-DE.resources
+C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\BF40B76C\trunk\obj\Release\SAwareness.Resources.TRANSLATIONS.Translation-en-US.resources
+C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\BF40B76C\trunk\obj\Release\SAwareness.Resources.TRANSLATIONS.Translation-fr-FR.resources
+C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\BF40B76C\trunk\obj\Release\SAwareness.csproj.GenerateResource.Cache

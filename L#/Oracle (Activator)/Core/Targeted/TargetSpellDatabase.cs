@@ -823,7 +823,7 @@ namespace Oracle.Core.Targeted
                 new TargetSpellData("talon", "talonnoxiandiplomacy", SpellSlot.Q, SpellType.Self, CcType.No, 0, 0, 0),
                 new TargetSpellData("talon", "talonrake", SpellSlot.W, SpellType.Skillshot, CcType.No, 750, 500, 1200),
                 new TargetSpellData("talon", "taloncutthroat", SpellSlot.E, SpellType.Targeted, CcType.Slow, 750, 0, 1200),
-                new TargetSpellData("talon", "talonshadowassault", SpellSlot.R, SpellType.Self, CcType.No, 750, 0, 0, true, true),
+                new TargetSpellData("talon", "talonshadowassault", SpellSlot.R, SpellType.Self, CcType.No, 550, 0, 0, true, true),
 
                 #endregion Talon
 
@@ -930,7 +930,7 @@ namespace Oracle.Core.Targeted
                 #endregion Vayne
 
                 #region Veigar
-                new TargetSpellData("veigar", "veigarbalefulstrike", SpellSlot.Q, SpellType.Targeted, CcType.No, 650, 500, 1500),
+                new TargetSpellData("veigar", "veigarbalefulstrike", SpellSlot.Q, SpellType.Skillshot, CcType.No, 850, 250, 1750),
                 new TargetSpellData("veigar", "veigardarkmatter", SpellSlot.W, SpellType.Skillshot, CcType.No, 900, 1200, 1500),
                 new TargetSpellData("veigar", "veigareventhorizon", SpellSlot.E, SpellType.Skillshot, CcType.Stun, 650, 0, 1500),
                 new TargetSpellData("veigar", "veigarprimordialburst", SpellSlot.R, SpellType.Targeted, CcType.No, 650, 500, 1400, true),
@@ -1049,10 +1049,10 @@ namespace Oracle.Core.Targeted
                 #endregion Ziggs
 
                 #region Zilean
-                new TargetSpellData("zilean", "timebomb", SpellSlot.Q, SpellType.Targeted, CcType.No, 700, 0, 1100),
-                new TargetSpellData("zilean", "rewind", SpellSlot.W, SpellType.Self, CcType.No, 0, 500, float.MaxValue),
-                new TargetSpellData("zilean", "timewarp", SpellSlot.E, SpellType.Targeted, CcType.Slow, 700, 500, 1100),
-                new TargetSpellData("zilean", "chronoshift", SpellSlot.R, SpellType.Targeted, CcType.No, 780, 500, float.MaxValue, false, false, true),
+                new TargetSpellData("zilean", "zileanq", SpellSlot.Q, SpellType.Skillshot, CcType.No, 900, 300, 2000),
+                new TargetSpellData("zilean", "zileanw", SpellSlot.W, SpellType.Self, CcType.No, 0, 500, float.MaxValue),
+                new TargetSpellData("zilean", "zileane", SpellSlot.E, SpellType.Targeted, CcType.Slow, 700, 500, 1100),
+                new TargetSpellData("zilean", "zileanr", SpellSlot.R, SpellType.Targeted, CcType.No, 780, 500, float.MaxValue, false, false, true),
 
                 #endregion Zilean
 

@@ -274,7 +274,7 @@ namespace xSaliceReligionAIO.Champions
                     {
                         return;
                     }
-                    if (GetComboDamage(target) >= target.Health - 100)
+                    if (GetComboDamage(target) >= target.Health - 100 && !target.IsZombie)
                         CastR(target);
                 }
             }

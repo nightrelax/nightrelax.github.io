@@ -42,7 +42,7 @@ namespace Oracle.Extensions
             {
                 return;
             }
-            
+
             if (_mainMenu.Item("useMuramana").GetValue<bool>())
             {
                 if (OC.CanManamune)

@@ -102,7 +102,7 @@
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
         <InjectChecked>true</InjectChecked>
-        <Status>Ready</Status>
+        <Status>CompilingError</Status>
         <DisplayName>Evade</DisplayName>
         <Name>Evade</Name>
         <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\1BA0420E\trunk\Evade\Evade.csproj</PathToProjectFile>
@@ -202,7 +202,7 @@
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
         <InjectChecked>false</InjectChecked>
-        <Status>Ready</Status>
+        <Status>CompilingError</Status>
         <DisplayName>SAwareness</DisplayName>
         <Name>SAwareness</Name>
         <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\BF40B76C\trunk\SAwareness.csproj</PathToProjectFile>
@@ -311,16 +311,6 @@
       </LeagueSharpAssembly>
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
-        <InjectChecked>true</InjectChecked>
-        <Status>Ready</Status>
-        <DisplayName>DevAnnie</DisplayName>
-        <Name>DevAnnie</Name>
-        <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\B3010427\trunk\DevAnnie\DevAnnie.csproj</PathToProjectFile>
-        <Description />
-        <SvnUrl>https://github.com/InjectionDev/LeagueSharp/</SvnUrl>
-      </LeagueSharpAssembly>
-      <LeagueSharpAssembly>
-        <InstallChecked>true</InstallChecked>
         <InjectChecked>false</InjectChecked>
         <Status>Ready</Status>
         <DisplayName>KurisuBlitz</DisplayName>
@@ -348,16 +338,6 @@
         <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\92E8AF66\trunk\Caitlyn\Caitlyn\Caitlyn.csproj</PathToProjectFile>
         <Description />
         <SvnUrl>https://github.com/OneKeyToWin/LeagueRepo</SvnUrl>
-      </LeagueSharpAssembly>
-      <LeagueSharpAssembly>
-        <InstallChecked>true</InstallChecked>
-        <InjectChecked>false</InjectChecked>
-        <Status>Ready</Status>
-        <DisplayName>DevCassio</DisplayName>
-        <Name>DevCassio</Name>
-        <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\B3010427\trunk\DevCassio\DevCassio.csproj</PathToProjectFile>
-        <Description />
-        <SvnUrl>https://github.com/InjectionDev/LeagueSharp/</SvnUrl>
       </LeagueSharpAssembly>
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
@@ -969,6 +949,26 @@
         <Description />
         <SvnUrl>https://github.com/Esk0r/LeagueSharp</SvnUrl>
       </LeagueSharpAssembly>
+      <LeagueSharpAssembly>
+        <InstallChecked>true</InstallChecked>
+        <InjectChecked>true</InjectChecked>
+        <Status>Ready</Status>
+        <DisplayName>Annie</DisplayName>
+        <Name>Annie</Name>
+        <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\92E8AF66\trunk\Annie\Annie\Annie.csproj</PathToProjectFile>
+        <Description />
+        <SvnUrl>https://github.com/OneKeyToWin/LeagueRepo</SvnUrl>
+      </LeagueSharpAssembly>
+      <LeagueSharpAssembly>
+        <InstallChecked>true</InstallChecked>
+        <InjectChecked>true</InjectChecked>
+        <Status>Ready</Status>
+        <DisplayName>Cassiopeia</DisplayName>
+        <Name>Cassiopeia</Name>
+        <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\42DC7FFB\trunk\Cassiopeia\Cassiopeia.csproj</PathToProjectFile>
+        <Description />
+        <SvnUrl>https://github.com/HunteraSharp/LeagueSharp</SvnUrl>
+      </LeagueSharpAssembly>
     </InstalledAssemblies>
   </SelectedProfile>
   <Profiles>
@@ -998,7 +998,7 @@
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
           <InjectChecked>true</InjectChecked>
-          <Status>Ready</Status>
+          <Status>CompilingError</Status>
           <DisplayName>Evade</DisplayName>
           <Name>Evade</Name>
           <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\1BA0420E\trunk\Evade\Evade.csproj</PathToProjectFile>
@@ -1098,7 +1098,7 @@
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
           <InjectChecked>false</InjectChecked>
-          <Status>Ready</Status>
+          <Status>CompilingError</Status>
           <DisplayName>SAwareness</DisplayName>
           <Name>SAwareness</Name>
           <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\BF40B76C\trunk\SAwareness.csproj</PathToProjectFile>
@@ -1207,16 +1207,6 @@
         </LeagueSharpAssembly>
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
-          <InjectChecked>true</InjectChecked>
-          <Status>Ready</Status>
-          <DisplayName>DevAnnie</DisplayName>
-          <Name>DevAnnie</Name>
-          <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\B3010427\trunk\DevAnnie\DevAnnie.csproj</PathToProjectFile>
-          <Description />
-          <SvnUrl>https://github.com/InjectionDev/LeagueSharp/</SvnUrl>
-        </LeagueSharpAssembly>
-        <LeagueSharpAssembly>
-          <InstallChecked>true</InstallChecked>
           <InjectChecked>false</InjectChecked>
           <Status>Ready</Status>
           <DisplayName>KurisuBlitz</DisplayName>
@@ -1244,16 +1234,6 @@
           <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\92E8AF66\trunk\Caitlyn\Caitlyn\Caitlyn.csproj</PathToProjectFile>
           <Description />
           <SvnUrl>https://github.com/OneKeyToWin/LeagueRepo</SvnUrl>
-        </LeagueSharpAssembly>
-        <LeagueSharpAssembly>
-          <InstallChecked>true</InstallChecked>
-          <InjectChecked>false</InjectChecked>
-          <Status>Ready</Status>
-          <DisplayName>DevCassio</DisplayName>
-          <Name>DevCassio</Name>
-          <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\B3010427\trunk\DevCassio\DevCassio.csproj</PathToProjectFile>
-          <Description />
-          <SvnUrl>https://github.com/InjectionDev/LeagueSharp/</SvnUrl>
         </LeagueSharpAssembly>
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
@@ -1864,6 +1844,26 @@
           <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\1BA0420E\trunk\Ziggs\Ziggs.csproj</PathToProjectFile>
           <Description />
           <SvnUrl>https://github.com/Esk0r/LeagueSharp</SvnUrl>
+        </LeagueSharpAssembly>
+        <LeagueSharpAssembly>
+          <InstallChecked>true</InstallChecked>
+          <InjectChecked>true</InjectChecked>
+          <Status>Ready</Status>
+          <DisplayName>Annie</DisplayName>
+          <Name>Annie</Name>
+          <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\92E8AF66\trunk\Annie\Annie\Annie.csproj</PathToProjectFile>
+          <Description />
+          <SvnUrl>https://github.com/OneKeyToWin/LeagueRepo</SvnUrl>
+        </LeagueSharpAssembly>
+        <LeagueSharpAssembly>
+          <InstallChecked>true</InstallChecked>
+          <InjectChecked>true</InjectChecked>
+          <Status>Ready</Status>
+          <DisplayName>Cassiopeia</DisplayName>
+          <Name>Cassiopeia</Name>
+          <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\42DC7FFB\trunk\Cassiopeia\Cassiopeia.csproj</PathToProjectFile>
+          <Description />
+          <SvnUrl>https://github.com/HunteraSharp/LeagueSharp</SvnUrl>
         </LeagueSharpAssembly>
       </InstalledAssemblies>
     </Profiles>

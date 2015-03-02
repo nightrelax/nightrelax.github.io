@@ -566,6 +566,7 @@ namespace xSaliceReligionAIO.Champions
                 //xSLxOrbwalker.Orbwalk(target.ServerPosition, null);
                 Player.IssueOrder(GameObjectOrder.MoveTo, target.ServerPosition);
                 xSLxOrbwalker.R.LastCastAttemptT = 0;
+                R.LastCastAttemptT = 0;
             }
         }
 
@@ -578,6 +579,7 @@ namespace xSaliceReligionAIO.Champions
                 if (target == null)
                     return;
 
+                R.LastCastAttemptT = 0;
                 Player.IssueOrder(GameObjectOrder.MoveTo, target);
                 xSLxOrbwalker.R.LastCastAttemptT = 0;
             }
