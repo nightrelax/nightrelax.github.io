@@ -5,7 +5,7 @@
   <FirstRun>false</FirstRun>
   <ShowDevOptions>false</ShowDevOptions>
   <Install>true</Install>
-  <UpdateOnLoad>true</UpdateOnLoad>
+  <UpdateOnLoad>false</UpdateOnLoad>
   <Username />
   <Password />
   <Settings>
@@ -101,8 +101,8 @@
       </LeagueSharpAssembly>
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
-        <InjectChecked>false</InjectChecked>
-        <Status>CompilingError</Status>
+        <InjectChecked>true</InjectChecked>
+        <Status>Ready</Status>
         <DisplayName>Evade</DisplayName>
         <Name>Evade</Name>
         <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\1BA0420E\trunk\Evade\Evade.csproj</PathToProjectFile>
@@ -202,7 +202,7 @@
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
         <InjectChecked>false</InjectChecked>
-        <Status>CompilingError</Status>
+        <Status>Ready</Status>
         <DisplayName>SAwareness</DisplayName>
         <Name>SAwareness</Name>
         <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\BF40B76C\trunk\SAwareness.csproj</PathToProjectFile>
@@ -352,7 +352,7 @@
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
         <InjectChecked>false</InjectChecked>
-        <Status>Ready</Status>
+        <Status>CompilingError</Status>
         <DisplayName>FedDrMundo</DisplayName>
         <Name>FedDrMundo</Name>
         <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\D0ED58CE\trunk\FedDrMundo\FedDrMundo.csproj</PathToProjectFile>
@@ -592,7 +592,7 @@
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
         <InjectChecked>false</InjectChecked>
-        <Status>Ready</Status>
+        <Status>CompilingError</Status>
         <DisplayName>FedMaokai</DisplayName>
         <Name>FedMaokai</Name>
         <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\D0ED58CE\trunk\FedMaokai\FedMaokai.csproj</PathToProjectFile>
@@ -642,7 +642,7 @@
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
         <InjectChecked>false</InjectChecked>
-        <Status>Ready</Status>
+        <Status>CompilingError</Status>
         <DisplayName>FedNocturne</DisplayName>
         <Name>FedNocturne</Name>
         <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\D0ED58CE\trunk\FedNocturne\FedNocturne.csproj</PathToProjectFile>
@@ -971,7 +971,7 @@
       </LeagueSharpAssembly>
       <LeagueSharpAssembly>
         <InstallChecked>true</InstallChecked>
-        <InjectChecked>true</InjectChecked>
+        <InjectChecked>false</InjectChecked>
         <Status>Ready</Status>
         <DisplayName>ezEvade</DisplayName>
         <Name>ezEvade</Name>
@@ -1007,8 +1007,8 @@
         </LeagueSharpAssembly>
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
-          <InjectChecked>false</InjectChecked>
-          <Status>CompilingError</Status>
+          <InjectChecked>true</InjectChecked>
+          <Status>Ready</Status>
           <DisplayName>Evade</DisplayName>
           <Name>Evade</Name>
           <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\1BA0420E\trunk\Evade\Evade.csproj</PathToProjectFile>
@@ -1108,7 +1108,7 @@
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
           <InjectChecked>false</InjectChecked>
-          <Status>CompilingError</Status>
+          <Status>Ready</Status>
           <DisplayName>SAwareness</DisplayName>
           <Name>SAwareness</Name>
           <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\BF40B76C\trunk\SAwareness.csproj</PathToProjectFile>
@@ -1258,7 +1258,7 @@
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
           <InjectChecked>false</InjectChecked>
-          <Status>Ready</Status>
+          <Status>CompilingError</Status>
           <DisplayName>FedDrMundo</DisplayName>
           <Name>FedDrMundo</Name>
           <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\D0ED58CE\trunk\FedDrMundo\FedDrMundo.csproj</PathToProjectFile>
@@ -1498,7 +1498,7 @@
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
           <InjectChecked>false</InjectChecked>
-          <Status>Ready</Status>
+          <Status>CompilingError</Status>
           <DisplayName>FedMaokai</DisplayName>
           <Name>FedMaokai</Name>
           <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\D0ED58CE\trunk\FedMaokai\FedMaokai.csproj</PathToProjectFile>
@@ -1548,7 +1548,7 @@
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
           <InjectChecked>false</InjectChecked>
-          <Status>Ready</Status>
+          <Status>CompilingError</Status>
           <DisplayName>FedNocturne</DisplayName>
           <Name>FedNocturne</Name>
           <PathToProjectFile>C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\D0ED58CE\trunk\FedNocturne\FedNocturne.csproj</PathToProjectFile>
@@ -1877,7 +1877,7 @@
         </LeagueSharpAssembly>
         <LeagueSharpAssembly>
           <InstallChecked>true</InstallChecked>
-          <InjectChecked>true</InjectChecked>
+          <InjectChecked>false</InjectChecked>
           <Status>Ready</Status>
           <DisplayName>ezEvade</DisplayName>
           <Name>ezEvade</Name>

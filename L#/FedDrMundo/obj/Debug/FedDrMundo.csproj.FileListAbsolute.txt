@@ -1,0 +1,15 @@
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\bin\Release\FedDrMundo.exe.config
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\obj\Debug\FedDrMundo.csprojResolveAssemblyReference.cache
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\bin\Release\FedDrMundo.exe
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\bin\Release\FedDrMundo.pdb
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\bin\Release\LeagueSharp.Common.dll
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\bin\Release\LeagueSharp.dll
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\bin\Release\SharpDX.dll
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\bin\Release\SharpDX.Direct3D9.dll
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\bin\Release\SharpDX.Toolkit.dll
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\bin\Release\SharpDX.Toolkit.Graphics.dll
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\bin\Release\LeagueSharp.xml
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\bin\Release\SharpDX.Toolkit.xml
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\bin\Release\SharpDX.Toolkit.Graphics.xml
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\obj\Debug\FedDrMundo.exe
+C:\LeagueSharp\LeagueSharp-master\FedDrMundo\obj\Debug\FedDrMundo.pdb

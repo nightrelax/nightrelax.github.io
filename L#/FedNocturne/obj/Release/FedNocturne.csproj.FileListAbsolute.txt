@@ -1,0 +1,3 @@
+C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\D0ED58CE\trunk\FedNocturne\obj\Release\FedNocturne.csprojResolveAssemblyReference.cache
+C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\D0ED58CE\trunk\FedNocturne\obj\Release\FedNocturne.Properties.Resources.resources
+C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\D0ED58CE\trunk\FedNocturne\obj\Release\FedNocturne.csproj.GenerateResource.Cache
