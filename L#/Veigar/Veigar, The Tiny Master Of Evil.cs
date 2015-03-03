@@ -9,7 +9,6 @@ using System.Threading;
 using LeagueSharp;
 using LeagueSharp.Common;
 using SharpDX;
-using xSLx_Orbwalker;
 using Veigar__The_Tiny_Master_Of_Evil.Properties;
 //using KeMinimap;
 #endregion
@@ -175,9 +174,9 @@ namespace Veigar__The_Tiny_Master_Of_Evil
 
         //Mana Manager
         public static int[] qMana = { 0, 60, 65, 70, 75, 80 };
-        public static int[] wMana = { 0, 70, 80, 90, 100, 110 };
-        public static int[] eMana = { 0, 80, 90, 100, 110, 120 };
-        public static int[] rMana = { 0, 125, 175, 225 };
+        public static int[] wMana = { 0, 70, 75, 80, 85, 90 };
+        public static int[] eMana = { 0, 80, 85, 90, 95, 100 };
+        public static int[] rMana = { 0, 125, 125, 125 };
 
         public static int ManaMode = 0;
         public static int NeededCD = 0;
@@ -215,11 +214,12 @@ namespace Veigar__The_Tiny_Master_Of_Evil
             if (Player.BaseSkinName != ChampionName) return;
 
             //Initializing Spells
-            Q = new Spell(SpellSlot.Q, 650);
+            Q = new Spell(SpellSlot.Q, 850);
             W = new Spell(SpellSlot.W, 900);
             E = new Spell(SpellSlot.E, 1005);
             R = new Spell(SpellSlot.R, 650);
 
+            Q.SetSkillshot(0.25f, 70f, 1200f, false, SkillshotType.SkillshotLine);
             W.SetSkillshot(1.25f, 230f, float.MaxValue, false, SkillshotType.SkillshotCircle);
             E.SetSkillshot(.2f, 330f, float.MaxValue, false, SkillshotType.SkillshotCircle);
 
@@ -240,9 +240,8 @@ namespace Veigar__The_Tiny_Master_Of_Evil
             menu.AddSubMenu(targetSelectorMenu);
 
             //Orbwalker
-            orbwalkerMenu.AddItem(new MenuItem("Orbwalker_Mode", "Regular Orbwalker").SetValue(false));
             menu.AddSubMenu(orbwalkerMenu);
-            chooseOrbwalker(menu.Item("Orbwalker_Mode").GetValue<bool>());
+            chooseOrbwalker(true);
 
             //Keys & Combo Related
             menu.AddSubMenu(new Menu("Keys", "Keys"));
@@ -384,9 +383,35 @@ namespace Veigar__The_Tiny_Master_Of_Evil
             Game.OnWndProc += Game_OnWndProc;
             GameObject.OnCreate += TowerAttackOnCreate;
             Drawing.OnDraw += Drawing_OnDraw;
-            Interrupter.OnPossibleToInterrupt += Interrupter_OnPosibleToInterrupt;
+            Interrupter2.OnInterruptableTarget += Interrupter_OnPosibleToInterrupt;
             AntiGapcloser.OnEnemyGapcloser += AntiGapcloser_OnEnemyGapcloser;
             Game.PrintChat("Veigar, The Tiny Master Of Evil Loaded! Made by DedToto");
+        }
+
+        public static void CastQ(Obj_AI_Hero target)
+        {
+            var prediction = Q.GetPrediction(target, true);
+            var minions = prediction.CollisionObjects.Count(thing => thing.IsMinion);
+
+            if (minions > 1)
+            {
+                return;
+            }
+
+            Q.Cast(prediction.CastPosition, Packets());
+        }
+
+        public static void CastQ(Obj_AI_Base target)
+        {
+            var prediction = Q.GetPrediction(target, true);
+            var minions = prediction.CollisionObjects.Count(thing => thing.IsMinion);
+
+            if (minions > 2)
+            {
+                return;
+            }
+
+            Q.Cast(prediction.CastPosition, Packets());
         }
 
         private static void Game_OnGameUpdate(EventArgs args)
@@ -481,6 +506,10 @@ namespace Veigar__The_Tiny_Master_Of_Evil
                     //{
                     //    castE(GetNearestEnemy(Player));
                     //}
+                    //if(Target != null)
+                    //{
+                    //    CastQ(Target);
+                    //}
                     if (E.IsReady())
                     {
                         var targets = ObjectManager.Get<Obj_AI_Hero>().Where(h => h.IsValidTarget(E.Range + E.Width / 2)).OrderBy(h => h.Distance(Player, true));
@@ -493,7 +522,7 @@ namespace Veigar__The_Tiny_Master_Of_Evil
                             }
                         }
                     }
-                    if (Player.ServerPosition.Distance(Game.CursorPos) > 80) Player.IssueOrder(GameObjectOrder.MoveTo, point);
+                    if (menu.Item("ToOrb").GetValue<bool>()) if (Player.ServerPosition.Distance(Game.CursorPos) > 80) Player.IssueOrder(GameObjectOrder.MoveTo, point);
                 }
             }
             else
@@ -1109,28 +1138,28 @@ namespace Veigar__The_Tiny_Master_Of_Evil
                     {
                         if (menu.Item("IgnoreQ").GetValue<bool>() || !W.IsReady())
                         {
-                            Q.CastOnUnit(T, Packets());
+                            CastQ(T);
                         }
                     }
                     else
                     {
                         if (T.Buffs.Where(b => b.IsActive && Game.Time < b.EndTime && (b.Type == BuffType.Charm || b.Type == BuffType.Knockback || b.Type == BuffType.Stun || b.Type == BuffType.Suppression || b.Type == BuffType.Snare)).Aggregate(0f, (current, buff) => Math.Max(current, buff.EndTime)) - Game.Time >= W.Delay)
-                            Q.CastOnUnit(T, Packets());
+                            CastQ(T);
                     }
                 }
                 else if (Source != "EWQHarass" && Source != "QHarass")
                 {
-                    Q.CastOnUnit(T, Packets());
+                    CastQ(T);
                 }
                 else if (Source == "EWQHarass")
                 {
                     if (!menu.Item("WaitW").GetValue<bool>() || !W.IsReady())
-                        Q.CastOnUnit(T, Packets());
+                        CastQ(T);
                 }
                 else if (Source == "QHarass")
                 {
                     if (Player.Distance(T.Position) <= Q.Range)
-                        Q.CastOnUnit(T, Packets());
+                        CastQ(T);
                 }
 
             }
@@ -1451,7 +1480,7 @@ namespace Veigar__The_Tiny_Master_Of_Evil
             if (Q.IsReady())
             {
                 if (_m != null)
-                    Q.Cast(_m, Packets());
+                    CastQ(_m);
             }
         }
 
@@ -1962,12 +1991,6 @@ namespace Veigar__The_Tiny_Master_Of_Evil
                 Orb = 1;
                 Game.PrintChat("Regular Orbwalker Loaded");
             }
-            else
-            {
-                xSLxOrbwalker.AddToMenu(orbwalkerMenu);
-                Orb = 2;
-                Game.PrintChat("xSLx Orbwalker Loaded");
-            }
         }
 
         //private static void GenModelPacket(string champ, int skinId)
@@ -2026,7 +2049,7 @@ namespace Veigar__The_Tiny_Master_Of_Evil
         }
 
         //Interrupts Dangerous enemy spells with E
-        private static void Interrupter_OnPosibleToInterrupt(Obj_AI_Base unit, InterruptableSpell spell)
+        private static void Interrupter_OnPosibleToInterrupt(Obj_AI_Hero unit, Interrupter2.InterruptableTargetEventArgs spell)
         {
             if (!menu.Item("UseInt").GetValue<bool>()) return;
 

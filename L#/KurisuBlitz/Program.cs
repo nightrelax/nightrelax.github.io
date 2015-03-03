@@ -28,10 +28,8 @@ namespace KurisuBlitz
         private static void BlitzOnLoad(EventArgs args)
         {
             if (Me.ChampionName != "Blitzcrank")
-            {
                 return;
-            }
-
+           
             // Set spells      
             _q = new Spell(SpellSlot.Q, 1000f);
             _q.SetSkillshot(0.25f, 70f, 1800f, true, SkillshotType.SkillshotLine);
@@ -40,7 +38,7 @@ namespace KurisuBlitz
             _r = new Spell(SpellSlot.R, 550f);
 
             // Load Menu
-            _menu = new Menu("Kurisu: Blitz", "blitz", true);
+            _menu = new Menu("KurisuBlitz", "blitz", true);
 
             var blitzOrb = new Menu("Blitz: Orbwalker", "orbwalker");
             _orbwalker = new Orbwalking.Orbwalker(blitzOrb);
@@ -59,7 +57,6 @@ namespace KurisuBlitz
             var spellmenu = new Menu("Blitz: Spells", "smenu");
 
             var menuQ = new Menu("Q Menu", "qmenu");
-            menuQ.AddItem(new MenuItem("hitchanceq", "Q Hitchance")).SetValue(new Slider(1, 3, 4));
             menuQ.AddItem(new MenuItem("usecomboq", "Use in Combo")).SetValue(true);
             menuQ.AddItem(new MenuItem("qdashing", "Q on Dashing Enemies")).SetValue(true);
             menuQ.AddItem(new MenuItem("qimmobile", "Q on Immobile Enemies")).SetValue(true);
@@ -78,9 +75,11 @@ namespace KurisuBlitz
             menuR.AddItem(new MenuItem("securer", "Use for Killsteal")).SetValue(false);
             spellmenu.AddSubMenu(menuR);
 
+
             _menu.AddSubMenu(spellmenu);
 
             var menuM = new Menu("Blitz: Misc", "bmisc");
+            menuM.AddItem(new MenuItem("hitchanceq", "Q Hitchance 1-Low, 4-Very High")).SetValue(new Slider(3, 1, 4));
             menuM.AddItem(new MenuItem("dnd", "Mininum Distance to Q")).SetValue(new Slider(255, 0, (int)_q.Range));
             menuM.AddItem(new MenuItem("dnd2", "Maximum Distance to Q")).SetValue(new Slider((int)_q.Range, 0, (int)_q.Range));
             menuM.AddItem(new MenuItem("hnd", "Dont grab if below health %")).SetValue(new Slider(0));
@@ -91,6 +90,8 @@ namespace KurisuBlitz
             }
 
             _menu.AddSubMenu(menuM);
+            _menu.AddItem(new MenuItem("combokey", "Combo (active)")).SetValue(new KeyBind(32, KeyBindType.Press));
+
             _menu.AddToMainMenu();
 
             // events
@@ -163,7 +164,7 @@ namespace KurisuBlitz
 
             if ((int) (Me.Health/Me.MaxHealth*100) >= _menu.Item("hnd").GetValue<Slider>().Value)
             {
-                if (_orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
+                if (_menu.Item("combokey").GetValue<KeyBind>().Active)
                 {
                     Combo(_menu.Item("usecomboq").GetValue<bool>(),
                           _menu.Item("usecomboe").GetValue<bool>());
