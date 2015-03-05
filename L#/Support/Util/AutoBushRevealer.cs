@@ -1,41 +1,12 @@
-﻿#region LICENSE
-
-// Copyright 2014-2015 Support
-// AutoBushRevealer.cs is part of Support.
-// 
-// Support is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// Support is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with Support. If not, see <http://www.gnu.org/licenses/>.
-// 
-// Filename: Support/Support/AutoBushRevealer.cs
-// Created:  26/11/2014
-// Date:     24/01/2015/13:14
-// Author:   h3h3
-
-#endregion
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using LeagueSharp;
+using LeagueSharp.Common;
+using SharpDX;
 
 namespace Support.Util
 {
-    #region
-
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using LeagueSharp;
-    using LeagueSharp.Common;
-    using SharpDX;
-
-    #endregion
-
     public class AutoBushRevealer
     {
         private static readonly List<KeyValuePair<int, String>> Wards = new List<KeyValuePair<int, String>>
@@ -189,8 +160,8 @@ namespace Support.Util
                 Player = player;
             }
 
-            public Obj_AI_Hero Player { get; set; }
             public int LastSeen { get; set; }
+            public Obj_AI_Hero Player { get; set; }
         }
 
         private class GrassLocation

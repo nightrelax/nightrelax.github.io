@@ -1,44 +1,15 @@
-﻿#region LICENSE
-
-// Copyright 2015-2015 Support
-// Annie.cs is part of Support.
-// 
-// Support is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// Support is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with Support. If not, see <http://www.gnu.org/licenses/>.
-// 
-// Filename: Support/Support/Annie.cs
-// Created:  10/01/2015
-// Date:     24/01/2015/13:14
-// Author:   h3h3
+﻿#region
 
 #endregion
 
-#region
-
-#endregion
+using System;
+using System.Linq;
+using LeagueSharp;
+using LeagueSharp.Common;
+using Support.Util;
 
 namespace Support.Plugins
 {
-    #region
-
-    using System;
-    using System.Linq;
-    using LeagueSharp;
-    using LeagueSharp.Common;
-    using Support.Util;
-
-    #endregion
-
     public class Annie : PluginBase
     {
         public Annie()
@@ -49,7 +20,7 @@ namespace Support.Plugins
             R = new Spell(SpellSlot.R, 600);
 
             Q.SetTargetted(250, 1400);
-            W.SetSkillshot(600, (float) (50 * Math.PI / 180), float.MaxValue, false, SkillshotType.SkillshotCone);
+            W.SetSkillshot(600, (float) (50*Math.PI/180), float.MaxValue, false, SkillshotType.SkillshotCone);
             R.SetSkillshot(250, 200, float.MaxValue, false, SkillshotType.SkillshotCircle);
         }
 

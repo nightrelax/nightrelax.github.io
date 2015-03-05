@@ -1,42 +1,13 @@
-﻿#region LICENSE
-
-// Copyright 2014-2015 Support
-// Thresh.cs is part of Support.
-// 
-// Support is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// Support is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with Support. If not, see <http://www.gnu.org/licenses/>.
-// 
-// Filename: Support/Support/Thresh.cs
-// Created:  06/10/2014
-// Date:     24/01/2015/13:14
-// Author:   h3h3
-
-#endregion
+﻿using System;
+using System.Linq;
+using LeagueSharp;
+using LeagueSharp.Common;
+using SharpDX;
+using Support.Util;
+using ActiveGapcloser = Support.Util.ActiveGapcloser;
 
 namespace Support.Plugins
 {
-    #region
-
-    using System;
-    using System.Linq;
-    using LeagueSharp;
-    using LeagueSharp.Common;
-    using SharpDX;
-    using Support.Util;
-    using ActiveGapcloser = Support.Util.ActiveGapcloser;
-
-    #endregion
-
     public class Thresh : PluginBase
     {
         private const int QFollowTime = 3000;
@@ -220,19 +191,19 @@ namespace Support.Plugins
                     .Where(
                         hero =>
                             !hero.IsMe && hero.Distance(Player) <= W.Range + 300 &&
-                            hero.Distance(Player) <= W.Range - 300 && hero.Health / hero.MaxHealth * 100 >= 20 &&
+                            hero.Distance(Player) <= W.Range - 300 && hero.Health/hero.MaxHealth*100 >= 20 &&
                             Player.CountEnemiesInRange(150) >= 1))
             {
                 var center = Player.Position;
                 const int points = 36;
                 var radius = W.Range;
-                const double slice = 2 * Math.PI / points;
+                const double slice = 2*Math.PI/points;
 
                 for (var i = 0; i < points; i++)
                 {
-                    var angle = slice * i;
-                    var newX = (int) (center.X + radius * Math.Cos(angle));
-                    var newY = (int) (center.Y + radius * Math.Sin(angle));
+                    var angle = slice*i;
+                    var newX = (int) (center.X + radius*Math.Cos(angle));
+                    var newY = (int) (center.Y + radius*Math.Sin(angle));
                     var p = new Vector3(newX, newY, 0);
                     if (p.Distance(friend.Position) <= bestcastposition.Distance(friend.Position))
                     {
@@ -272,7 +243,7 @@ namespace Support.Plugins
                         hero =>
                             !hero.IsMe && hero.Distance(ObjectManager.Player) <= W.Range + 300 &&
                             hero.Distance(ObjectManager.Player) <= W.Range - 200 &&
-                            hero.Health / hero.MaxHealth * 100 >= 20 && !hero.IsDead))
+                            hero.Health/hero.MaxHealth*100 >= 20 && !hero.IsDead))
             {
                 foreach (var enemy in HeroManager.Enemies)
                 {
@@ -284,13 +255,13 @@ namespace Support.Plugins
                     var center = ObjectManager.Player.Position;
                     const int points = 36;
                     var radius = W.Range;
-                    const double slice = 2 * Math.PI / points;
+                    const double slice = 2*Math.PI/points;
 
                     for (var i = 0; i < points; i++)
                     {
-                        var angle = slice * i;
-                        var newX = (int) (center.X + radius * Math.Cos(angle));
-                        var newY = (int) (center.Y + radius * Math.Sin(angle));
+                        var angle = slice*i;
+                        var newX = (int) (center.X + radius*Math.Cos(angle));
+                        var newY = (int) (center.Y + radius*Math.Sin(angle));
                         var p = new Vector3(newX, newY, 0);
                         if (p.Distance(friend.Position) <= bestcastposition.Distance(friend.Position))
                         {

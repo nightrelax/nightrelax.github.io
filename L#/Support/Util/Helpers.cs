@@ -1,45 +1,16 @@
-﻿#region LICENSE
-
-// Copyright 2014-2015 Support
-// Helpers.cs is part of Support.
-// 
-// Support is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// Support is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with Support. If not, see <http://www.gnu.org/licenses/>.
-// 
-// Filename: Support/Support/Helpers.cs
-// Created:  26/11/2014
-// Date:     24/01/2015/13:14
-// Author:   h3h3
-
-#endregion
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using LeagueSharp;
+using LeagueSharp.Common;
+using SharpDX;
+using Version = System.Version;
 
 namespace Support.Util
 {
-    #region
-
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using LeagueSharp;
-    using LeagueSharp.Common;
-    using SharpDX;
-    using Version = System.Version;
-
-    #endregion
-
     internal static class Helpers
     {
         /// <summary>
@@ -137,7 +108,7 @@ namespace Support.Util
             {
                 if (ally.IsMe)
                 {
-                    if (((ObjectManager.Player.Health / ObjectManager.Player.MaxHealth) * 100) < percentHp)
+                    if (((ObjectManager.Player.Health/ObjectManager.Player.MaxHealth)*100) < percentHp)
                     {
                         return ally;
                     }
@@ -145,7 +116,7 @@ namespace Support.Util
                 else if (ally.IsAlly)
                 {
                     if (Vector3.Distance(ObjectManager.Player.Position, ally.Position) < range &&
-                        ((ally.Health / ally.MaxHealth) * 100) < percentHp)
+                        ((ally.Health/ally.MaxHealth)*100) < percentHp)
                     {
                         return ally;
                     }

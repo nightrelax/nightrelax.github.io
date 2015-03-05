@@ -1,44 +1,15 @@
-﻿#region LICENSE
-
-// Copyright 2014-2015 Support
-// PluginBase.cs is part of Support.
-// 
-// Support is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// Support is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with Support. If not, see <http://www.gnu.org/licenses/>.
-// 
-// Filename: Support/Support/PluginBase.cs
-// Created:  01/10/2014
-// Date:     24/01/2015/13:14
-// Author:   h3h3
-
-#endregion
+﻿using System;
+using System.Drawing;
+using System.Linq;
+using LeagueSharp;
+using LeagueSharp.Common;
+using Support.Util;
+using ActiveGapcloser = Support.Util.ActiveGapcloser;
+using AntiGapcloser = Support.Util.AntiGapcloser;
+using Version = System.Version;
 
 namespace Support
 {
-    #region
-
-    using System;
-    using System.Drawing;
-    using System.Linq;
-    using LeagueSharp;
-    using LeagueSharp.Common;
-    using Support.Util;
-    using ActiveGapcloser = Support.Util.ActiveGapcloser;
-    using AntiGapcloser = Support.Util.AntiGapcloser;
-    using Version = System.Version;
-
-    #endregion
-
     /// <summary>
     ///     PluginBase class
     /// </summary>
@@ -62,90 +33,9 @@ namespace Support
         }
 
         /// <summary>
-        ///     Plugin display name
-        /// </summary>
-        public string Author { get; set; }
-
-        /// <summary>
-        ///     Champion Author
-        /// </summary>
-        public string ChampionName { get; set; }
-
-        /// <summary>
-        ///     Plugin Version
-        /// </summary>
-        public Version Version { get; set; }
-
-        /// <summary>
-        ///     Orbwalker
-        /// </summary>
-        public Orbwalking.Orbwalker Orbwalker { get; set; }
-
-        /// <summary>
         ///     ActiveMode
         /// </summary>
         public static Orbwalking.OrbwalkingMode ActiveMode { get; set; }
-
-        /// <summary>
-        ///     SupportTargetSelector
-        /// </summary>
-        public TargetSelector TargetSelector { get; set; }
-
-        /// <summary>
-        ///     ComboMode
-        /// </summary>
-        public bool ComboMode
-        {
-            get { return Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo && !Player.IsDead; }
-        }
-
-        /// <summary>
-        ///     HarassMode
-        /// </summary>
-        public bool HarassMode
-        {
-            get { return Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Mixed && HarassMana && !Player.IsDead; }
-        }
-
-        /// <summary>
-        ///     HarassMana
-        /// </summary>
-        public bool HarassMana
-        {
-            get { return Player.Mana > Player.MaxMana * ConfigValue<Slider>("HarassMana").Value / 100; }
-        }
-
-        /// <summary>
-        ///     Player Object
-        /// </summary>
-        public Obj_AI_Hero Player
-        {
-            get { return ObjectManager.Player; }
-        }
-
-        /// <summary>
-        ///     AttackRange
-        /// </summary>
-        public float AttackRange
-        {
-            get { return Orbwalking.GetRealAutoAttackRange(Target); }
-        }
-
-        /// <summary>
-        ///     Target
-        /// </summary>
-        public Obj_AI_Hero Target
-        {
-            get { return TargetSelector.GetTarget(2000, TargetSelector.DamageType.Magical); }
-        }
-
-        /// <summary>
-        ///     OrbwalkerTarget
-        /// </summary>
-        public AttackableUnit OrbwalkerTarget
-        {
-            get { return Orbwalker.GetTarget(); }
-        }
 
         /// <summary>
         ///     AttackMinion
@@ -160,29 +50,22 @@ namespace Support
         }
 
         /// <summary>
-        ///     Q
+        ///     AttackRange
         /// </summary>
-        public Spell Q { get; set; }
+        public float AttackRange
+        {
+            get { return Orbwalking.GetRealAutoAttackRange(Target); }
+        }
 
         /// <summary>
-        ///     W
+        ///     Plugin display name
         /// </summary>
-        public Spell W { get; set; }
+        public string Author { get; set; }
 
         /// <summary>
-        ///     E
+        ///     Champion Author
         /// </summary>
-        public Spell E { get; set; }
-
-        /// <summary>
-        ///     R
-        /// </summary>
-        public Spell R { get; set; }
-
-        /// <summary>
-        ///     Config
-        /// </summary>
-        public static Menu Config { get; set; }
+        public string ChampionName { get; set; }
 
         /// <summary>
         ///     ComboConfig
@@ -190,19 +73,17 @@ namespace Support
         public Menu ComboConfig { get; set; }
 
         /// <summary>
-        ///     HarassConfig
+        ///     ComboMode
         /// </summary>
-        public Menu HarassConfig { get; set; }
+        public bool ComboMode
+        {
+            get { return Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo && !Player.IsDead; }
+        }
 
         /// <summary>
-        ///     MiscConfig
+        ///     Config
         /// </summary>
-        public Menu MiscConfig { get; set; }
-
-        /// <summary>
-        ///     ManaConfig
-        /// </summary>
-        public Menu ManaConfig { get; set; }
+        public static Menu Config { get; set; }
 
         /// <summary>
         ///     DrawingConfig
@@ -210,9 +91,99 @@ namespace Support
         public Menu DrawingConfig { get; set; }
 
         /// <summary>
+        ///     E
+        /// </summary>
+        public Spell E { get; set; }
+
+        /// <summary>
+        ///     HarassConfig
+        /// </summary>
+        public Menu HarassConfig { get; set; }
+
+        /// <summary>
+        ///     HarassMana
+        /// </summary>
+        public bool HarassMana
+        {
+            get { return Player.Mana > Player.MaxMana*ConfigValue<Slider>("HarassMana").Value/100; }
+        }
+
+        /// <summary>
+        ///     HarassMode
+        /// </summary>
+        public bool HarassMode
+        {
+            get { return Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Mixed && HarassMana && !Player.IsDead; }
+        }
+
+        /// <summary>
         ///     InterruptConfig
         /// </summary>
         public Menu InterruptConfig { get; set; }
+
+        /// <summary>
+        ///     ManaConfig
+        /// </summary>
+        public Menu ManaConfig { get; set; }
+
+        /// <summary>
+        ///     MiscConfig
+        /// </summary>
+        public Menu MiscConfig { get; set; }
+
+        /// <summary>
+        ///     Orbwalker
+        /// </summary>
+        public Orbwalking.Orbwalker Orbwalker { get; set; }
+
+        /// <summary>
+        ///     OrbwalkerTarget
+        /// </summary>
+        public AttackableUnit OrbwalkerTarget
+        {
+            get { return Orbwalker.GetTarget(); }
+        }
+
+        /// <summary>
+        ///     Player Object
+        /// </summary>
+        public Obj_AI_Hero Player
+        {
+            get { return ObjectManager.Player; }
+        }
+
+        /// <summary>
+        ///     Q
+        /// </summary>
+        public Spell Q { get; set; }
+
+        /// <summary>
+        ///     R
+        /// </summary>
+        public Spell R { get; set; }
+
+        /// <summary>
+        ///     Target
+        /// </summary>
+        public Obj_AI_Hero Target
+        {
+            get { return TargetSelector.GetTarget(2000, TargetSelector.DamageType.Magical); }
+        }
+
+        /// <summary>
+        ///     SupportTargetSelector
+        /// </summary>
+        public TargetSelector TargetSelector { get; set; }
+
+        /// <summary>
+        ///     Plugin Version
+        /// </summary>
+        public Version Version { get; set; }
+
+        /// <summary>
+        ///     W
+        /// </summary>
+        public Spell W { get; set; }
 
         /// <summary>
         ///     ConfigValue
@@ -235,7 +206,9 @@ namespace Support
         ///     override to Implement OnProcessPacket logic
         /// </remarks>
         /// <param name="args"></param>
-        public virtual void OnProcessPacket(GamePacketEventArgs args) {}
+        public virtual void OnProcessPacket(GamePacketEventArgs args)
+        {
+        }
 
         /// <summary>
         ///     OnSendPacket
@@ -244,7 +217,9 @@ namespace Support
         ///     override to Implement OnSendPacket logic
         /// </remarks>
         /// <param name="args"></param>
-        public virtual void OnSendPacket(GamePacketEventArgs args) {}
+        public virtual void OnSendPacket(GamePacketEventArgs args)
+        {
+        }
 
         /// <summary>
         ///     OnPossibleToInterrupt
@@ -254,7 +229,9 @@ namespace Support
         /// </remarks>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public virtual void OnPossibleToInterrupt(Obj_AI_Hero sender, Interrupter2.InterruptableTargetEventArgs args) {}
+        public virtual void OnPossibleToInterrupt(Obj_AI_Hero sender, Interrupter2.InterruptableTargetEventArgs args)
+        {
+        }
 
         /// <summary>
         ///     OnEnemyGapcloser
@@ -263,7 +240,9 @@ namespace Support
         ///     override to Implement AntiGapcloser logic
         /// </remarks>
         /// <param name="gapcloser">ActiveGapcloser</param>
-        public virtual void OnEnemyGapcloser(ActiveGapcloser gapcloser) {}
+        public virtual void OnEnemyGapcloser(ActiveGapcloser gapcloser)
+        {
+        }
 
         /// <summary>
         ///     OnUpdate
@@ -272,7 +251,9 @@ namespace Support
         ///     override to Implement Update logic
         /// </remarks>
         /// <param name="args">EventArgs</param>
-        public virtual void OnUpdate(EventArgs args) {}
+        public virtual void OnUpdate(EventArgs args)
+        {
+        }
 
         /// <summary>
         ///     OnBeforeAttack
@@ -281,7 +262,9 @@ namespace Support
         ///     override to Implement OnBeforeAttack logic
         /// </remarks>
         /// <param name="args">Orbwalking.BeforeAttackEventArgs</param>
-        public virtual void OnBeforeAttack(Orbwalking.BeforeAttackEventArgs args) {}
+        public virtual void OnBeforeAttack(Orbwalking.BeforeAttackEventArgs args)
+        {
+        }
 
         /// <summary>
         ///     OnAfterAttack
@@ -291,7 +274,9 @@ namespace Support
         /// </remarks>
         /// <param name="unit">unit</param>
         /// <param name="target">target</param>
-        public virtual void OnAfterAttack(AttackableUnit unit, AttackableUnit target) {}
+        public virtual void OnAfterAttack(AttackableUnit unit, AttackableUnit target)
+        {
+        }
 
         /// <summary>
         ///     OnLoad
@@ -300,7 +285,9 @@ namespace Support
         ///     override to Implement class Initialization
         /// </remarks>
         /// <param name="args">EventArgs</param>
-        public virtual void OnLoad(EventArgs args) {}
+        public virtual void OnLoad(EventArgs args)
+        {
+        }
 
         /// <summary>
         ///     OnDraw
@@ -309,7 +296,9 @@ namespace Support
         ///     override to Implement Drawing
         /// </remarks>
         /// <param name="args">EventArgs</param>
-        public virtual void OnDraw(EventArgs args) {}
+        public virtual void OnDraw(EventArgs args)
+        {
+        }
 
         /// <summary>
         ///     ComboMenu
@@ -318,7 +307,9 @@ namespace Support
         ///     override to Implement ComboMenu Config
         /// </remarks>
         /// <param name="config">Menu</param>
-        public virtual void ComboMenu(Menu config) {}
+        public virtual void ComboMenu(Menu config)
+        {
+        }
 
         /// <summary>
         ///     HarassMenu
@@ -327,7 +318,9 @@ namespace Support
         ///     override to Implement HarassMenu Config
         /// </remarks>
         /// <param name="config">Menu</param>
-        public virtual void HarassMenu(Menu config) {}
+        public virtual void HarassMenu(Menu config)
+        {
+        }
 
         /// <summary>
         ///     ManaMenu
@@ -336,7 +329,9 @@ namespace Support
         ///     override to Implement ManaMenu Config
         /// </remarks>
         /// <param name="config">Menu</param>
-        public virtual void ManaMenu(Menu config) {}
+        public virtual void ManaMenu(Menu config)
+        {
+        }
 
         /// <summary>
         ///     MiscMenu
@@ -345,7 +340,9 @@ namespace Support
         ///     override to Implement MiscMenu Config
         /// </remarks>
         /// <param name="config">Menu</param>
-        public virtual void MiscMenu(Menu config) {}
+        public virtual void MiscMenu(Menu config)
+        {
+        }
 
         /// <summary>
         ///     MiscMenu
@@ -354,7 +351,9 @@ namespace Support
         ///     override to Implement Interrupt Config
         /// </remarks>
         /// <param name="config">Menu</param>
-        public virtual void InterruptMenu(Menu config) {}
+        public virtual void InterruptMenu(Menu config)
+        {
+        }
 
         /// <summary>
         ///     DrawingMenu
@@ -363,7 +362,9 @@ namespace Support
         ///     override to Implement DrawingMenu Config
         /// </remarks>
         /// <param name="config">Menu</param>
-        public virtual void DrawingMenu(Menu config) {}
+        public virtual void DrawingMenu(Menu config)
+        {
+        }
 
         #region Private Stuff
 
@@ -372,7 +373,7 @@ namespace Support
         /// </summary>
         private void InitPluginEvents()
         {
-            Game.OnGameUpdate += OnUpdate;
+            Game.OnUpdate += OnUpdate;
             Drawing.OnDraw += OnDraw;
             Orbwalking.BeforeAttack += OnBeforeAttack;
             Orbwalking.AfterAttack += OnAfterAttack;
@@ -479,7 +480,7 @@ namespace Support
             ManaConfig.AddSlider("HarassMana", "Harass Mana %", 1, 1, 100);
 
             // misc
-            MiscConfig.AddList("AttackMinions", "Attack Minions?", new[] { "Smart", "Never", "Always" });
+            MiscConfig.AddList("AttackMinions", "Attack Minions?", new[] {"Smart", "Never", "Always"});
             MiscConfig.AddBool("AttackChampions", "Attack Champions?", true);
 
             // drawing

@@ -1,40 +1,11 @@
-﻿#region LICENSE
-
-// Copyright 2014-2015 Support
-// SkillshotDetector.cs is part of Support.
-// 
-// Support is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// Support is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with Support. If not, see <http://www.gnu.org/licenses/>.
-// 
-// Filename: Support/Support/SkillshotDetector.cs
-// Created:  05/10/2014
-// Date:     24/01/2015/13:14
-// Author:   h3h3
-
-#endregion
+﻿using System;
+using System.Linq;
+using LeagueSharp;
+using LeagueSharp.Common;
+using SharpDX;
 
 namespace Support.Evade
 {
-    #region
-
-    using System;
-    using System.Linq;
-    using LeagueSharp;
-    using LeagueSharp.Common;
-    using SharpDX;
-
-    #endregion
-
     internal static class SkillshotDetector
     {
         public delegate void OnDeleteMissileH(Skillshot skillshot, Obj_SpellMissile missile);
@@ -64,7 +35,9 @@ namespace Support.Evade
             }
         }
 
-        private static void GameObject_OnCreate(GameObject sender, EventArgs args) {}
+        private static void GameObject_OnCreate(GameObject sender, EventArgs args)
+        {
+        }
 
         private static void GameObject_OnDelete(GameObject sender, EventArgs args)
         {
@@ -99,9 +72,8 @@ namespace Support.Evade
                 Console.WriteLine(
                     Environment.TickCount + " Projectile Created: " + missile.SData.Name + " distance: " +
                     missile.StartPosition.Distance(missile.EndPosition) + "Radius: " +
-                    missile.SData.CastRadiusSecondary[0] + " Speed: " + missile.SData.MissileSpeed);
+                    missile.SData.CastRadiusSecondary + " Speed: " + missile.SData.MissileSpeed);
             }
-
 #endif
 
 
@@ -124,17 +96,17 @@ namespace Support.Evade
             var direction = (endPos - unitPosition).Normalized();
             if (unitPosition.Distance(endPos) > spellData.Range || spellData.FixedRange)
             {
-                endPos = unitPosition + direction * spellData.Range;
+                endPos = unitPosition + direction*spellData.Range;
             }
 
             if (spellData.ExtraRange != -1)
             {
                 endPos = endPos +
-                         Math.Min(spellData.ExtraRange, spellData.Range - endPos.Distance(unitPosition)) * direction;
+                         Math.Min(spellData.ExtraRange, spellData.Range - endPos.Distance(unitPosition))*direction;
             }
 
-            var castTime = Environment.TickCount - Game.Ping / 2 - (spellData.MissileDelayed ? 0 : spellData.Delay) -
-                           (int) (1000 * missilePosition.Distance(unitPosition) / spellData.MissileSpeed);
+            var castTime = Environment.TickCount - Game.Ping/2 - (spellData.MissileDelayed ? 0 : spellData.Delay) -
+                           (int) (1000*missilePosition.Distance(unitPosition)/spellData.MissileSpeed);
 
             //Trigger the skillshot detection callbacks.
             TriggerOnDetectSkillshot(DetectionType.RecvPacket, spellData, castTime, unitPosition, endPos, unit);
@@ -268,9 +240,9 @@ namespace Support.Evade
                     if (obj.IsEnemy && spellData.FromObjects.Contains(obj.Name))
                     {
                         var start = obj.Position.To2D();
-                        var end = start + spellData.Range * (args.End.To2D() - obj.Position.To2D()).Normalized();
+                        var end = start + spellData.Range*(args.End.To2D() - obj.Position.To2D()).Normalized();
                         TriggerOnDetectSkillshot(
-                            DetectionType.ProcessSpell, spellData, Environment.TickCount - Game.Ping / 2, start, end,
+                            DetectionType.ProcessSpell, spellData, Environment.TickCount - Game.Ping/2, start, end,
                             sender);
                     }
                 }
@@ -293,19 +265,19 @@ namespace Support.Evade
             var direction = (endPos - startPos).Normalized();
             if (startPos.Distance(endPos) > spellData.Range || spellData.FixedRange)
             {
-                endPos = startPos + direction * spellData.Range;
+                endPos = startPos + direction*spellData.Range;
             }
 
             if (spellData.ExtraRange != -1)
             {
                 endPos = endPos +
-                         Math.Min(spellData.ExtraRange, spellData.Range - endPos.Distance(startPos)) * direction;
+                         Math.Min(spellData.ExtraRange, spellData.Range - endPos.Distance(startPos))*direction;
             }
 
 
             //Trigger the skillshot detection callbacks.
             TriggerOnDetectSkillshot(
-                DetectionType.ProcessSpell, spellData, Environment.TickCount - Game.Ping / 2, startPos, endPos, sender);
+                DetectionType.ProcessSpell, spellData, Environment.TickCount - Game.Ping/2, startPos, endPos, sender);
         }
 
         /// <summary>
@@ -353,9 +325,9 @@ namespace Support.Evade
                 {
                     return;
                 }
-                var castTime = Environment.TickCount - Game.Ping / 2 - spellData.Delay -
+                var castTime = Environment.TickCount - Game.Ping/2 - spellData.Delay -
                                (int)
-                                   (1000 * missilePosition.SwitchYZ().To2D().Distance(unitPosition.SwitchYZ()) /
+                                   (1000*missilePosition.SwitchYZ().To2D().Distance(unitPosition.SwitchYZ())/
                                     spellData.MissileSpeed);
 
                 //Trigger the skillshot detection callbacks.

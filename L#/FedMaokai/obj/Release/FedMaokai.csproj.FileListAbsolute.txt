@@ -1,3 +1,0 @@
-C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\D0ED58CE\trunk\FedMaokai\obj\Release\FedMaokai.csprojResolveAssemblyReference.cache
-C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\D0ED58CE\trunk\FedMaokai\obj\Release\FedMaokai.Properties.Resources.resources
-C:\Users\OLIVERLEO\AppData\Roaming\LeagueSharp\Repositories\D0ED58CE\trunk\FedMaokai\obj\Release\FedMaokai.csproj.GenerateResource.Cache

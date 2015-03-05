@@ -19,6 +19,7 @@ namespace ezEvade
         private static SpellDrawer spellDrawer;
         private static EvadeTester evadeTester;
         private static EvadeSpell evadeSpell;
+        private static VirtualMouse virtualMouse;
 
         private static SpellSlot lastSpellCast;
 
@@ -93,8 +94,10 @@ namespace ezEvade
 
             menu.AddToMainMenu();
 
+            virtualMouse = new VirtualMouse(menu);
             spellDrawer = new SpellDrawer(menu);
             //evadeTester = new EvadeTester(menu);
+
         }
 
         public static float GetTickCount()
@@ -210,8 +213,15 @@ namespace ezEvade
                 myHero.IssueOrder(GameObjectOrder.HoldPosition, myHero, false);
             }*/
 
-            isDodging = playerInDanger;         
+            /*
+            if (menu.SubMenu("KeySettings").Item("DodgeDangerousKey").GetValue<KeyBind>().Active == true)
+            {
+                VirtualMouse.VirtualClick(VirtualCommand.RightClick, myHero.ServerPosition);
+            }*/
 
+            isDodging = playerInDanger;
+            
+            
 
             if (isDodging)
             {

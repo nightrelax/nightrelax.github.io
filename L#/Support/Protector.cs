@@ -1,54 +1,25 @@
-﻿#region LICENSE
-
-// Copyright 2014-2015 Support
-// Protector.cs is part of Support.
-// 
-// Support is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// Support is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with Support. If not, see <http://www.gnu.org/licenses/>.
-// 
-// Filename: Support/Support/Protector.cs
-// Created:  05/10/2014
-// Date:     24/01/2015/13:14
-// Author:   h3h3
-
-#endregion
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using LeagueSharp;
+using LeagueSharp.Common;
+using SharpDX;
+using Support.Evade;
+using Support.Util;
+using Collision = Support.Evade.Collision;
+using SpellData = LeagueSharp.SpellData;
 
 namespace Support
 {
-    #region
-
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using LeagueSharp;
-    using LeagueSharp.Common;
-    using SharpDX;
-    using Support.Evade;
-    using Support.Util;
-    using Collision = Support.Evade.Collision;
-    using SpellData = LeagueSharp.SpellData;
-
-    #endregion
-
     internal class ProtectorSpell
     {
-        public string Name { get; set; }
-        public string ChampionName { get; set; }
-        public Spell Spell { get; set; }
-        public int HpBuffer { get; set; }
-        public bool Harass { get; set; }
-        public bool Targeted { get; set; }
         public bool Cc { get; set; }
+        public string ChampionName { get; set; }
+        public bool Harass { get; set; }
+        public int HpBuffer { get; set; }
+        public string Name { get; set; }
+        public Spell Spell { get; set; }
+        public bool Targeted { get; set; }
 
         public bool IsActive(Obj_AI_Hero hero)
         {
@@ -58,11 +29,11 @@ namespace Support
 
     internal class ProtectorItem
     {
-        public string Name { get; set; }
-        public Items.Item Item { get; set; }
-        public int HpBuffer { get; set; }
-        public bool Targeted { get; set; }
         public bool Cc { get; set; }
+        public int HpBuffer { get; set; }
+        public Items.Item Item { get; set; }
+        public string Name { get; set; }
+        public bool Targeted { get; set; }
 
         public bool IsActive(Obj_AI_Hero hero)
         {
@@ -94,14 +65,14 @@ namespace Support
         public static AutoBushRevealer Revealer;
         private static bool _isInitComplete;
 
-        private static bool UsePackets
-        {
-            get { return Menu.SubMenu("Misc").Item("UsePackets").GetValue<bool>(); }
-        }
-
         private static int IsAboutToHitTime
         {
             get { return Menu.Item("IsAboutToHitTime").GetValue<Slider>().Value; }
+        }
+
+        private static bool UsePackets
+        {
+            get { return Menu.SubMenu("Misc").Item("UsePackets").GetValue<bool>(); }
         }
 
         public static event OnSkillshotProtectionH OnSkillshotProtection;
@@ -525,7 +496,7 @@ namespace Support
 
                 //Check if the skillshot is too far away.
                 if (skillshot.Start.Distance(ObjectManager.Player.ServerPosition.To2D()) >
-                    (skillshot.SpellData.Range + skillshot.SpellData.Radius + 1000) * 1.5)
+                    (skillshot.SpellData.Range + skillshot.SpellData.Radius + 1000)*1.5)
                 {
                     return;
                 }
@@ -541,13 +512,13 @@ namespace Support
                         {
                             var originalDirection = skillshot.Direction;
 
-                            for (var i = -(skillshot.SpellData.MultipleNumber - 1) / 2;
-                                i <= (skillshot.SpellData.MultipleNumber - 1) / 2;
+                            for (var i = -(skillshot.SpellData.MultipleNumber - 1)/2;
+                                i <= (skillshot.SpellData.MultipleNumber - 1)/2;
                                 i++)
                             {
                                 var end = skillshot.Start +
-                                          skillshot.SpellData.Range *
-                                          originalDirection.Rotated(skillshot.SpellData.MultipleAngle * i);
+                                          skillshot.SpellData.Range*
+                                          originalDirection.Rotated(skillshot.SpellData.MultipleAngle*i);
                                 var skillshotToAdd = new Skillshot(
                                     skillshot.DetectionType, skillshot.SpellData, skillshot.StartTick, skillshot.Start,
                                     end, skillshot.Unit);
@@ -565,7 +536,7 @@ namespace Support
                         if (skillshot.SpellData.Invert)
                         {
                             var newDirection = -(skillshot.End - skillshot.Start).Normalized();
-                            var end = skillshot.Start + newDirection * skillshot.Start.Distance(skillshot.End);
+                            var end = skillshot.Start + newDirection*skillshot.Start.Distance(skillshot.End);
                             var skillshotToAdd = new Skillshot(
                                 skillshot.DetectionType, skillshot.SpellData, skillshot.StartTick, skillshot.Start, end,
                                 skillshot.Unit);
@@ -575,8 +546,8 @@ namespace Support
 
                         if (skillshot.SpellData.Centered)
                         {
-                            var start = skillshot.Start - skillshot.Direction * skillshot.SpellData.Range;
-                            var end = skillshot.Start + skillshot.Direction * skillshot.SpellData.Range;
+                            var start = skillshot.Start - skillshot.Direction*skillshot.SpellData.Range;
+                            var end = skillshot.Start + skillshot.Direction*skillshot.SpellData.Range;
                             var skillshotToAdd = new Skillshot(
                                 skillshot.DetectionType, skillshot.SpellData, skillshot.StartTick, start, end,
                                 skillshot.Unit);
@@ -589,8 +560,8 @@ namespace Support
                             var angle = 60;
                             var edge1 =
                                 (skillshot.End - skillshot.Unit.ServerPosition.To2D()).Rotated(
-                                    -angle / 2 * (float) Math.PI / 180);
-                            var edge2 = edge1.Rotated(angle * (float) Math.PI / 180);
+                                    -angle/2*(float) Math.PI/180);
+                            var edge2 = edge1.Rotated(angle*(float) Math.PI/180);
 
                             foreach (var minion in ObjectManager.Get<Obj_AI_Minion>())
                             {
@@ -615,8 +586,8 @@ namespace Support
 
                         if (skillshot.SpellData.SpellName == "AlZaharCalloftheVoid")
                         {
-                            var start = skillshot.End - skillshot.Direction.Perpendicular() * 400;
-                            var end = skillshot.End + skillshot.Direction.Perpendicular() * 400;
+                            var start = skillshot.End - skillshot.Direction.Perpendicular()*400;
+                            var end = skillshot.End + skillshot.Direction.Perpendicular()*400;
                             var skillshotToAdd = new Skillshot(
                                 skillshot.DetectionType, skillshot.SpellData, skillshot.StartTick, start, end,
                                 skillshot.Unit);
@@ -627,20 +598,20 @@ namespace Support
                         if (skillshot.SpellData.SpellName == "ZiggsQ")
                         {
                             var d1 = skillshot.Start.Distance(skillshot.End);
-                            var d2 = d1 * 0.4f;
-                            var d3 = d2 * 0.69f;
+                            var d2 = d1*0.4f;
+                            var d3 = d2*0.69f;
 
 
                             var bounce1SpellData = SpellDatabase.GetByName("ZiggsQBounce1");
                             var bounce2SpellData = SpellDatabase.GetByName("ZiggsQBounce2");
 
-                            var bounce1Pos = skillshot.End + skillshot.Direction * d2;
-                            var bounce2Pos = bounce1Pos + skillshot.Direction * d3;
+                            var bounce1Pos = skillshot.End + skillshot.Direction*d2;
+                            var bounce2Pos = bounce1Pos + skillshot.Direction*d3;
 
                             bounce1SpellData.Delay =
-                                (int) (skillshot.SpellData.Delay + d1 * 1000f / skillshot.SpellData.MissileSpeed + 500);
+                                (int) (skillshot.SpellData.Delay + d1*1000f/skillshot.SpellData.MissileSpeed + 500);
                             bounce2SpellData.Delay =
-                                (int) (bounce1SpellData.Delay + d2 * 1000f / bounce1SpellData.MissileSpeed + 500);
+                                (int) (bounce1SpellData.Delay + d2*1000f/bounce1SpellData.MissileSpeed + 500);
 
                             var bounce1 = new Skillshot(
                                 skillshot.DetectionType, bounce1SpellData, skillshot.StartTick, skillshot.End,
@@ -657,7 +628,7 @@ namespace Support
                         {
                             skillshot.SpellData.Delay =
                                 (int)
-                                    (1500 + 1500 * skillshot.End.Distance(skillshot.Start) / skillshot.SpellData.Range);
+                                    (1500 + 1500*skillshot.End.Distance(skillshot.Start)/skillshot.SpellData.Range);
                         }
 
                         if (skillshot.SpellData.SpellName == "JarvanIVDragonStrike")
@@ -686,7 +657,7 @@ namespace Support
                                 return;
                             }
 
-                            skillshot.End = endPos + 200 * (endPos - skillshot.Start).Normalized();
+                            skillshot.End = endPos + 200*(endPos - skillshot.Start).Normalized();
                             skillshot.Direction = (skillshot.End - skillshot.Start).Normalized();
                         }
                     }
@@ -723,7 +694,7 @@ namespace Support
         /// </summary>
         public static IsSafeResult IsSafe(Vector2 point)
         {
-            var result = new IsSafeResult { SkillshotList = new List<Skillshot>() };
+            var result = new IsSafeResult {SkillshotList = new List<Skillshot>()};
 
             foreach (var skillshot in DetectedSkillshots)
             {

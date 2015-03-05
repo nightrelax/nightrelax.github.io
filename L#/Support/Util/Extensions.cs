@@ -1,42 +1,9 @@
-﻿#region LICENSE
-
-// Copyright 2014-2015 Support
-// Extensions.cs is part of Support.
-// 
-// Support is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// Support is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with Support. If not, see <http://www.gnu.org/licenses/>.
-// 
-// Filename: Support/Support/Extensions.cs
-// Created:  26/11/2014
-// Date:     24/01/2015/13:14
-// Author:   h3h3
-
-#endregion
+﻿using System.Linq;
+using LeagueSharp;
+using LeagueSharp.Common;
 
 namespace Support.Util
 {
-    #region
-
-    using System.Linq;
-    using LeagueSharp;
-    using LeagueSharp.Common;
-
-    #endregion
-
-    #region
-
-    #endregion
-
     public enum HeroType
     {
         Ap,
@@ -116,7 +83,7 @@ namespace Support.Util
 
         public static double HealthBuffer(this Obj_AI_Base hero, int buffer)
         {
-            return hero.Health - (hero.MaxHealth * buffer / 100);
+            return hero.Health - (hero.MaxHealth*buffer/100);
         }
 
         public static bool CastCheck(this Items.Item item, Obj_AI_Base target)
@@ -185,7 +152,7 @@ namespace Support.Util
         {
             menu.AddItem(
                 new MenuItem(name + ObjectManager.Player.ChampionName, displayName).SetValue(
-                    new StringList((new[] { "Low", "Medium", "High", "Very High" }), (int) defaultHitChance - 3)));
+                    new StringList((new[] {"Low", "Medium", "High", "Very High"}), (int) defaultHitChance - 3)));
         }
 
         public static void AddSlider(this Menu menu, string name, string displayName, int value, int min, int max)

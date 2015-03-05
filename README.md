@@ -20,6 +20,7 @@ All Support for L# - Auto Update my favourite Assembilies
 - BrianSharp https://github.com/brian0305/BrianSharp http://www.joduska.me/forum/topic/18755-brian-sharp-beta-0018/
 - xSLx Orbwalker "lib" https://github.com/E2Slayer/LeagueSharp http://www.joduska.me/forum/topic/4649-51-xslx-orbwalker-standalone/
 - ezEvade https://github.com/soulcaliber/LeagueSharp
+- Gnome https://github.com/Gnomexfire/GNomeProject
 
 Champ
 - Aatrox https://github.com/AureusXD/LeagueSharp
@@ -34,14 +35,14 @@ Champ
 - KurisuBlitzcrank https://github.com/xKurisu/KurisuSolutions
 - Brand DatBrand https://github.com/GoldenGatesPB/league-sharp
 - Braum Support https://github.com/h3h3/LeagueSharp
-- Caitlyn https://github.com/OneKeyToWin/LeagueRepo
+- Caitlyn Marksman https://github.com/legacy3/Marksman
 - Cassiopeia https://github.com/HunteraSharp/LeagueSharp
 - Cho'Gath UnderratedAIO https://github.com/Soresu/LeagueSharp
 - Corki Marksman https://github.com/legacy3/Marksman
 - Darius SigmaSeries https://github.com/fueledbyflux/LeagueSharp-Public
 - D-Diana https://github.com/xQxCPMxQx/LeagueSharp2
-- FedDrMundo https://github.com/livetorise/LeagueSharp
-- DZDravenReloaded https://github.com/DZ191/LeagueSharp
+- DrMundo BrianSharp https://github.com/brian0305/BrianSharp
+- Draven Marksman https://github.com/legacy3/Marksman
 - SephElise https://github.com/SephLeague/LeagueSharp
 - Evelynn UnderratedAIO https://github.com/Soresu/LeagueSharp
 - PerplexedEzreal https://github.com/Perplexity/LeagueSharp
@@ -61,7 +62,7 @@ Champ
 - StonedJarvan https://github.com/TheKushStyle/LeagueSharp
 - JaxQx https://github.com/xQxCPMxQx/LeagueSharp2
 - Jayce xSaliceReligionAIO https://github.com/xSalice/LSharp
-- Jinx https://github.com/OneKeyToWin/LeagueRepo/tree/master/Jinx
+- Jinx Marksman https://github.com/legacy3/Marksman
 - Kalista https://github.com/Hellsing/LeagueSharp
 - Karma https://github.com/Esk0r/LeagueSharp
 - Kathus xSaliceReligionAIO https://github.com/xSalice/LSharp
@@ -70,7 +71,7 @@ Champ
 - Kayle https://github.com/RoachxD/LeagueSharp
 - Daimao Kennen https://github.com/Taerarenai/LeagueSharp
 - SephKhazix https://github.com/SephLeague/LeagueSharp
-- DevKogMaw https://github.com/InjectionDev/LeagueSharp
+- KogMaw Marksman https://github.com/legacy3/Marksman
 - Princess LeBlanc 2 https://github.com/Apollo16/LeagueSharp
 - FuckingAwesomeLeeSin https://github.com/fueledbyflux/FARepo
 - Leona Support https://github.com/h3h3/LeagueSharp
@@ -89,7 +90,7 @@ Champ
 - NasusFeelTheCane https://github.com/fueledbyflux/LeagueSharp-Public
 - Nautilus https://github.com/H3stia/LeagueSharp
 - KurisuNidalee https://github.com/xKurisu/KurisuSolutions
-- FedNocturne https://github.com/livetorise/LeagueSharp
+- Nocturne Gnome https://github.com/Gnomexfire/GNomeProject
 - Nunu Support https://github.com/h3h3/LeagueSharp
 - Olafisback https://github.com/xQxCPMxQx/leaguesharp2
 - Orianna xSaliceReligionAIO https://github.com/xSalice/LSharp
@@ -99,7 +100,7 @@ Champ
 - Rammus BrianSharp https://github.com/brian0305/BrianSharp
 - Rek'Sai https://github.com/Hellsing/LeagueSharp/
 - DatRenekton https://github.com/GoldenGatesPB/league-sharp
-- Rengar https://github.com/madk/LeagueSharp
+- ElRengar https://github.com/AlterEgojQuery/ElRengar
 - KurisuRiven https://github.com/xKurisu/KurisuSolutions/tree/master/KurisuRiven
 - Rumble xSaliceReligionAIO https://github.com/xSalice/LSharp
 - Lightning Ryze https://github.com/zUsername/LeagueSharp
@@ -124,7 +125,7 @@ Champ
 - Tryndamere SigmaSeries https://github.com/fueledbyflux/LeagueSharp-Public
 - Twisted Fate https://github.com/xcsoft/LeagueSharp
 - Twitch Marksman https://github.com/legacy3/Marksman
-- Udyr Godyr https://github.com/madk/LeagueSharp
+- Udyr BrianSharp https://github.com/brian0305/BrianSharp
 - TUrgot https://github.com/trees-software/leaguesharp
 - Varus Marksman https://github.com/legacy3/Marksman
 - VayneHunterRework https://github.com/DZ191/LeagueSharp

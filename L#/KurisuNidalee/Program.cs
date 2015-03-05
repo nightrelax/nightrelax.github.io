@@ -292,7 +292,7 @@ namespace KurisuNidalee
                         ObjectManager.Get<Obj_AI_Hero>().Where(hero => hero.IsValidTarget(Javelin.Range)))
                 {
                     var prediction = Javelin.GetPrediction(targ);
-                    var hqdmg = Me.GetSpellDamage(targ, SpellSlot.Q);
+                    var hqdmg = GetActualSpearDamage(targ);
                     if (targ.Health <= hqdmg && HQ == 0)
                     {                      
                         if (prediction.Hitchance >= HitChance.Medium)
@@ -1108,15 +1108,50 @@ namespace KurisuNidalee
 
         public static List<Obj_AI_Base> GetDashObjects(IEnumerable<Obj_AI_Base> predefinedObjectList = null)
         {
-            List<Obj_AI_Base> objects;
+            IEnumerable<Obj_AI_Base> objects;
             if (predefinedObjectList != null)
                 objects = predefinedObjectList.ToList();
             else
-                objects = ObjectManager.Get<Obj_AI_Base>().FindAll(o => o.IsValidTarget(Orbwalking.GetRealAutoAttackRange(o)));
+                objects =
+                    ObjectManager.Get<Obj_AI_Base>().Where(o => o.IsValidTarget(Orbwalking.GetRealAutoAttackRange(o)));
 
-            var apexPoint = Me.ServerPosition.To2D() + (Me.ServerPosition.To2D() - Game.CursorPos.To2D()).Normalized() * Orbwalking.GetRealAutoAttackRange(Me);
+            var apexPoint = Me.ServerPosition.To2D() +
+                            (Me.ServerPosition.To2D() - Game.CursorPos.To2D()).Normalized()*
+                            Orbwalking.GetRealAutoAttackRange(Me);
 
-            return objects.FindAll(o => IsLyingInCone(o.ServerPosition.To2D(), apexPoint, Me.ServerPosition.To2D(), Math.PI)).OrderBy(o => o.Distance(apexPoint, true)).ToList();
+            return
+                objects.Where(
+                    o => IsLyingInCone(o.ServerPosition.To2D(), apexPoint, Me.ServerPosition.To2D(), Math.PI))
+                    .OrderBy(o => o.Distance(apexPoint, true))
+                    .ToList();
+        }
+
+        #endregion
+    
+        #region actual spear calc
+        private static float GetActualSpearDamage(Obj_AI_Hero target)
+        {
+            double baseDamage = new double[] { 50, 75, 100, 125, 150 }[Javelin.Level - 1] +
+                                0.4 * Me.FlatMagicDamageMod;
+
+            float distance = Me.Distance(target.Position);
+
+            if ((distance < 525))
+            {
+                return (float) Me.GetSpellDamage(target, SpellSlot.Q);
+            }
+
+            if (distance > 1300)
+            {
+                distance = 1300;
+            }
+
+            const float units = 7.75f;
+            const float percentage = 0.02f;
+
+            var totalDamgeCalulated = (float) (distance - 525 / units * percentage * baseDamage);
+
+            return totalDamgeCalulated;
         }
 
         #endregion

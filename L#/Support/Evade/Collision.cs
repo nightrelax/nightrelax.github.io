@@ -1,42 +1,13 @@
-﻿#region LICENSE
-
-// Copyright 2014-2015 Support
-// Collision.cs is part of Support.
-// 
-// Support is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// Support is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with Support. If not, see <http://www.gnu.org/licenses/>.
-// 
-// Filename: Support/Support/Collision.cs
-// Created:  05/10/2014
-// Date:     24/01/2015/13:13
-// Author:   h3h3
-
-#endregion
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using LeagueSharp;
+using LeagueSharp.Common;
+using SharpDX;
 
 namespace Support.Evade
 {
-    #region
-
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using LeagueSharp;
-    using LeagueSharp.Common;
-    using SharpDX;
-
-    #endregion
-
     public enum CollisionObjectTypes
     {
         Minion,
@@ -81,8 +52,8 @@ namespace Support.Evade
 
         public static FastPredResult FastPrediction(Vector2 from, Obj_AI_Base unit, int delay, int speed)
         {
-            var tDelay = delay / 1000f + (from.Distance(unit) / speed);
-            var d = tDelay * unit.MoveSpeed;
+            var tDelay = delay/1000f + (from.Distance(unit)/speed);
+            var d = tDelay*unit.MoveSpeed;
             var path = unit.GetWaypoints();
 
             if (path.PathLength() > d)
@@ -143,7 +114,7 @@ namespace Support.Evade
                                     {
                                         Position =
                                             pos.ProjectOn(skillshot.End, skillshot.Start).LinePoint +
-                                            skillshot.Direction * 30,
+                                            skillshot.Direction*30,
                                         Unit = minion,
                                         Type = CollisionObjectTypes.Minion,
                                         Distance = pos.Distance(from),
@@ -176,7 +147,7 @@ namespace Support.Evade
                                     {
                                         Position =
                                             pos.ProjectOn(skillshot.End, skillshot.Start).LinePoint +
-                                            skillshot.Direction * 30,
+                                            skillshot.Direction*30,
                                         Unit = hero,
                                         Type = CollisionObjectTypes.Minion,
                                         Distance = pos.Distance(from),
@@ -210,12 +181,12 @@ namespace Support.Evade
                             break;
                         }
                         var level = wall.Name.Substring(wall.Name.Length - 6, 1);
-                        var wallWidth = (300 + 50 * Convert.ToInt32(level));
+                        var wallWidth = (300 + 50*Convert.ToInt32(level));
 
 
                         var wallDirection = (wall.Position.To2D() - YasuoWallCastedPos).Normalized().Perpendicular();
-                        var wallStart = wall.Position.To2D() + wallWidth / 2 * wallDirection;
-                        var wallEnd = wallStart - wallWidth * wallDirection;
+                        var wallStart = wall.Position.To2D() + wallWidth/2*wallDirection;
+                        var wallEnd = wallStart - wallWidth*wallDirection;
                         var wallPolygon = new Geometry.Rectangle(wallStart, wallEnd, 75).ToPolygon();
                         var intersection = new Vector2();
                         var intersections = new List<Vector2>();
@@ -240,7 +211,7 @@ namespace Support.Evade
                                                  0,
                                                  skillshot.SpellData.Delay -
                                                  (Environment.TickCount - skillshot.StartTick)) + 100 +
-                                             (1000 * intersection.Distance(from)) / skillshot.SpellData.MissileSpeed;
+                                             (1000*intersection.Distance(from))/skillshot.SpellData.MissileSpeed;
                             if (collisionT - WallCastT < 4000)
                             {
                                 if (skillshot.SpellData.Type != SkillShotType.SkillshotMissileLine)

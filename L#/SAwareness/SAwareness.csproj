@@ -57,53 +57,53 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="clipper_library">
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\clipper_library.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\clipper_library.dll</HintPath>
     </Reference>
     <Reference Include="Evade">
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\Evade.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\Evade.dll</HintPath>
     </Reference>
     <Reference Include="Evade.1.0.0.1.Fakes">
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\Evade.1.0.0.1.Fakes.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\Evade.1.0.0.1.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="InibinSharp.Fakes">
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\InibinSharp.Fakes.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\InibinSharp.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="LeagueSharp, Version=1.0.0.25, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\LeagueSharp.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\LeagueSharp.dll</HintPath>
     </Reference>
     <Reference Include="LeagueSharp.Common, Version=1.0.0.2, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\LeagueSharp.Common.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\LeagueSharp.Common.dll</HintPath>
     </Reference>
     <Reference Include="LeagueSharp.GameFiles, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\LeagueSharp.GameFiles.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\LeagueSharp.GameFiles.dll</HintPath>
     </Reference>
     <Reference Include="LeagueSharp.GameFiles.Fakes">
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\LeagueSharp.GameFiles.Fakes.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\LeagueSharp.GameFiles.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\Newtonsoft.Json.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json.6.0.0.0.Fakes">
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\Newtonsoft.Json.6.0.0.0.Fakes.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\Newtonsoft.Json.6.0.0.0.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\SharpDX.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct3D9, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\SharpDX.Direct3D9.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\SharpDX.Direct3D9.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Toolkit">
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\SharpDX.Toolkit.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\SharpDX.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Toolkit.Graphics">
-      <HintPath>E:\SETUP\GAME\LOL tool\nightrelax.github.io\LeagueSharp\\System\SharpDX.Toolkit.Graphics.dll</HintPath>
+      <HintPath>E:\SETUP\GAME\LOL tool\LeagueSharp\\System\SharpDX.Toolkit.Graphics.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

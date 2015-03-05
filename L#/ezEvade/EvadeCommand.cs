@@ -42,7 +42,8 @@ namespace ezEvade
                 timestamp = Evade.GetTickCount(),
                 isProcessed = false
             };
-            myHero.IssueOrder(GameObjectOrder.MoveTo, movePos.To3D(), false);
+            VirtualMouse.VirtualClick(VirtualCommand.RightClick, movePos.To3D());
+            myHero.IssueOrder(GameObjectOrder.MoveTo, movePos.To3D(), false);            
         }
 
         public static void CastSpell(EvadeSpellData spellData, Vector2 movePos)
